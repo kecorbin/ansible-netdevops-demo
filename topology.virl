@@ -8,9 +8,9 @@
         <entry key="AutoNetkit.ipv4_infra_prefix" type="String">8</entry>
         <entry key="AutoNetkit.ipv4_infra_subnet" type="String">10.10.0.0</entry>
     </extensions>
-    <node name="core1" type="SIMPLE" subtype="CSR1000v" location="348,221" ipv4="192.168.255.1">
+    <node name="core1" type="SIMPLE" subtype="CSR1000v" location="430,300" ipv4="192.168.255.1">
         <extensions>
-            <entry key="config" type="string">! IOS Config generated on 2017-12-15 07:12
+            <entry key="config" type="string">! IOS Config generated on 2017-12-15 12:31
 ! by autonetkit_0.24.0
 !
 hostname core1
@@ -73,23 +73,30 @@ interface GigabitEthernet1
   cdp enable
   no shutdown
 !
+interface GigabitEthernet2
+  description to core2
+  ip address 10.0.0.5 255.255.255.252
+  cdp enable
+  ip ospf cost 1
+  no shutdown
+!
 interface GigabitEthernet3
   description to agg3
-  ip address 10.0.0.6 255.255.255.252
+  ip address 10.0.0.10 255.255.255.252
   cdp enable
   ip ospf cost 1
   no shutdown
 !
 interface GigabitEthernet4
   description to agg4
-  ip address 10.0.0.10 255.255.255.252
+  ip address 10.0.0.14 255.255.255.252
   cdp enable
   ip ospf cost 1
   no shutdown
 !
-interface GigabitEthernet9
+interface GigabitEthernet5
   description to wan9
-  ip address 10.0.0.13 255.255.255.252
+  ip address 10.0.0.17 255.255.255.252
   cdp enable
   ip ospf cost 1
   no shutdown
@@ -103,6 +110,7 @@ router ospf 1
   network 10.0.0.4 0.0.0.3 area 0
   network 10.0.0.8 0.0.0.3 area 0
   network 10.0.0.12 0.0.0.3 area 0
+  network 10.0.0.16 0.0.0.3 area 0
 !
 !
 router bgp 1
@@ -130,13 +138,14 @@ end</entry>
             <entry key="AutoNetkit.ibgp_role" type="String">RRC</entry>
             <entry key="AutoNetkit.RR_cluster" type="String">10</entry>
         </extensions>
-        <interface id="1" name="GigabitEthernet3" ipv4="10.0.0.6" netPrefixLenV4="30"/>
-        <interface id="2" name="GigabitEthernet4" ipv4="10.0.0.10" netPrefixLenV4="30"/>
-        <interface id="7" name="GigabitEthernet9" ipv4="10.0.0.13" netPrefixLenV4="30"/>
+        <interface id="0" name="GigabitEthernet2" ipv4="10.0.0.5" netPrefixLenV4="30"/>
+        <interface id="1" name="GigabitEthernet3" ipv4="10.0.0.10" netPrefixLenV4="30"/>
+        <interface id="2" name="GigabitEthernet4" ipv4="10.0.0.14" netPrefixLenV4="30"/>
+        <interface id="3" name="GigabitEthernet5" ipv4="10.0.0.17" netPrefixLenV4="30"/>
     </node>
-    <node name="core2" type="SIMPLE" subtype="CSR1000v" location="494,215" ipv4="192.168.255.2">
+    <node name="core2" type="SIMPLE" subtype="CSR1000v" location="680,300" ipv4="192.168.255.2">
         <extensions>
-            <entry key="config" type="string">! IOS Config generated on 2017-12-15 07:12
+            <entry key="config" type="string">! IOS Config generated on 2017-12-15 12:31
 ! by autonetkit_0.24.0
 !
 hostname core2
@@ -199,23 +208,30 @@ interface GigabitEthernet1
   cdp enable
   no shutdown
 !
+interface GigabitEthernet2
+  description to core1
+  ip address 10.0.0.6 255.255.255.252
+  cdp enable
+  ip ospf cost 1
+  no shutdown
+!
 interface GigabitEthernet3
   description to agg3
-  ip address 10.0.0.18 255.255.255.252
+  ip address 10.0.0.22 255.255.255.252
   cdp enable
   ip ospf cost 1
   no shutdown
 !
 interface GigabitEthernet4
   description to agg4
-  ip address 10.0.0.22 255.255.255.252
+  ip address 10.0.0.26 255.255.255.252
   cdp enable
   ip ospf cost 1
   no shutdown
 !
-interface GigabitEthernet9
+interface GigabitEthernet5
   description to wan9
-  ip address 10.0.0.25 255.255.255.252
+  ip address 10.0.0.29 255.255.255.252
   cdp enable
   ip ospf cost 1
   no shutdown
@@ -226,9 +242,10 @@ router ospf 1
   network 192.168.255.2 0.0.0.0 area 0
   log-adjacency-changes
   passive-interface Loopback0
-  network 10.0.0.16 0.0.0.3 area 0
+  network 10.0.0.4 0.0.0.3 area 0
   network 10.0.0.20 0.0.0.3 area 0
   network 10.0.0.24 0.0.0.3 area 0
+  network 10.0.0.28 0.0.0.3 area 0
 !
 !
 router bgp 1
@@ -256,13 +273,14 @@ end</entry>
             <entry key="AutoNetkit.ibgp_role" type="String">RRC</entry>
             <entry key="AutoNetkit.RR_cluster" type="String">10</entry>
         </extensions>
-        <interface id="1" name="GigabitEthernet3" ipv4="10.0.0.18" netPrefixLenV4="30"/>
-        <interface id="2" name="GigabitEthernet4" ipv4="10.0.0.22" netPrefixLenV4="30"/>
-        <interface id="7" name="GigabitEthernet9" ipv4="10.0.0.25" netPrefixLenV4="30"/>
+        <interface id="0" name="GigabitEthernet2" ipv4="10.0.0.6" netPrefixLenV4="30"/>
+        <interface id="1" name="GigabitEthernet3" ipv4="10.0.0.22" netPrefixLenV4="30"/>
+        <interface id="2" name="GigabitEthernet4" ipv4="10.0.0.26" netPrefixLenV4="30"/>
+        <interface id="3" name="GigabitEthernet5" ipv4="10.0.0.29" netPrefixLenV4="30"/>
     </node>
-    <node name="agg3" type="SIMPLE" subtype="NX-OSv 9000" location="345,303" ipv4="192.168.255.3">
+    <node name="agg3" type="SIMPLE" subtype="NX-OSv 9000" location="430,500" ipv4="192.168.255.3">
         <extensions>
-            <entry key="config" type="string">! NX-OSv Config generated on 2017-12-15 07:12
+            <entry key="config" type="string">! NX-OSv Config generated on 2017-12-15 12:31
 ! by autonetkit_0.24.0
 !
 version 6.2(1)
@@ -315,7 +333,7 @@ interface Loopback0
 interface Ethernet1/1
   description to core1
   no switchport
-  ip address 10.0.0.5/30
+  ip address 10.0.0.9/30
   ip router ospf 1 area 0
   mac-address fa16.3e00.0001
   no shutdown
@@ -323,7 +341,7 @@ interface Ethernet1/1
 interface Ethernet1/2
   description to core2
   no switchport
-  ip address 10.0.0.17/30
+  ip address 10.0.0.21/30
   ip router ospf 1 area 0
   mac-address fa16.3e00.0002
   no shutdown
@@ -331,7 +349,7 @@ interface Ethernet1/2
 interface Ethernet1/3
   description to agg4
   no switchport
-  ip address 10.0.0.29/30
+  ip address 10.0.0.33/30
   ip router ospf 1 area 0
   mac-address fa16.3e00.0003
   no shutdown
@@ -339,7 +357,7 @@ interface Ethernet1/3
 interface Ethernet1/4
   description to agg4
   no switchport
-  ip address 10.0.0.33/30
+  ip address 10.0.0.37/30
   ip router ospf 1 area 0
   mac-address fa16.3e00.0004
   no shutdown
@@ -347,7 +365,7 @@ interface Ethernet1/4
 interface Ethernet1/5
   description to leaf5
   no switchport
-  ip address 10.0.0.37/30
+  ip address 10.0.0.41/30
   ip router ospf 1 area 56
   mac-address fa16.3e00.0005
   no shutdown
@@ -355,7 +373,7 @@ interface Ethernet1/5
 interface Ethernet1/6
   description to leaf6
   no switchport
-  ip address 10.0.0.41/30
+  ip address 10.0.0.45/30
   ip router ospf 1 area 56
   mac-address fa16.3e00.0006
   no shutdown
@@ -386,16 +404,16 @@ router bgp 1
             <entry key="AutoNetkit.ibgp_role" type="String">Disabled</entry>
             <entry key="AutoNetkit.ospf_area" type="String">0</entry>
         </extensions>
-        <interface id="0" name="Ethernet1/1" ipv4="10.0.0.5" netPrefixLenV4="30"/>
-        <interface id="1" name="Ethernet1/2" ipv4="10.0.0.17" netPrefixLenV4="30"/>
-        <interface id="2" name="Ethernet1/3" ipv4="10.0.0.29" netPrefixLenV4="30"/>
-        <interface id="3" name="Ethernet1/4" ipv4="10.0.0.33" netPrefixLenV4="30"/>
-        <interface id="4" name="Ethernet1/5" ipv4="10.0.0.37" netPrefixLenV4="30"/>
-        <interface id="5" name="Ethernet1/6" ipv4="10.0.0.41" netPrefixLenV4="30"/>
+        <interface id="0" name="Ethernet1/1" ipv4="10.0.0.9" netPrefixLenV4="30"/>
+        <interface id="1" name="Ethernet1/2" ipv4="10.0.0.21" netPrefixLenV4="30"/>
+        <interface id="2" name="Ethernet1/3" ipv4="10.0.0.33" netPrefixLenV4="30"/>
+        <interface id="3" name="Ethernet1/4" ipv4="10.0.0.37" netPrefixLenV4="30"/>
+        <interface id="4" name="Ethernet1/5" ipv4="10.0.0.41" netPrefixLenV4="30"/>
+        <interface id="5" name="Ethernet1/6" ipv4="10.0.0.45" netPrefixLenV4="30"/>
     </node>
-    <node name="agg4" type="SIMPLE" subtype="NX-OSv 9000" location="497,300" ipv4="192.168.255.4">
+    <node name="agg4" type="SIMPLE" subtype="NX-OSv 9000" location="680,500" ipv4="192.168.255.4">
         <extensions>
-            <entry key="config" type="string">! NX-OSv Config generated on 2017-12-15 07:12
+            <entry key="config" type="string">! NX-OSv Config generated on 2017-12-15 12:31
 ! by autonetkit_0.24.0
 !
 version 6.2(1)
@@ -448,7 +466,7 @@ interface Loopback0
 interface Ethernet1/1
   description to core1
   no switchport
-  ip address 10.0.0.9/30
+  ip address 10.0.0.13/30
   ip router ospf 1 area 0
   mac-address fa16.3e00.0008
   no shutdown
@@ -456,7 +474,7 @@ interface Ethernet1/1
 interface Ethernet1/2
   description to core2
   no switchport
-  ip address 10.0.0.21/30
+  ip address 10.0.0.25/30
   ip router ospf 1 area 0
   mac-address fa16.3e00.0009
   no shutdown
@@ -464,7 +482,7 @@ interface Ethernet1/2
 interface Ethernet1/3
   description to agg3
   no switchport
-  ip address 10.0.0.30/30
+  ip address 10.0.0.34/30
   ip router ospf 1 area 0
   mac-address fa16.3e00.000a
   no shutdown
@@ -472,7 +490,7 @@ interface Ethernet1/3
 interface Ethernet1/4
   description to agg3
   no switchport
-  ip address 10.0.0.34/30
+  ip address 10.0.0.38/30
   ip router ospf 1 area 0
   mac-address fa16.3e00.000b
   no shutdown
@@ -480,7 +498,7 @@ interface Ethernet1/4
 interface Ethernet1/5
   description to leaf5
   no switchport
-  ip address 10.0.0.45/30
+  ip address 10.0.0.49/30
   ip router ospf 1 area 56
   mac-address fa16.3e00.000c
   no shutdown
@@ -488,7 +506,7 @@ interface Ethernet1/5
 interface Ethernet1/6
   description to leaf6
   no switchport
-  ip address 10.0.0.49/30
+  ip address 10.0.0.53/30
   ip router ospf 1 area 56
   mac-address fa16.3e00.000d
   no shutdown
@@ -519,16 +537,16 @@ router bgp 1
             <entry key="AutoNetkit.ibgp_role" type="String">Disabled</entry>
             <entry key="AutoNetkit.ospf_area" type="String">0</entry>
         </extensions>
-        <interface id="0" name="Ethernet1/1" ipv4="10.0.0.9" netPrefixLenV4="30"/>
-        <interface id="1" name="Ethernet1/2" ipv4="10.0.0.21" netPrefixLenV4="30"/>
-        <interface id="2" name="Ethernet1/3" ipv4="10.0.0.30" netPrefixLenV4="30"/>
-        <interface id="3" name="Ethernet1/4" ipv4="10.0.0.34" netPrefixLenV4="30"/>
-        <interface id="4" name="Ethernet1/5" ipv4="10.0.0.45" netPrefixLenV4="30"/>
-        <interface id="5" name="Ethernet1/6" ipv4="10.0.0.49" netPrefixLenV4="30"/>
+        <interface id="0" name="Ethernet1/1" ipv4="10.0.0.13" netPrefixLenV4="30"/>
+        <interface id="1" name="Ethernet1/2" ipv4="10.0.0.25" netPrefixLenV4="30"/>
+        <interface id="2" name="Ethernet1/3" ipv4="10.0.0.34" netPrefixLenV4="30"/>
+        <interface id="3" name="Ethernet1/4" ipv4="10.0.0.38" netPrefixLenV4="30"/>
+        <interface id="4" name="Ethernet1/5" ipv4="10.0.0.49" netPrefixLenV4="30"/>
+        <interface id="5" name="Ethernet1/6" ipv4="10.0.0.53" netPrefixLenV4="30"/>
     </node>
-    <node name="leaf5" type="SIMPLE" subtype="NX-OSv 9000" location="338,396" ipv4="192.168.255.5">
+    <node name="leaf5" type="SIMPLE" subtype="NX-OSv 9000" location="430,680" ipv4="192.168.255.5">
         <extensions>
-            <entry key="config" type="string">! NX-OSv Config generated on 2017-12-15 07:12
+            <entry key="config" type="string">! NX-OSv Config generated on 2017-12-15 12:31
 ! by autonetkit_0.24.0
 !
 version 6.2(1)
@@ -595,7 +613,7 @@ interface Ethernet1/2
 interface Ethernet1/3
   description to agg3
   no switchport
-  ip address 10.0.0.38/30
+  ip address 10.0.0.42/30
   ip router ospf 1 area 56
   mac-address fa16.3e00.0011
   no shutdown
@@ -603,7 +621,7 @@ interface Ethernet1/3
 interface Ethernet1/4
   description to agg4
   no switchport
-  ip address 10.0.0.46/30
+  ip address 10.0.0.50/30
   ip router ospf 1 area 56
   mac-address fa16.3e00.0012
   no shutdown
@@ -611,7 +629,7 @@ interface Ethernet1/4
 interface Ethernet1/5
   description to leaf6
   no switchport
-  ip address 10.0.0.53/30
+  ip address 10.0.0.57/30
   ip router ospf 1 area 56
   mac-address fa16.3e00.0013
   no shutdown
@@ -619,7 +637,7 @@ interface Ethernet1/5
 interface Ethernet1/6
   description to leaf6
   no switchport
-  ip address 10.0.0.57/30
+  ip address 10.0.0.61/30
   ip router ospf 1 area 56
   mac-address fa16.3e00.0014
   no shutdown
@@ -627,7 +645,7 @@ interface Ethernet1/6
 interface Ethernet1/7
   description to server7
   no switchport
-  ip address 10.0.0.61/30
+  ip address 10.0.0.65/30
   ip router ospf 1 area 56
   mac-address fa16.3e00.0015
   no shutdown
@@ -635,7 +653,7 @@ interface Ethernet1/7
 interface Ethernet1/8
   description to server8
   no switchport
-  ip address 10.0.0.65/30
+  ip address 10.0.0.69/30
   ip router ospf 1 area 56
   mac-address fa16.3e00.0016
   no shutdown
@@ -668,16 +686,16 @@ router bgp 1
         </extensions>
         <interface id="0" name="Ethernet1/1"/>
         <interface id="1" name="Ethernet1/2"/>
-        <interface id="2" name="Ethernet1/3" ipv4="10.0.0.38" netPrefixLenV4="30"/>
-        <interface id="3" name="Ethernet1/4" ipv4="10.0.0.46" netPrefixLenV4="30"/>
-        <interface id="4" name="Ethernet1/5" ipv4="10.0.0.53" netPrefixLenV4="30"/>
-        <interface id="5" name="Ethernet1/6" ipv4="10.0.0.57" netPrefixLenV4="30"/>
-        <interface id="6" name="Ethernet1/7" ipv4="10.0.0.61" netPrefixLenV4="30"/>
-        <interface id="7" name="Ethernet1/8" ipv4="10.0.0.65" netPrefixLenV4="30"/>
+        <interface id="2" name="Ethernet1/3" ipv4="10.0.0.42" netPrefixLenV4="30"/>
+        <interface id="3" name="Ethernet1/4" ipv4="10.0.0.50" netPrefixLenV4="30"/>
+        <interface id="4" name="Ethernet1/5" ipv4="10.0.0.57" netPrefixLenV4="30"/>
+        <interface id="5" name="Ethernet1/6" ipv4="10.0.0.61" netPrefixLenV4="30"/>
+        <interface id="6" name="Ethernet1/7" ipv4="10.0.0.65" netPrefixLenV4="30"/>
+        <interface id="7" name="Ethernet1/8" ipv4="10.0.0.69" netPrefixLenV4="30"/>
     </node>
-    <node name="leaf6" type="SIMPLE" subtype="NX-OSv 9000" location="497,394" ipv4="192.168.255.6">
+    <node name="leaf6" type="SIMPLE" subtype="NX-OSv 9000" location="680,680" ipv4="192.168.255.6">
         <extensions>
-            <entry key="config" type="string">! NX-OSv Config generated on 2017-12-15 07:12
+            <entry key="config" type="string">! NX-OSv Config generated on 2017-12-15 12:31
 ! by autonetkit_0.24.0
 !
 version 6.2(1)
@@ -744,7 +762,7 @@ interface Ethernet1/2
 interface Ethernet1/3
   description to agg3
   no switchport
-  ip address 10.0.0.42/30
+  ip address 10.0.0.46/30
   ip router ospf 1 area 56
   mac-address fa16.3e00.001a
   no shutdown
@@ -752,7 +770,7 @@ interface Ethernet1/3
 interface Ethernet1/4
   description to agg4
   no switchport
-  ip address 10.0.0.50/30
+  ip address 10.0.0.54/30
   ip router ospf 1 area 56
   mac-address fa16.3e00.001b
   no shutdown
@@ -760,7 +778,7 @@ interface Ethernet1/4
 interface Ethernet1/5
   description to leaf5
   no switchport
-  ip address 10.0.0.54/30
+  ip address 10.0.0.58/30
   ip router ospf 1 area 56
   mac-address fa16.3e00.001c
   no shutdown
@@ -768,7 +786,7 @@ interface Ethernet1/5
 interface Ethernet1/6
   description to leaf5
   no switchport
-  ip address 10.0.0.58/30
+  ip address 10.0.0.62/30
   ip router ospf 1 area 56
   mac-address fa16.3e00.001d
   no shutdown
@@ -776,7 +794,7 @@ interface Ethernet1/6
 interface Ethernet1/7
   description to server7
   no switchport
-  ip address 10.0.0.69/30
+  ip address 10.0.0.73/30
   ip router ospf 1 area 56
   mac-address fa16.3e00.001e
   no shutdown
@@ -784,7 +802,7 @@ interface Ethernet1/7
 interface Ethernet1/8
   description to server8
   no switchport
-  ip address 10.0.0.73/30
+  ip address 10.0.0.77/30
   ip router ospf 1 area 56
   mac-address fa16.3e00.001f
   no shutdown
@@ -817,14 +835,14 @@ router bgp 1
         </extensions>
         <interface id="0" name="Ethernet1/1"/>
         <interface id="1" name="Ethernet1/2"/>
-        <interface id="2" name="Ethernet1/3" ipv4="10.0.0.42" netPrefixLenV4="30"/>
-        <interface id="3" name="Ethernet1/4" ipv4="10.0.0.50" netPrefixLenV4="30"/>
-        <interface id="4" name="Ethernet1/5" ipv4="10.0.0.54" netPrefixLenV4="30"/>
-        <interface id="5" name="Ethernet1/6" ipv4="10.0.0.58" netPrefixLenV4="30"/>
-        <interface id="6" name="Ethernet1/7" ipv4="10.0.0.69" netPrefixLenV4="30"/>
-        <interface id="7" name="Ethernet1/8" ipv4="10.0.0.73" netPrefixLenV4="30"/>
+        <interface id="2" name="Ethernet1/3" ipv4="10.0.0.46" netPrefixLenV4="30"/>
+        <interface id="3" name="Ethernet1/4" ipv4="10.0.0.54" netPrefixLenV4="30"/>
+        <interface id="4" name="Ethernet1/5" ipv4="10.0.0.58" netPrefixLenV4="30"/>
+        <interface id="5" name="Ethernet1/6" ipv4="10.0.0.62" netPrefixLenV4="30"/>
+        <interface id="6" name="Ethernet1/7" ipv4="10.0.0.73" netPrefixLenV4="30"/>
+        <interface id="7" name="Ethernet1/8" ipv4="10.0.0.77" netPrefixLenV4="30"/>
     </node>
-    <node name="server8" type="SIMPLE" subtype="server" location="499,522">
+    <node name="server8" type="SIMPLE" subtype="server" location="687,816">
         <extensions>
             <entry key="config" type="string">#cloud-config
 bootcmd:
@@ -877,32 +895,42 @@ write_files:
   permissions: '0755'
   content: |-
     #!/bin/sh
-    ifconfig eth5 up 10.0.0.66 netmask 255.255.255.252
-    ifconfig eth6 up 10.0.0.74 netmask 255.255.255.252
-    route add -host 192.168.255.1 gw 10.0.0.65 dev eth5
-    route add -host 192.168.255.6 gw 10.0.0.65 dev eth5
-    route add -host 192.168.255.9 gw 10.0.0.65 dev eth5
-    route add -host 192.168.255.10 gw 10.0.0.65 dev eth5
-    route add -net 10.10.0.0/8 gw 10.0.0.65 dev eth5
-    route add -net 192.168.255.2/31 gw 10.0.0.65 dev eth5
-    route add -net 192.168.255.4/31 gw 10.0.0.65 dev eth5
-    route add -host 192.168.255.1 gw 10.0.0.73 dev eth6
-    route add -host 192.168.255.6 gw 10.0.0.73 dev eth6
-    route add -host 192.168.255.9 gw 10.0.0.73 dev eth6
-    route add -host 192.168.255.10 gw 10.0.0.73 dev eth6
-    route add -net 10.10.0.0/8 gw 10.0.0.73 dev eth6
-    route add -net 192.168.255.2/31 gw 10.0.0.73 dev eth6
-    route add -net 192.168.255.4/31 gw 10.0.0.73 dev eth6
+    ifconfig eth5 up 10.0.0.70 netmask 255.255.255.252
+    ifconfig eth6 up 10.0.0.78 netmask 255.255.255.252
+    route add -host 192.168.255.1 gw 10.0.0.69 dev eth5
+    route add -host 192.168.255.6 gw 10.0.0.69 dev eth5
+    route add -host 192.168.255.9 gw 10.0.0.69 dev eth5
+    route add -host 192.168.255.10 gw 10.0.0.69 dev eth5
+    route add -net 10.0.0.4/30 gw 10.0.0.69 dev eth5
+    route add -net 10.0.0.8/29 gw 10.0.0.69 dev eth5
+    route add -net 10.0.0.16/28 gw 10.0.0.69 dev eth5
+    route add -net 10.0.0.32/27 gw 10.0.0.69 dev eth5
+    route add -net 10.0.0.64/28 gw 10.0.0.69 dev eth5
+    route add -net 10.0.0.80/29 gw 10.0.0.69 dev eth5
+    route add -net 192.168.255.2/31 gw 10.0.0.69 dev eth5
+    route add -net 192.168.255.4/31 gw 10.0.0.69 dev eth5
+    route add -host 192.168.255.1 gw 10.0.0.77 dev eth6
+    route add -host 192.168.255.6 gw 10.0.0.77 dev eth6
+    route add -host 192.168.255.9 gw 10.0.0.77 dev eth6
+    route add -host 192.168.255.10 gw 10.0.0.77 dev eth6
+    route add -net 10.0.0.4/30 gw 10.0.0.77 dev eth6
+    route add -net 10.0.0.8/29 gw 10.0.0.77 dev eth6
+    route add -net 10.0.0.16/28 gw 10.0.0.77 dev eth6
+    route add -net 10.0.0.32/27 gw 10.0.0.77 dev eth6
+    route add -net 10.0.0.64/28 gw 10.0.0.77 dev eth6
+    route add -net 10.0.0.80/29 gw 10.0.0.77 dev eth6
+    route add -net 192.168.255.2/31 gw 10.0.0.77 dev eth6
+    route add -net 192.168.255.4/31 gw 10.0.0.77 dev eth6
     exit 0
 </entry>
             <entry key="AutoNetkit.ibgp_role" type="String">Disabled</entry>
         </extensions>
-        <interface id="4" name="eth5" ipv4="10.0.0.66" netPrefixLenV4="30"/>
-        <interface id="5" name="eth6" ipv4="10.0.0.74" netPrefixLenV4="30"/>
+        <interface id="4" name="eth5" ipv4="10.0.0.70" netPrefixLenV4="30"/>
+        <interface id="5" name="eth6" ipv4="10.0.0.78" netPrefixLenV4="30"/>
     </node>
-    <node name="wan9" type="SIMPLE" subtype="CSR1000v" location="418,133" ipv4="192.168.255.9">
+    <node name="wan9" type="SIMPLE" subtype="CSR1000v" location="551,198" ipv4="192.168.255.9">
         <extensions>
-            <entry key="config" type="String">! IOS Config generated on 2017-12-15 07:12
+            <entry key="config" type="String">! IOS Config generated on 2017-12-15 12:31
 ! by autonetkit_0.24.0
 !
 hostname wan9
@@ -965,23 +993,23 @@ interface GigabitEthernet1
   cdp enable
   no shutdown
 !
-interface GigabitEthernet10
-  description to branch10-router10
-  ip address 10.0.0.78 255.255.255.252
-  cdp enable
-  ip ospf cost 1
-  no shutdown
-!
-interface GigabitEthernet11
+interface GigabitEthernet2
   description to core1
-  ip address 10.0.0.14 255.255.255.252
+  ip address 10.0.0.18 255.255.255.252
   cdp enable
   ip ospf cost 1
   no shutdown
 !
-interface GigabitEthernet12
+interface GigabitEthernet3
   description to core2
-  ip address 10.0.0.26 255.255.255.252
+  ip address 10.0.0.30 255.255.255.252
+  cdp enable
+  ip ospf cost 1
+  no shutdown
+!
+interface GigabitEthernet4
+  description to branch10-router10
+  ip address 10.0.0.82 255.255.255.252
   cdp enable
   ip ospf cost 1
   no shutdown
@@ -992,9 +1020,9 @@ router ospf 1
   network 192.168.255.9 0.0.0.0 area 0
   log-adjacency-changes
   passive-interface Loopback0
-  network 10.0.0.76 0.0.0.3 area 11
-  network 10.0.0.12 0.0.0.3 area 0
-  network 10.0.0.24 0.0.0.3 area 0
+  network 10.0.0.16 0.0.0.3 area 0
+  network 10.0.0.28 0.0.0.3 area 0
+  network 10.0.0.80 0.0.0.3 area 11
 !
 !
 router bgp 1
@@ -1035,13 +1063,13 @@ end</entry>
             <entry key="AutoNetkit.ibgp_role" type="String">RR</entry>
             <entry key="AutoNetkit.RR_cluster" type="String">10</entry>
         </extensions>
-        <interface id="8" name="GigabitEthernet10" ipv4="10.0.0.78" netPrefixLenV4="30"/>
-        <interface id="9" name="GigabitEthernet11" ipv4="10.0.0.14" netPrefixLenV4="30"/>
-        <interface id="10" name="GigabitEthernet12" ipv4="10.0.0.26" netPrefixLenV4="30"/>
+        <interface id="0" name="GigabitEthernet2" ipv4="10.0.0.18" netPrefixLenV4="30"/>
+        <interface id="1" name="GigabitEthernet3" ipv4="10.0.0.30" netPrefixLenV4="30"/>
+        <interface id="2" name="GigabitEthernet4" ipv4="10.0.0.82" netPrefixLenV4="30"/>
     </node>
-    <node name="branch10-router10" type="SIMPLE" subtype="CSR1000v" location="647,67" ipv4="192.168.255.10">
+    <node name="branch10-router10" type="SIMPLE" subtype="CSR1000v" location="551,99" ipv4="192.168.255.10">
         <extensions>
-            <entry key="config" type="string">! IOS Config generated on 2017-12-15 07:12
+            <entry key="config" type="string">! IOS Config generated on 2017-12-15 12:31
 ! by autonetkit_0.24.0
 !
 hostname branch10-router10
@@ -1104,16 +1132,16 @@ interface GigabitEthernet1
   cdp enable
   no shutdown
 !
-interface GigabitEthernet11
-  description to branch10-host11
-  ip address 10.0.0.82 255.255.255.252
+interface GigabitEthernet2
+  description to wan9
+  ip address 10.0.0.81 255.255.255.252
   cdp enable
   ip ospf cost 1
   no shutdown
 !
-interface GigabitEthernet9
-  description to wan9
-  ip address 10.0.0.77 255.255.255.252
+interface GigabitEthernet3
+  description to branch10-host11
+  ip address 10.0.0.86 255.255.255.252
   cdp enable
   ip ospf cost 1
   no shutdown
@@ -1124,8 +1152,8 @@ router ospf 1
   network 192.168.255.10 0.0.0.0 area 11
   log-adjacency-changes
   passive-interface Loopback0
-  network 10.0.0.76 0.0.0.3 area 11
   network 10.0.0.80 0.0.0.3 area 11
+  network 10.0.0.84 0.0.0.3 area 11
 !
 !
 router bgp 1
@@ -1154,10 +1182,10 @@ end</entry>
             <entry key="AutoNetkit.ibgp_role" type="String">RRC</entry>
             <entry key="AutoNetkit.RR_cluster" type="String">10</entry>
         </extensions>
-        <interface id="7" name="GigabitEthernet9" ipv4="10.0.0.77" netPrefixLenV4="30"/>
-        <interface id="9" name="GigabitEthernet11" ipv4="10.0.0.82" netPrefixLenV4="30"/>
+        <interface id="0" name="GigabitEthernet2" ipv4="10.0.0.81" netPrefixLenV4="30"/>
+        <interface id="1" name="GigabitEthernet3" ipv4="10.0.0.86" netPrefixLenV4="30"/>
     </node>
-    <node name="branch10-host11" type="SIMPLE" subtype="server" location="860,80">
+    <node name="branch10-host11" type="SIMPLE" subtype="server" location="550,30">
         <extensions>
             <entry key="config" type="string">#cloud-config
 bootcmd:
@@ -1218,14 +1246,19 @@ write_files:
   permissions: '0755'
   content: |-
     #!/bin/sh
-    ifconfig eth11 up 10.0.0.81 netmask 255.255.255.252
-    route add -host 192.168.255.1 gw 10.0.0.82 dev eth11
-    route add -host 192.168.255.6 gw 10.0.0.82 dev eth11
-    route add -host 192.168.255.9 gw 10.0.0.82 dev eth11
-    route add -host 192.168.255.10 gw 10.0.0.82 dev eth11
-    route add -net 10.10.0.0/8 gw 10.0.0.82 dev eth11
-    route add -net 192.168.255.2/31 gw 10.0.0.82 dev eth11
-    route add -net 192.168.255.4/31 gw 10.0.0.82 dev eth11
+    ifconfig eth11 up 10.0.0.85 netmask 255.255.255.252
+    route add -host 192.168.255.1 gw 10.0.0.86 dev eth11
+    route add -host 192.168.255.6 gw 10.0.0.86 dev eth11
+    route add -host 192.168.255.9 gw 10.0.0.86 dev eth11
+    route add -host 192.168.255.10 gw 10.0.0.86 dev eth11
+    route add -net 10.0.0.4/30 gw 10.0.0.86 dev eth11
+    route add -net 10.0.0.8/29 gw 10.0.0.86 dev eth11
+    route add -net 10.0.0.16/28 gw 10.0.0.86 dev eth11
+    route add -net 10.0.0.32/27 gw 10.0.0.86 dev eth11
+    route add -net 10.0.0.64/28 gw 10.0.0.86 dev eth11
+    route add -net 10.0.0.80/29 gw 10.0.0.86 dev eth11
+    route add -net 192.168.255.2/31 gw 10.0.0.86 dev eth11
+    route add -net 192.168.255.4/31 gw 10.0.0.86 dev eth11
     exit 0
 </entry>
             <entry key="AutoNetkit.ibgp_role" type="String">Disabled</entry>
@@ -1233,9 +1266,9 @@ write_files:
             <entry key="AutoNetkit.server_username" type="String">serveradmin</entry>
             <entry key="AutoNetkit.custom_config_global" type="String">username cisco password cisco</entry>
         </extensions>
-        <interface id="10" name="eth11" ipv4="10.0.0.81" netPrefixLenV4="30"/>
+        <interface id="10" name="eth11" ipv4="10.0.0.85" netPrefixLenV4="30"/>
     </node>
-    <node name="server7" type="SIMPLE" subtype="server" location="339,525">
+    <node name="server7" type="SIMPLE" subtype="server" location="430,810">
         <extensions>
             <entry key="config" type="string">#cloud-config
 bootcmd:
@@ -1288,30 +1321,40 @@ write_files:
   permissions: '0755'
   content: |-
     #!/bin/sh
-    ifconfig eth5 up 10.0.0.62 netmask 255.255.255.252
-    ifconfig eth6 up 10.0.0.70 netmask 255.255.255.252
-    route add -host 192.168.255.1 gw 10.0.0.61 dev eth5
-    route add -host 192.168.255.6 gw 10.0.0.61 dev eth5
-    route add -host 192.168.255.9 gw 10.0.0.61 dev eth5
-    route add -host 192.168.255.10 gw 10.0.0.61 dev eth5
-    route add -net 10.10.0.0/8 gw 10.0.0.61 dev eth5
-    route add -net 192.168.255.2/31 gw 10.0.0.61 dev eth5
-    route add -net 192.168.255.4/31 gw 10.0.0.61 dev eth5
-    route add -host 192.168.255.1 gw 10.0.0.69 dev eth6
-    route add -host 192.168.255.6 gw 10.0.0.69 dev eth6
-    route add -host 192.168.255.9 gw 10.0.0.69 dev eth6
-    route add -host 192.168.255.10 gw 10.0.0.69 dev eth6
-    route add -net 10.10.0.0/8 gw 10.0.0.69 dev eth6
-    route add -net 192.168.255.2/31 gw 10.0.0.69 dev eth6
-    route add -net 192.168.255.4/31 gw 10.0.0.69 dev eth6
+    ifconfig eth5 up 10.0.0.66 netmask 255.255.255.252
+    ifconfig eth6 up 10.0.0.74 netmask 255.255.255.252
+    route add -host 192.168.255.1 gw 10.0.0.65 dev eth5
+    route add -host 192.168.255.6 gw 10.0.0.65 dev eth5
+    route add -host 192.168.255.9 gw 10.0.0.65 dev eth5
+    route add -host 192.168.255.10 gw 10.0.0.65 dev eth5
+    route add -net 10.0.0.4/30 gw 10.0.0.65 dev eth5
+    route add -net 10.0.0.8/29 gw 10.0.0.65 dev eth5
+    route add -net 10.0.0.16/28 gw 10.0.0.65 dev eth5
+    route add -net 10.0.0.32/27 gw 10.0.0.65 dev eth5
+    route add -net 10.0.0.64/28 gw 10.0.0.65 dev eth5
+    route add -net 10.0.0.80/29 gw 10.0.0.65 dev eth5
+    route add -net 192.168.255.2/31 gw 10.0.0.65 dev eth5
+    route add -net 192.168.255.4/31 gw 10.0.0.65 dev eth5
+    route add -host 192.168.255.1 gw 10.0.0.73 dev eth6
+    route add -host 192.168.255.6 gw 10.0.0.73 dev eth6
+    route add -host 192.168.255.9 gw 10.0.0.73 dev eth6
+    route add -host 192.168.255.10 gw 10.0.0.73 dev eth6
+    route add -net 10.0.0.4/30 gw 10.0.0.73 dev eth6
+    route add -net 10.0.0.8/29 gw 10.0.0.73 dev eth6
+    route add -net 10.0.0.16/28 gw 10.0.0.73 dev eth6
+    route add -net 10.0.0.32/27 gw 10.0.0.73 dev eth6
+    route add -net 10.0.0.64/28 gw 10.0.0.73 dev eth6
+    route add -net 10.0.0.80/29 gw 10.0.0.73 dev eth6
+    route add -net 192.168.255.2/31 gw 10.0.0.73 dev eth6
+    route add -net 192.168.255.4/31 gw 10.0.0.73 dev eth6
     exit 0
 </entry>
             <entry key="AutoNetkit.ibgp_role" type="String">Disabled</entry>
         </extensions>
-        <interface id="4" name="eth5" ipv4="10.0.0.62" netPrefixLenV4="30"/>
-        <interface id="5" name="eth6" ipv4="10.0.0.70" netPrefixLenV4="30"/>
+        <interface id="4" name="eth5" ipv4="10.0.0.66" netPrefixLenV4="30"/>
+        <interface id="5" name="eth6" ipv4="10.0.0.74" netPrefixLenV4="30"/>
     </node>
-    <annotations/>
+
     <connection dst="/virl:topology/virl:node[5]/virl:interface[7]" src="/virl:topology/virl:node[11]/virl:interface[1]"/>
     <connection dst="/virl:topology/virl:node[6]/virl:interface[7]" src="/virl:topology/virl:node[11]/virl:interface[2]"/>
     <connection dst="/virl:topology/virl:node[5]/virl:interface[8]" src="/virl:topology/virl:node[7]/virl:interface[1]"/>
@@ -1324,12 +1367,13 @@ write_files:
     <connection dst="/virl:topology/virl:node[3]/virl:interface[6]" src="/virl:topology/virl:node[6]/virl:interface[3]"/>
     <connection dst="/virl:topology/virl:node[4]/virl:interface[3]" src="/virl:topology/virl:node[3]/virl:interface[3]"/>
     <connection dst="/virl:topology/virl:node[4]/virl:interface[4]" src="/virl:topology/virl:node[3]/virl:interface[4]"/>
-    <connection dst="/virl:topology/virl:node[1]/virl:interface[1]" src="/virl:topology/virl:node[3]/virl:interface[1]"/>
-    <connection dst="/virl:topology/virl:node[2]/virl:interface[1]" src="/virl:topology/virl:node[3]/virl:interface[2]"/>
-    <connection dst="/virl:topology/virl:node[1]/virl:interface[2]" src="/virl:topology/virl:node[4]/virl:interface[1]"/>
-    <connection dst="/virl:topology/virl:node[2]/virl:interface[2]" src="/virl:topology/virl:node[4]/virl:interface[2]"/>
+    <connection dst="/virl:topology/virl:node[1]/virl:interface[2]" src="/virl:topology/virl:node[3]/virl:interface[1]"/>
+    <connection dst="/virl:topology/virl:node[2]/virl:interface[2]" src="/virl:topology/virl:node[3]/virl:interface[2]"/>
+    <connection dst="/virl:topology/virl:node[1]/virl:interface[3]" src="/virl:topology/virl:node[4]/virl:interface[1]"/>
+    <connection dst="/virl:topology/virl:node[2]/virl:interface[3]" src="/virl:topology/virl:node[4]/virl:interface[2]"/>
     <connection dst="/virl:topology/virl:node[10]/virl:interface[1]" src="/virl:topology/virl:node[9]/virl:interface[2]"/>
-    <connection dst="/virl:topology/virl:node[8]/virl:interface[2]" src="/virl:topology/virl:node[1]/virl:interface[3]"/>
-    <connection dst="/virl:topology/virl:node[2]/virl:interface[3]" src="/virl:topology/virl:node[8]/virl:interface[3]"/>
-    <connection dst="/virl:topology/virl:node[9]/virl:interface[1]" src="/virl:topology/virl:node[8]/virl:interface[1]"/>
+    <connection dst="/virl:topology/virl:node[2]/virl:interface[1]" src="/virl:topology/virl:node[1]/virl:interface[1]"/>
+    <connection dst="/virl:topology/virl:node[8]/virl:interface[1]" src="/virl:topology/virl:node[1]/virl:interface[4]"/>
+    <connection dst="/virl:topology/virl:node[2]/virl:interface[4]" src="/virl:topology/virl:node[8]/virl:interface[2]"/>
+    <connection dst="/virl:topology/virl:node[9]/virl:interface[1]" src="/virl:topology/virl:node[8]/virl:interface[3]"/>
 </topology>
