@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <topology xmlns="http://www.cisco.com/VIRL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="0.95" xsi:schemaLocation="http://www.cisco.com/VIRL https://raw.github.com/CiscoVIRL/schema/v0.95/virl.xsd">
-    <node name="agg1" type="SIMPLE" subtype="NX-OSv 9000" location="281,320">
+    <extensions>
+        <entry key="management_network" type="String">flat</entry>
+    </extensions>
+    <node name="core1" type="SIMPLE" subtype="CSR1000v" location="348,221">
+        <interface id="0" name="GigabitEthernet2"/>
+        <interface id="1" name="GigabitEthernet3"/>
+        <interface id="2" name="GigabitEthernet4"/>
+        <interface id="8" name="GigabitEthernet10"/>
+    </node>
+    <node name="core2" type="SIMPLE" subtype="CSR1000v" location="494,215">
+        <interface id="0" name="GigabitEthernet2"/>
+        <interface id="1" name="GigabitEthernet3"/>
+        <interface id="2" name="GigabitEthernet4"/>
+        <interface id="8" name="GigabitEthernet10"/>
+    </node>
+    <node name="agg3" type="SIMPLE" subtype="NX-OSv 9000" location="345,303">
         <interface id="0" name="Ethernet1/1"/>
         <interface id="1" name="Ethernet1/2"/>
         <interface id="2" name="Ethernet1/3"/>
@@ -8,7 +23,7 @@
         <interface id="4" name="Ethernet1/5"/>
         <interface id="5" name="Ethernet1/6"/>
     </node>
-    <node name="agg4" type="SIMPLE" subtype="NX-OSv 9000" location="497,319">
+    <node name="agg4" type="SIMPLE" subtype="NX-OSv 9000" location="497,300">
         <interface id="0" name="Ethernet1/1"/>
         <interface id="1" name="Ethernet1/2"/>
         <interface id="2" name="Ethernet1/3"/>
@@ -16,7 +31,7 @@
         <interface id="4" name="Ethernet1/5"/>
         <interface id="5" name="Ethernet1/6"/>
     </node>
-    <node name="leaf6" type="SIMPLE" subtype="NX-OSv 9000" location="480,454">
+    <node name="leaf5" type="SIMPLE" subtype="NX-OSv 9000" location="338,396">
         <interface id="0" name="Ethernet1/1"/>
         <interface id="1" name="Ethernet1/2"/>
         <interface id="2" name="Ethernet1/3"/>
@@ -26,7 +41,7 @@
         <interface id="6" name="Ethernet1/7"/>
         <interface id="7" name="Ethernet1/8"/>
     </node>
-    <node name="leaf5" type="SIMPLE" subtype="NX-OSv 9000" location="295,464">
+    <node name="leaf6" type="SIMPLE" subtype="NX-OSv 9000" location="497,394">
         <interface id="0" name="Ethernet1/1"/>
         <interface id="1" name="Ethernet1/2"/>
         <interface id="2" name="Ethernet1/3"/>
@@ -36,61 +51,45 @@
         <interface id="6" name="Ethernet1/7"/>
         <interface id="7" name="Ethernet1/8"/>
     </node>
-    <node name="core1" type="SIMPLE" subtype="CSR1000v" location="330,155">
-        <interface id="0" name="GigabitEthernet2"/>
+    <node name="server8" type="SIMPLE" subtype="server" location="499,522">
+        <interface id="4" name="eth5"/>
+        <interface id="5" name="eth6"/>
+    </node>
+    <node name="wan10" type="SIMPLE" subtype="CSR1000v" location="418,133">
         <interface id="1" name="GigabitEthernet3"/>
         <interface id="2" name="GigabitEthernet4"/>
-        <interface id="3" name="GigabitEthernet5"/>
+        <interface id="9" name="GigabitEthernet11"/>
     </node>
-    <node name="core2" type="SIMPLE" subtype="CSR1000v" location="503,161">
-        <interface id="0" name="GigabitEthernet2"/>
+    <node name="branch1-router11" type="SIMPLE" subtype="CSR1000v" location="647,67">
         <interface id="1" name="GigabitEthernet3"/>
-        <interface id="2" name="GigabitEthernet4"/>
-        <interface id="3" name="GigabitEthernet5"/>
+        <interface id="10" name="GigabitEthernet12"/>
     </node>
-    <node name="server-1" type="SIMPLE" subtype="server" location="289,556">
-        <interface id="0" name="eth1"/>
-        <interface id="1" name="eth2"/>
-        <interface id="2" name="eth3"/>
+    <node name="branch1-host12" type="SIMPLE" subtype="server" location="860,80">
+        <interface id="10" name="eth11"/>
     </node>
-    <node name="server-2" type="SIMPLE" subtype="server" location="533,564">
-        <interface id="0" name="eth1"/>
-        <interface id="1" name="eth2"/>
-        <interface id="2" name="eth3"/>
-        <interface id="3" name="eth4"/>
-    </node>
-    <node name="branch-host" type="SIMPLE" subtype="server" location="797,74">
-        <interface id="0" name="eth1"/>
-    </node>
-    <node name="wan" type="SIMPLE" subtype="CSR1000v" location="440,87">
-        <interface id="0" name="GigabitEthernet2"/>
-        <interface id="1" name="GigabitEthernet3"/>
-        <interface id="2" name="GigabitEthernet4"/>
-    </node>
-    <node name="branch-switch" type="SIMPLE" subtype="CSR1000v" location="586,73">
-        <interface id="0" name="GigabitEthernet2"/>
-        <interface id="1" name="GigabitEthernet3"/>
+    <node name="server7" type="SIMPLE" subtype="server" location="339,525">
+        <interface id="4" name="eth5"/>
+        <interface id="5" name="eth6"/>
     </node>
     <annotations/>
-    <connection dst="/virl:topology/virl:node[2]/virl:interface[6]" src="/virl:topology/virl:node[3]/virl:interface[4]"/>
-    <connection dst="/virl:topology/virl:node[2]/virl:interface[5]" src="/virl:topology/virl:node[4]/virl:interface[4]"/>
-    <connection dst="/virl:topology/virl:node[1]/virl:interface[6]" src="/virl:topology/virl:node[3]/virl:interface[3]"/>
-    <connection dst="/virl:topology/virl:node[1]/virl:interface[1]" src="/virl:topology/virl:node[5]/virl:interface[2]"/>
-    <connection dst="/virl:topology/virl:node[6]/virl:interface[2]" src="/virl:topology/virl:node[1]/virl:interface[2]"/>
-    <connection dst="/virl:topology/virl:node[5]/virl:interface[3]" src="/virl:topology/virl:node[2]/virl:interface[1]"/>
-    <connection dst="/virl:topology/virl:node[6]/virl:interface[3]" src="/virl:topology/virl:node[2]/virl:interface[2]"/>
-    <connection dst="/virl:topology/virl:node[1]/virl:interface[5]" src="/virl:topology/virl:node[4]/virl:interface[3]"/>
-    <connection dst="/virl:topology/virl:node[2]/virl:interface[3]" src="/virl:topology/virl:node[1]/virl:interface[3]"/>
-    <connection dst="/virl:topology/virl:node[2]/virl:interface[4]" src="/virl:topology/virl:node[1]/virl:interface[4]"/>
-    <connection dst="/virl:topology/virl:node[6]/virl:interface[1]" src="/virl:topology/virl:node[5]/virl:interface[1]"/>
-    <connection dst="/virl:topology/virl:node[4]/virl:interface[7]" src="/virl:topology/virl:node[7]/virl:interface[3]"/>
-    <connection dst="/virl:topology/virl:node[4]/virl:interface[8]" src="/virl:topology/virl:node[8]/virl:interface[3]"/>
-    <connection dst="/virl:topology/virl:node[3]/virl:interface[8]" src="/virl:topology/virl:node[8]/virl:interface[4]"/>
-    <connection dst="/virl:topology/virl:node[3]/virl:interface[7]" src="/virl:topology/virl:node[7]/virl:interface[2]"/>
-    <connection dst="/virl:topology/virl:node[3]/virl:interface[5]" src="/virl:topology/virl:node[4]/virl:interface[5]"/>
-    <connection dst="/virl:topology/virl:node[3]/virl:interface[6]" src="/virl:topology/virl:node[4]/virl:interface[6]"/>
-    <connection dst="/virl:topology/virl:node[10]/virl:interface[1]" src="/virl:topology/virl:node[5]/virl:interface[4]"/>
-    <connection dst="/virl:topology/virl:node[11]/virl:interface[1]" src="/virl:topology/virl:node[10]/virl:interface[3]"/>
-    <connection dst="/virl:topology/virl:node[6]/virl:interface[4]" src="/virl:topology/virl:node[10]/virl:interface[2]"/>
-    <connection dst="/virl:topology/virl:node[9]/virl:interface[1]" src="/virl:topology/virl:node[11]/virl:interface[2]"/>
+    <connection dst="/virl:topology/virl:node[5]/virl:interface[7]" src="/virl:topology/virl:node[11]/virl:interface[1]"/>
+    <connection dst="/virl:topology/virl:node[6]/virl:interface[7]" src="/virl:topology/virl:node[11]/virl:interface[2]"/>
+    <connection dst="/virl:topology/virl:node[5]/virl:interface[8]" src="/virl:topology/virl:node[7]/virl:interface[1]"/>
+    <connection dst="/virl:topology/virl:node[6]/virl:interface[8]" src="/virl:topology/virl:node[7]/virl:interface[2]"/>
+    <connection dst="/virl:topology/virl:node[5]/virl:interface[5]" src="/virl:topology/virl:node[6]/virl:interface[5]"/>
+    <connection dst="/virl:topology/virl:node[6]/virl:interface[6]" src="/virl:topology/virl:node[5]/virl:interface[6]"/>
+    <connection dst="/virl:topology/virl:node[4]/virl:interface[5]" src="/virl:topology/virl:node[5]/virl:interface[4]"/>
+    <connection dst="/virl:topology/virl:node[3]/virl:interface[5]" src="/virl:topology/virl:node[5]/virl:interface[3]"/>
+    <connection dst="/virl:topology/virl:node[4]/virl:interface[6]" src="/virl:topology/virl:node[6]/virl:interface[4]"/>
+    <connection dst="/virl:topology/virl:node[3]/virl:interface[6]" src="/virl:topology/virl:node[6]/virl:interface[3]"/>
+    <connection dst="/virl:topology/virl:node[4]/virl:interface[3]" src="/virl:topology/virl:node[3]/virl:interface[3]"/>
+    <connection dst="/virl:topology/virl:node[4]/virl:interface[4]" src="/virl:topology/virl:node[3]/virl:interface[4]"/>
+    <connection dst="/virl:topology/virl:node[1]/virl:interface[2]" src="/virl:topology/virl:node[3]/virl:interface[1]"/>
+    <connection dst="/virl:topology/virl:node[2]/virl:interface[2]" src="/virl:topology/virl:node[3]/virl:interface[2]"/>
+    <connection dst="/virl:topology/virl:node[1]/virl:interface[3]" src="/virl:topology/virl:node[4]/virl:interface[1]"/>
+    <connection dst="/virl:topology/virl:node[2]/virl:interface[3]" src="/virl:topology/virl:node[4]/virl:interface[2]"/>
+    <connection dst="/virl:topology/virl:node[8]/virl:interface[1]" src="/virl:topology/virl:node[1]/virl:interface[4]"/>
+    <connection dst="/virl:topology/virl:node[8]/virl:interface[2]" src="/virl:topology/virl:node[2]/virl:interface[4]"/>
+    <connection dst="/virl:topology/virl:node[8]/virl:interface[3]" src="/virl:topology/virl:node[9]/virl:interface[1]"/>
+    <connection dst="/virl:topology/virl:node[10]/virl:interface[1]" src="/virl:topology/virl:node[9]/virl:interface[2]"/>
 </topology>
