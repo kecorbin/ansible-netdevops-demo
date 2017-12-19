@@ -1,0 +1,35 @@
+---
+- name: Apply nxos_router role
+  import_role:
+    name: nxos_router
+  
+- name: Enable Features
+  tags: [api, nxapi, ospf]
+  with_items:
+    - ospf
+  nxos_feature:
+    provider:
+      host: "{{ ansible_host }}"
+      transport: nxapi
+    feature: "{{ item }}"
+    state: enabled
+
+- name: Configure OSPF
+  tags: [api, nxapi, ospf]
+  nxos_ospf:
+    provider:
+      host: "{{ ansible_host }}"
+      transport: nxapi
+    ospf: "{{ ospf.process_id }}"
+    state: present
+
+- name: Configure OSPF Interfaces
+  tags: [api, nxapi, ospf]
+  with_items: "{{ ospf.networks }}"
+  nxos_interface_ospf:
+    provider:
+      host: "{{ ansible_host }}"
+      transport: nxapi
+    interface: "{{ item.interface }}"
+    ospf: "{{ ospf.process_id }}"
+    area: "{{ item.area }}"

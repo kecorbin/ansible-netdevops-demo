@@ -1,0 +1,100 @@
+hostname {{ inventory_hostname }}
+boot-start-marker
+boot-end-marker
+!
+
+{%- for vrf in vrfs %}
+vrf definition {{ vrf }}
+{%- endfor %}
+
+!
+!
+!
+license accept end user agreement
+license boot level premium
+!
+!
+no aaa new-model
+!
+!
+ipv6 unicast-routing
+!
+!
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+no service config
+
+enable password {{ enable_password }}
+enable secret {{ enable_secret }}
+
+ip classless
+ip subnet-zero
+no ip domain lookup
+ip domain name {{ domain_name }}
+crypto key generate rsa modulus 768
+
+ip ssh server algorithm authentication password
+
+username {{ username }} secret {{ password }}
+line vty 0 4
+ transport input ssh telnet
+ exec-timeout 720 0
+ password cisco
+ login local
+line con 0
+ password cisco
+!
+cdp run
+!
+!
+{% for loopback, props in loopbacks.items() %}
+
+interface {{ loopback }}
+  description {{ props.description }}
+  ip address {{ props.ip }} {{ props.mask }}
+{% endfor %}
+!
+
+{% for interface, props  in interfaces.items() %}
+interface {{ interface }}
+  description {{ props.description }}
+  {% if 'vrf' in props %}
+    vrf forwarding {{ props.vrf }}
+  {% endif %}
+  {% if 'ip' in props %}
+  ip address {{ props.ip }} {{ props.mask }}
+  {% endif %}
+  {# configure ospf interface properties  #}
+  {% if 'cost' in props %}
+    ip ospf cost {{ ospf.cost }}
+  {% endif %}
+
+{% endfor %}
+
+!
+
+router ospf {{ ospf.process }}
+  log-adjacency-changes
+  {% for int in ospf.passive_interfaces %}
+  passive-interface {{ int }}
+  {% endfor %}
+
+  {% for network, props in ospf.networks.items() %}
+    network {{network}} {{ props.wildcard_mask }} area {{ props.area }}
+  {% endfor %}
+!
+!
+
+router bgp {{ bgp.as_number }}
+  bgp router-id {{ bgp.router_id }}
+  no synchronization
+  {% for neighbor, props in bgp.neighbors.items() %}
+  !
+  neighbor {{ neighbor }} remote-as {{ props.remote_as }}
+  neighbor {{ neighbor }} description {{ props.description }}
+  neighbor {{ neighbor }} update-source {{ props.update_source }}
+  {% endfor %}
+  {% for network, net_props in bgp.networks.items() %}
+  network {{ network }} mask {{ net_props.mask }}
+  {% endfor %}

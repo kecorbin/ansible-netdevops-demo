@@ -1,0 +1,6 @@
+---
+
+- name: "Applying Common IOS Template"
+  ios_config:
+    provider: "{{ cli }}"
+    src: "csr_base_template.j2"
