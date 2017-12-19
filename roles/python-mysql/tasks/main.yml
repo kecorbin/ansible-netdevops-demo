@@ -1,5 +1,0 @@
----
-- tags: python-mysql
-  block:
-    - name: pip install MYSQL-python
-      pip: name=MYSQL-python version={{ python_mysql_version }}
