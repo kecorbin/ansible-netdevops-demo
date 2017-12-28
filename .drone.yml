@@ -7,4 +7,7 @@ build:
           - ANSIBLE_NET_AUTH=True
           - ANSIBLE_NET_AUTH_PASS=cisco
         commands:
+          - env
+          - unset http_proxy
+          - unset https_proxy
           - ansible-playbook -i inventory/test.yml site.yml
