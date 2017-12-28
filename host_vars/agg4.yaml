@@ -1,6 +1,6 @@
 hostname: agg4
 device_type: nxos
-mgmt_ip: 10.94.241.167/27
+mgmt_ip: 10.94.241.168/27
 mgmt_default_gw: 10.94.241.161
 
 features:
