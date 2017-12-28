@@ -1,16 +1,10 @@
 build:
     build_starting:
-        image: python:2
+        image: kecorbin/ansible
         environment:
           - ANSIBLE_NET_USERNAME=cisco
           - ANSIBLE_NET_PASSWORD=cisco
           - ANSIBLE_NET_AUTH=True
           - ANSIBLE_NET_AUTH_PASS=cisco
         commands:
-          - pip install -r requirements.txt
-          - unset http_proxy
-          - unset HTTP_PROXY
-          - env
-          - pip freeze
-          - python -c "import ipaddress"
           - ansible-playbook -i inventory/test.yml site.yml
