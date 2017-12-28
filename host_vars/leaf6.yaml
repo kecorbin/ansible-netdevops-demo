@@ -1,6 +1,6 @@
 hostname: leaf6
 device_type: nxos
-mgmt_ip: 10.94.241.173/27
+mgmt_ip: 10.94.241.174/27
 mgmt_default_gw: 10.94.241.161
 
 features:
