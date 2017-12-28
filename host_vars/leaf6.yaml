@@ -1,7 +1,7 @@
 hostname: leaf6
 device_type: nxos
-mgmt_ip: 10.94.238.235/24
-mgmt_default_gw: 10.94.238.1
+mgmt_ip: 10.94.241.173/27
+mgmt_default_gw: 10.94.241.161
 
 features:
   - telnet
