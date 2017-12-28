@@ -47,7 +47,7 @@ ip classless
 ip subnet-zero
 no ip domain lookup
 ip domain name virl.info
-crypto key generate rsa modulus 768
+crypto key generate rsa modulus 1024
 ip ssh server algorithm authentication password
 username cisco privilege 15 secret cisco
 line vty 0 4
@@ -131,6 +131,7 @@ router bgp 1
  exit-address-family
 !
 !
+ip route vrf Mgmt-intf 0.0.0.0 0.0.0.0 10.94.241.161
 !
 end</entry>
             <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
@@ -182,7 +183,7 @@ ip classless
 ip subnet-zero
 no ip domain lookup
 ip domain name virl.info
-crypto key generate rsa modulus 768
+crypto key generate rsa modulus 1024
 ip ssh server algorithm authentication password
 username cisco privilege 15 secret cisco
 line vty 0 4
@@ -265,7 +266,7 @@ router bgp 1
   neighbor 192.168.255.9 activate
  exit-address-family
 !
-!
+ip route vrf Mgmt-intf 0.0.0.0 0.0.0.0 10.94.241.161
 !
 end</entry>
             <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
@@ -323,6 +324,7 @@ rmon event 5 log trap public description INFORMATION(5) owner PMON@INFO
 vlan 1
 
 vrf context management
+  ip route 0.0.0.0 0.0.0.0 10.94.241.161
 hardware forwarding unicast trace
 
 interface Loopback0
@@ -456,6 +458,7 @@ rmon event 5 log trap public description INFORMATION(5) owner PMON@INFO
 vlan 1
 
 vrf context management
+  ip route 0.0.0.0 0.0.0.0 10.94.241.161
 hardware forwarding unicast trace
 
 interface Loopback0
@@ -589,6 +592,7 @@ rmon event 5 log trap public description INFORMATION(5) owner PMON@INFO
 vlan 1
 
 vrf context management
+  ip route 0.0.0.0 0.0.0.0 10.94.241.161
 hardware forwarding unicast trace
 
 interface Loopback0
@@ -684,8 +688,6 @@ router bgp 1
             <entry key="AutoNetkit.ibgp_role" type="String">Disabled</entry>
             <entry key="AutoNetkit.ospf_area" type="String">56</entry>
         </extensions>
-        <interface id="0" name="Ethernet1/1"/>
-        <interface id="1" name="Ethernet1/2"/>
         <interface id="2" name="Ethernet1/3" ipv4="10.0.0.42" netPrefixLenV4="30"/>
         <interface id="3" name="Ethernet1/4" ipv4="10.0.0.50" netPrefixLenV4="30"/>
         <interface id="4" name="Ethernet1/5" ipv4="10.0.0.57" netPrefixLenV4="30"/>
@@ -738,6 +740,7 @@ rmon event 5 log trap public description INFORMATION(5) owner PMON@INFO
 vlan 1
 
 vrf context management
+  ip route 0.0.0.0 0.0.0.0 10.94.241.161
 hardware forwarding unicast trace
 
 interface Loopback0
@@ -833,8 +836,6 @@ router bgp 1
             <entry key="AutoNetkit.ibgp_role" type="String">Disabled</entry>
             <entry key="AutoNetkit.ospf_area" type="String">56</entry>
         </extensions>
-        <interface id="0" name="Ethernet1/1"/>
-        <interface id="1" name="Ethernet1/2"/>
         <interface id="2" name="Ethernet1/3" ipv4="10.0.0.46" netPrefixLenV4="30"/>
         <interface id="3" name="Ethernet1/4" ipv4="10.0.0.54" netPrefixLenV4="30"/>
         <interface id="4" name="Ethernet1/5" ipv4="10.0.0.58" netPrefixLenV4="30"/>
@@ -895,32 +896,21 @@ write_files:
   permissions: '0755'
   content: |-
     #!/bin/sh
-    ifconfig eth5 up 10.0.0.70 netmask 255.255.255.252
-    ifconfig eth6 up 10.0.0.78 netmask 255.255.255.252
-    route add -host 192.168.255.1 gw 10.0.0.69 dev eth5
-    route add -host 192.168.255.6 gw 10.0.0.69 dev eth5
-    route add -host 192.168.255.9 gw 10.0.0.69 dev eth5
-    route add -host 192.168.255.10 gw 10.0.0.69 dev eth5
-    route add -net 10.0.0.4/30 gw 10.0.0.69 dev eth5
-    route add -net 10.0.0.8/29 gw 10.0.0.69 dev eth5
-    route add -net 10.0.0.16/28 gw 10.0.0.69 dev eth5
-    route add -net 10.0.0.32/27 gw 10.0.0.69 dev eth5
-    route add -net 10.0.0.64/28 gw 10.0.0.69 dev eth5
-    route add -net 10.0.0.80/29 gw 10.0.0.69 dev eth5
-    route add -net 192.168.255.2/31 gw 10.0.0.69 dev eth5
-    route add -net 192.168.255.4/31 gw 10.0.0.69 dev eth5
-    route add -host 192.168.255.1 gw 10.0.0.77 dev eth6
-    route add -host 192.168.255.6 gw 10.0.0.77 dev eth6
-    route add -host 192.168.255.9 gw 10.0.0.77 dev eth6
-    route add -host 192.168.255.10 gw 10.0.0.77 dev eth6
-    route add -net 10.0.0.4/30 gw 10.0.0.77 dev eth6
-    route add -net 10.0.0.8/29 gw 10.0.0.77 dev eth6
-    route add -net 10.0.0.16/28 gw 10.0.0.77 dev eth6
-    route add -net 10.0.0.32/27 gw 10.0.0.77 dev eth6
-    route add -net 10.0.0.64/28 gw 10.0.0.77 dev eth6
-    route add -net 10.0.0.80/29 gw 10.0.0.77 dev eth6
-    route add -net 192.168.255.2/31 gw 10.0.0.77 dev eth6
-    route add -net 192.168.255.4/31 gw 10.0.0.77 dev eth6
+    modprobe bonding mode=4 miimon=100
+    ifconfig bond0 up 192.168.8.8 netmask 255.255.255.0
+    ifenslave bond0 eth5 eth6
+    route add -host 192.168.255.1 gw 192.168.8.1 dev bond0
+    route add -host 192.168.255.6 gw 192.168.8.1 dev bond0
+    route add -host 192.168.255.9 gw 192.168.8.1 dev bond0
+    route add -host 192.168.255.10 gw 192.168.8.1 dev bond0
+    route add -net 10.0.0.4/30 gw 192.168.8.1 dev bond0
+    route add -net 10.0.0.8/29 gw 192.168.8.1 dev bond0
+    route add -net 10.0.0.16/28 gw 192.168.8.1 dev bond0
+    route add -net 10.0.0.32/27 gw 192.168.8.1 dev bond0
+    route add -net 10.0.0.64/28 gw 192.168.8.1 dev bond0
+    route add -net 10.0.0.80/29 gw 192.168.8.1 dev bond0
+    route add -net 192.168.255.2/31 gw 192.168.8.1 dev bond0
+    route add -net 192.168.255.4/31 gw 192.168.8.1 dev bond0
     exit 0
 </entry>
             <entry key="AutoNetkit.ibgp_role" type="String">Disabled</entry>
@@ -967,7 +957,7 @@ ip classless
 ip subnet-zero
 no ip domain lookup
 ip domain name virl.info
-crypto key generate rsa modulus 768
+crypto key generate rsa modulus 1024
 ip ssh server algorithm authentication password
 username cisco privilege 15 secret cisco
 line vty 0 4
@@ -1055,6 +1045,7 @@ router bgp 1
   neighbor 192.168.255.2 route-reflector-client
  exit-address-family
 !
+ip route vrf Mgmt-intf 0.0.0.0 0.0.0.0 10.94.241.161
 !
 !
 end</entry>
@@ -1106,7 +1097,7 @@ ip classless
 ip subnet-zero
 no ip domain lookup
 ip domain name virl.info
-crypto key generate rsa modulus 768
+crypto key generate rsa modulus 1024
 ip ssh server algorithm authentication password
 username cisco privilege 15 secret cisco
 line vty 0 4
@@ -1173,7 +1164,7 @@ router bgp 1
   neighbor 192.168.255.9 activate
  exit-address-family
 !
-!
+ip route vrf Mgmt-intf 0.0.0.0 0.0.0.0 10.94.241.161
 !
 end</entry>
             <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
@@ -1321,32 +1312,21 @@ write_files:
   permissions: '0755'
   content: |-
     #!/bin/sh
-    ifconfig eth5 up 10.0.0.66 netmask 255.255.255.252
-    ifconfig eth6 up 10.0.0.74 netmask 255.255.255.252
-    route add -host 192.168.255.1 gw 10.0.0.65 dev eth5
-    route add -host 192.168.255.6 gw 10.0.0.65 dev eth5
-    route add -host 192.168.255.9 gw 10.0.0.65 dev eth5
-    route add -host 192.168.255.10 gw 10.0.0.65 dev eth5
-    route add -net 10.0.0.4/30 gw 10.0.0.65 dev eth5
-    route add -net 10.0.0.8/29 gw 10.0.0.65 dev eth5
-    route add -net 10.0.0.16/28 gw 10.0.0.65 dev eth5
-    route add -net 10.0.0.32/27 gw 10.0.0.65 dev eth5
-    route add -net 10.0.0.64/28 gw 10.0.0.65 dev eth5
-    route add -net 10.0.0.80/29 gw 10.0.0.65 dev eth5
-    route add -net 192.168.255.2/31 gw 10.0.0.65 dev eth5
-    route add -net 192.168.255.4/31 gw 10.0.0.65 dev eth5
-    route add -host 192.168.255.1 gw 10.0.0.73 dev eth6
-    route add -host 192.168.255.6 gw 10.0.0.73 dev eth6
-    route add -host 192.168.255.9 gw 10.0.0.73 dev eth6
-    route add -host 192.168.255.10 gw 10.0.0.73 dev eth6
-    route add -net 10.0.0.4/30 gw 10.0.0.73 dev eth6
-    route add -net 10.0.0.8/29 gw 10.0.0.73 dev eth6
-    route add -net 10.0.0.16/28 gw 10.0.0.73 dev eth6
-    route add -net 10.0.0.32/27 gw 10.0.0.73 dev eth6
-    route add -net 10.0.0.64/28 gw 10.0.0.73 dev eth6
-    route add -net 10.0.0.80/29 gw 10.0.0.73 dev eth6
-    route add -net 192.168.255.2/31 gw 10.0.0.73 dev eth6
-    route add -net 192.168.255.4/31 gw 10.0.0.73 dev eth6
+    modprobe bonding mode=4 miimon=100
+    ifconfig bond0 up 192.168.7.7 netmask 255.255.255.0
+    ifenslave bond0 eth5 eth6
+    route add -host 192.168.255.1 gw 192.168.7.1 dev bond0
+    route add -host 192.168.255.6 gw 192.168.7.1 dev bond0
+    route add -host 192.168.255.9 gw 192.168.7.1 dev bond0
+    route add -host 192.168.255.10 gw 192.168.7.1 dev bond0
+    route add -net 10.0.0.4/30 gw 192.168.7.1 dev bond0
+    route add -net 10.0.0.8/29 gw 192.168.7.1 dev bond0
+    route add -net 10.0.0.16/28 gw 192.168.7.1 dev bond0
+    route add -net 10.0.0.32/27 gw 192.168.7.1 dev bond0
+    route add -net 10.0.0.64/28 gw 192.168.7.1 dev bond0
+    route add -net 10.0.0.80/29 gw 192.168.7.1 dev bond0
+    route add -net 192.168.255.2/31 gw 192.168.7.1 dev bond0
+    route add -net 192.168.255.4/31 gw 192.168.7.1 dev bond0
     exit 0
 </entry>
             <entry key="AutoNetkit.ibgp_role" type="String">Disabled</entry>
@@ -1354,17 +1334,17 @@ write_files:
         <interface id="4" name="eth5" ipv4="10.0.0.66" netPrefixLenV4="30"/>
         <interface id="5" name="eth6" ipv4="10.0.0.74" netPrefixLenV4="30"/>
     </node>
-
-    <connection dst="/virl:topology/virl:node[5]/virl:interface[7]" src="/virl:topology/virl:node[11]/virl:interface[1]"/>
-    <connection dst="/virl:topology/virl:node[6]/virl:interface[7]" src="/virl:topology/virl:node[11]/virl:interface[2]"/>
-    <connection dst="/virl:topology/virl:node[5]/virl:interface[8]" src="/virl:topology/virl:node[7]/virl:interface[1]"/>
-    <connection dst="/virl:topology/virl:node[6]/virl:interface[8]" src="/virl:topology/virl:node[7]/virl:interface[2]"/>
-    <connection dst="/virl:topology/virl:node[5]/virl:interface[5]" src="/virl:topology/virl:node[6]/virl:interface[5]"/>
-    <connection dst="/virl:topology/virl:node[6]/virl:interface[6]" src="/virl:topology/virl:node[5]/virl:interface[6]"/>
-    <connection dst="/virl:topology/virl:node[4]/virl:interface[5]" src="/virl:topology/virl:node[5]/virl:interface[4]"/>
-    <connection dst="/virl:topology/virl:node[3]/virl:interface[5]" src="/virl:topology/virl:node[5]/virl:interface[3]"/>
-    <connection dst="/virl:topology/virl:node[4]/virl:interface[6]" src="/virl:topology/virl:node[6]/virl:interface[4]"/>
-    <connection dst="/virl:topology/virl:node[3]/virl:interface[6]" src="/virl:topology/virl:node[6]/virl:interface[3]"/>
+    <annotations/>
+    <connection dst="/virl:topology/virl:node[5]/virl:interface[5]" src="/virl:topology/virl:node[11]/virl:interface[1]"/>
+    <connection dst="/virl:topology/virl:node[6]/virl:interface[5]" src="/virl:topology/virl:node[11]/virl:interface[2]"/>
+    <connection dst="/virl:topology/virl:node[5]/virl:interface[6]" src="/virl:topology/virl:node[7]/virl:interface[1]"/>
+    <connection dst="/virl:topology/virl:node[6]/virl:interface[6]" src="/virl:topology/virl:node[7]/virl:interface[2]"/>
+    <connection dst="/virl:topology/virl:node[5]/virl:interface[3]" src="/virl:topology/virl:node[6]/virl:interface[3]"/>
+    <connection dst="/virl:topology/virl:node[6]/virl:interface[4]" src="/virl:topology/virl:node[5]/virl:interface[4]"/>
+    <connection dst="/virl:topology/virl:node[4]/virl:interface[5]" src="/virl:topology/virl:node[5]/virl:interface[2]"/>
+    <connection dst="/virl:topology/virl:node[3]/virl:interface[5]" src="/virl:topology/virl:node[5]/virl:interface[1]"/>
+    <connection dst="/virl:topology/virl:node[4]/virl:interface[6]" src="/virl:topology/virl:node[6]/virl:interface[2]"/>
+    <connection dst="/virl:topology/virl:node[3]/virl:interface[6]" src="/virl:topology/virl:node[6]/virl:interface[1]"/>
     <connection dst="/virl:topology/virl:node[4]/virl:interface[3]" src="/virl:topology/virl:node[3]/virl:interface[3]"/>
     <connection dst="/virl:topology/virl:node[4]/virl:interface[4]" src="/virl:topology/virl:node[3]/virl:interface[4]"/>
     <connection dst="/virl:topology/virl:node[1]/virl:interface[2]" src="/virl:topology/virl:node[3]/virl:interface[1]"/>

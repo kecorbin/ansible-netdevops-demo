@@ -1,9 +1,5 @@
 ---
 
-- name: Apply nxos_common role
-  import_role:
-    name: nxos_common
-
 - name: Configure Layer 3 Interfaces
   tags: [api, nxapi, layer3]
   with_items: "{{ l3_interfaces }}"

@@ -1,7 +1,4 @@
 ---
-- name: Apply nxos_router role
-  import_role:
-    name: nxos_router
   
 - name: Enable Features
   tags: [api, nxapi, ospf]

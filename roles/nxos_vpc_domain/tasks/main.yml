@@ -1,0 +1,70 @@
+---
+
+- name: Enable Features
+  with_items:
+    - vpc
+    - lacp
+  nxos_feature:
+    provider:
+      host: "{{ ansible_host }}"
+      transport: nxapi
+    feature: "{{ item }}"
+    state: enabled
+
+- name: Configure VPC
+  tags: vpc
+  nxos_vpc:
+    provider:
+      host: "{{ ansible_host }}"
+      transport: nxapi
+    domain: "{{ vpc.domain }}"
+    pkl_src: "{{ pkl_src }}"
+    pkl_dest: "{{ pkl_dest }}"
+    pkl_vrf: "{{ vpc.pkl_vrf }}"
+    peer_gw: true
+    auto_recovery: true
+
+- name: Create Port Channel for VPC Peer link
+  tags: vpc
+  nxos_interface:
+    provider:
+      host: "{{ ansible_host }}"
+      transport: nxapi
+    interface: "port-channel{{ vpc.peer_link.id }}"
+    admin_state: up
+
+- name: Configure VPC Peer Link
+  tags: vpc
+  nxos_portchannel:
+    provider:
+      host: "{{ ansible_host }}"
+      transport: nxapi
+    group: "{{ vpc.peer_link.id }}"
+    members: "{{ vpc.peer_link.members }}"
+    force: true
+    mode: "{{ vpc.peer_link.mode }}"
+    state: present
+
+- name: Enable VPC Peer Link on port_channel
+  tags: [api, nxapi, vpc]
+  nxos_vpc_interface:
+    provider:
+      host: "{{ ansible_host }}"
+      transport: nxapi
+    portchannel: "{{ vpc.peer_link.id }}"
+    peer_link: true
+
+
+
+- name: Configure IPv4 Address on Interface
+  hosts: access
+  tags: [api, nxapi, layer3]
+  with_items: "{{ svi_interfaces }}"
+  nxos_ip_interface:
+    provider:
+      host: "{{ ansible_host  }}"
+      transport: nxapi
+    interface: "{{ item.interface }}"
+    version: v4
+    addr: "{{ item.ip }}"
+    mask: "{{ item.mask }}"

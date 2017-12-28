@@ -1,0 +1,76 @@
+device_type: csr
+
+vrfs:
+  - Mgmt-intf
+
+bgp:
+  as_number: 1
+  router_id: 192.168.255.2
+  neighbors:
+    192.168.255.9:
+      remote_as: 1
+      description: wan9
+      update_source: Loopback0
+  networks:
+    192.168.255.2:
+      mask: 255.255.255.255
+
+ospf:
+    process: 1
+    networks:
+      10.0.0.4:
+        wildcard_mask: 0.0.0.3
+        area: 0
+      10.0.0.20:
+        wildcard_mask: 0.0.0.3
+        area: 0
+      10.0.0.24:
+        wildcard_mask: 0.0.0.3
+        area: 0
+      10.0.0.28:
+        wildcard_mask: 0.0.0.3
+        area: 0
+      192.168.255.2:
+        wildcard_mask: 0.0.0.0
+        area: 0
+
+    passive_interfaces:
+      - Loopback0
+
+mgmt_vrf: Mgmt-intf
+
+domain_name: "netdevops.is.cool"
+
+loopbacks:
+  Loopback0:
+    description: "router id"
+    ip: 192.168.255.2
+    mask: 255.255.255.255
+
+
+interfaces:
+  GigabitEthernet1:
+    description: "OOB Management"
+    vrf: "Mgmt-intf"
+
+  GigabitEthernet2:
+    description: "to-core1-gig2"
+    ip: 10.0.0.6
+    mask: 255.255.255.252
+    ospf:
+      cost: 1
+
+  GigabitEthernet3:
+    description: "to-agg3-gig2"
+    ip: 10.0.0.22
+    mask: 255.255.255.252
+
+  GigabitEthernet4:
+    description: "to-agg4-gig2"
+    ip: 10.10.10.26
+    mask: 255.255.255.252
+
+  GigabitEthernet5:
+    description: "to-wan9"
+    ip: 10.0.0.29
+    mask: 255.255.255.252
