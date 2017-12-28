@@ -12,20 +12,17 @@ domain_name: "netdevops.is.cool"
 
 l3_interfaces:
 
-  - interface: Loopback0
-    ip: 192.168.255.5
+  - name: Loopback0
+    ip: 192.168.255.5/32
     description: router-id
-    mask: 32
 
-  - interface: Ethernet1/3
+  - name: Ethernet1/3
     description: "to-agg3-gig5"
-    ip: 10.0.0.42
-    mask: 30
+    ip: 10.0.0.42/30
 
-  - interface: Ethernet1/4
+  - name: Ethernet1/4
     description: "to-agg4-gig5"
-    ip: 10.0.0.50
-    mask: 30
+    ip: 10.0.0.50/30
 
 
 svi_interfaces:

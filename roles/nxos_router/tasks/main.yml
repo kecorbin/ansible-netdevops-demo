@@ -15,11 +15,10 @@
 - name: Configure IPv4 Address on Interface
   tags: [api, nxapi, layer3]
   with_items: "{{ l3_interfaces }}"
-  nxos_ip_interface:
+  nxos_l3_interface:
     provider:
       host: "{{ ansible_host}}"
       transport: nxapi
-    interface: "{{ item.interface }}"
-    version: v4
-    addr: "{{ item.ip }}"
-    mask: "{{ item.mask }}"
+    name: "{{ item.name }}"
+    ipv4: "{{ item.ipv4 }}"
+    
