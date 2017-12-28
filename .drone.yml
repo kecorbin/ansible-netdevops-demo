@@ -1,15 +1,16 @@
 build:
-    build_starting:
-        image: kecorbin/ansible
-        environment:
-          - ANSIBLE_NET_USERNAME=cisco
-          - ANSIBLE_NET_PASSWORD=cisco
-          - ANSIBLE_NET_AUTH=True
-          - ANSIBLE_NET_AUTH_PASS=cisco
-        commands:
-          - env
-          - unset http_proxy
-          - unset https_proxy
-          - unset HTTP_PROXY
-          - unset HTTPS_PROXY
-          - ansible-playbook -i inventory/test.yml site.yml
+  when:
+      branch: test
+  image: kecorbin/ansible
+  environment:
+    - ANSIBLE_NET_USERNAME=cisco
+    - ANSIBLE_NET_PASSWORD=cisco
+    - ANSIBLE_NET_AUTH=True
+    - ANSIBLE_NET_AUTH_PASS=cisco
+  commands:
+    - env
+    - unset http_proxy
+    - unset https_proxy
+    - unset HTTP_PROXY
+    - unset HTTPS_PROXY
+    - ansible-playbook -i inventory/test.yml site.yml
