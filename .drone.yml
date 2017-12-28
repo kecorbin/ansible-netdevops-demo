@@ -1,0 +1,14 @@
+build:
+    build_starting:
+        image: python:2
+        environment:
+          - ANSIBLE_NET_USERNAME=cisco
+          - ANSIBLE_NET_PASSWORD=cisco
+          - ANSIBLE_NET_AUTH=True
+          - ANSIBLE_NET_AUTH_PASS=cisco
+        commands:
+          - pip install -r requirements.txt
+          - unset http_proxy
+          - unset HTTP_PROXY
+          - env
+          - ansible-playbook -i inventory/test.yml site.yml
