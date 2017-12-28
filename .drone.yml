@@ -11,4 +11,5 @@ build:
           - unset http_proxy
           - unset HTTP_PROXY
           - env
+          - pip freeze
           - ansible-playbook -i inventory/test.yml site.yml
