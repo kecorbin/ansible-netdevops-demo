@@ -12,4 +12,5 @@ build:
           - unset HTTP_PROXY
           - env
           - pip freeze
+          - python -c "import ipaddress"
           - ansible-playbook -i inventory/test.yml site.yml
