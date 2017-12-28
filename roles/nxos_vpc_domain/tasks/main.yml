@@ -54,17 +54,17 @@
     portchannel: "{{ vpc.peer_link.id }}"
     peer_link: true
 
-
-
-- name: Configure IPv4 Address on Interface
-  hosts: access
-  tags: [api, nxapi, layer3]
-  with_items: "{{ svi_interfaces }}"
-  nxos_ip_interface:
-    provider:
-      host: "{{ ansible_host  }}"
-      transport: nxapi
-    interface: "{{ item.interface }}"
-    version: v4
-    addr: "{{ item.ip }}"
-    mask: "{{ item.mask }}"
+#
+#
+# - name: Configure IPv4 Address on Interface
+#   hosts: access
+#   tags: [api, nxapi, layer3]
+#   with_items: "{{ svi_interfaces }}"
+#   nxos_ip_interface:
+#     provider:
+#       host: "{{ ansible_host  }}"
+#       transport: nxapi
+#     interface: "{{ item.interface }}"
+#     version: v4
+#     addr: "{{ item.ip }}"
+#     mask: "{{ item.mask }}"
