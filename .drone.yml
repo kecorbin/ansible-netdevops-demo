@@ -15,10 +15,6 @@ build:
     - ANSIBLE_NET_AUTH_PASS=cisco
   commands:
     - env
-    - unset http_proxy
-    - unset https_proxy
-    - unset HTTP_PROXY
-    - unset HTTPS_PROXY
     - ./deploy.sh --env test
 
 build:
@@ -32,8 +28,4 @@ build:
     - ANSIBLE_NET_AUTH_PASS=cisco
   commands:
     - env
-    - unset http_proxy
-    - unset https_proxy
-    - unset HTTP_PROXY
-    - unset HTTPS_PROXY
     - ./deploy.sh --env prod
