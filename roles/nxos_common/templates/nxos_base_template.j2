@@ -6,12 +6,3 @@ feature {{ feature }}
 
 hostname {{ hostname }}
 ip domain-name {{ domain_name }}
-
-vrf context management
-  ip route 0.0.0.0/0 {{ mgmt_default_gw}}
-
-
-interface mgmt0
-  description OOB Management
-  vrf member management
-  ip address {{ mgmt_ip }}

@@ -1,10 +1,9 @@
-hostname: leaf6
+hostname: leaf5
 device_type: nxos
-mgmt_ip: 10.94.241.173/27
-mgmt_default_gw: 10.94.241.161
 
 features:
   - telnet
+  - interface-vlan
 
 domain_name: "netdevops.is.cool"
 
@@ -12,29 +11,29 @@ domain_name: "netdevops.is.cool"
 l3_interfaces:
 
   - interface: Loopback0
-    ip: 192.168.255.6
+    ip: 192.168.255.5
     description: router-id
     mask: 32
 
   - interface: Ethernet1/3
-    description: "to-agg3-gig6"
-    ip: 10.0.0.46
+    description: "to-agg3-gig5"
+    ip: 10.0.0.42
     mask: 30
 
   - interface: Ethernet1/4
-    description: "to-agg4-gig6"
-    ip: 10.0.0.54
+    description: "to-agg4-gig5"
+    ip: 10.0.0.50
     mask: 30
 
 
 svi_interfaces:
   - interface: vlan7
     description: servervlan7
-    ip: 192.168.7.6
+    ip: 192.168.7.5
     mask: 24
   - interface: vlan8
     description: servervlan8
-    ip: 192.168.8.6
+    ip: 192.168.8.5
     mask: 24
 
 
@@ -48,8 +47,8 @@ ospf:
     - interface: Loopback0
       area: 56
 
-pkl_src: 10.94.238.235
-pkl_dest: 10.94.238.234
+pkl_src: 10.94.238.234
+pkl_dest: 10.94.238.235
 
 vpc:
   domain: 56

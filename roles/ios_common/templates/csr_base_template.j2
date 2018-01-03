@@ -65,6 +65,7 @@ interface {{ interface }}
   {% if 'ip' in props %}
   ip address {{ props.ip }} {{ props.mask }}
   {% endif %}
+  no shutdown
   {# configure ospf interface properties  #}
   {% if 'cost' in props %}
     ip ospf cost {{ ospf.cost }}
