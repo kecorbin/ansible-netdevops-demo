@@ -10,13 +10,6 @@ Ansible scripts for Cisco Live Barcelona Demo
    * Installed by default on OS X
  * [Virtualenv][]
    * `pip install virtualenv`
- * [Virtualbox][]
-   * For development on local VMs
- * [Vagrant][]
-   * For building those local VMs
- * Vagrant plugins
-   * [vagrant-reload](https://github.com/aidanns/vagrant-reload)
-     * `vagrant plugin install vagrant-reload`
 
 ## Basic usage
 
@@ -30,54 +23,18 @@ playbook.
 
     $ ./deploy.sh -- --limit mariadb
 
-## Vagrant
-
-A `Vagrantfile` is provided to spin up local development VMs. When spinning up a
-new environment, be sure to run deploy with `--initial` once, so the new VMs can
-be properly deployed to.
-
-    # Spin up VMs
-    $ vagrant up
-
-    # Initial deploy; only need to do once
-    $ ./deploy.sh --env vagrant --initial
-
-    # Full deploy
-    $ ./deploy.sh --env vagrant
 
 ## Deploy
 
-    $ ./deploy.sh --env vagrant
+    $ ./deploy.sh --env test
 
 ### `-- [ansible-options]`
 
-    $ ./deploy.sh -- --limit services --check
+    $ ./deploy.sh --env test -- --limit distribution
 
 As mentioned above, to pass arbitrary option to the `ansible-playbook` call, you
 can set them after the `--` option. This is especially useful for passing along
 `--tags`, `--limit` or `--check`.
-
-### `--really-reboot`
-
-    $ ./deploy.sh --really-reboot
-
-The Ansible scripts detect when a reboot may be necessary to apply updates.
-Since rebooting in the middle of a deploy would violate the principle of least
-surprise, it will only happen when the `--really-reboot` option is present.
-
-### `--initial`
-
-    $ ./deploy --initial -- --limit something-new
-
-Normally, deploys use your username (or whatever is configured in
-`~/.ssh/config`) for managing target machines. But when an instance is first
-created, the only the `ubuntu` user is preconfigured. Passing the `--initial`
-option sets up the playbook run accordingly.
-
-The `--initial` option also implies `--really-reboot`, since rebooting on intial
-deployment is usually a really good idea. If there are only a few hosts which
-you'd like to initialize, use the `--limit` ansible option to ensure you do not
-reboot anything unexpectedly.
 
 ## Development
 
@@ -89,9 +46,6 @@ used to ensure that the proper version of Ansible and its dependencies are used.
 The contents of the virtualenv are in `requirements.txt`. The `activate.sh`
 manages the virtualenv, and activates it for the shell.
 
-Not many [Ansible Galaxy][] dependencies are used, but they are listed in
-`requirements.yml`.
-
 Please see [Simply Ansible][] for Ansible best practices for writing new
 roles/playbooks.
 
@@ -102,6 +56,4 @@ MIT license
  [ansible galaxy]: https://galaxy.ansible.com/
  [ansible]: https://www.ansible.com/
  [simply ansible]: https://github.com/building5/simply-ansible/tree/master/docs
- [vagrant]: https://www.vagrantup.com
- [virtualbox]: https://www.virtualbox.org/
  [virtualenv]: https://virtualenv.pypa.io/en/stable/
