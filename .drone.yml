@@ -1,3 +1,9 @@
+lint:
+  image: kecorbin/ansible
+  commands:
+    - source activate.sh
+    - make test
+
 build:
   when:
       branch: test
@@ -13,7 +19,7 @@ build:
     - unset https_proxy
     - unset HTTP_PROXY
     - unset HTTPS_PROXY
-    - ansible-playbook -i inventory/test.yml site.yml
+    - ./deploy.sh --env test
 
 build:
   when:
@@ -30,4 +36,4 @@ build:
     - unset https_proxy
     - unset HTTP_PROXY
     - unset HTTPS_PROXY
-    - ansible-playbook -i inventory/prod.yml site.yml
+    - ./deploy.sh --env prod

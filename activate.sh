@@ -35,11 +35,6 @@ make --quiet -C ${TOPDIR} virtualenv
 . ${TOPDIR}/build/virtualenv/bin/activate
 
 #
-# Ensure galaxy modules are up to date
-#
-make --quiet -C ${TOPDIR} galaxy
-
-#
 # Do something. Maybe.
 #
 if [[ "${BASH_SOURCE[0]}" != "$0" ]]; then
