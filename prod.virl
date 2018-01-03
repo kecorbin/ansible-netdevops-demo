@@ -5,7 +5,7 @@
     </extensions>
     <node name="core1" type="SIMPLE" subtype="CSR1000v" location="430,300">
         <extensions>
-            <entry key="static_ip" type="String">10.94.241.171</entry>
+            <entry key="static_ip" type="String">10.94.242.171</entry>
             <entry key="config" type="string">
 hostname core1
 !
@@ -35,7 +35,7 @@ interface GigabitEthernet1
   cdp enable
   no shutdown
 !
-ip route vrf Mgmt-intf 0.0.0.0 0.0.0.0 10.94.241.161
+ip route vrf Mgmt-intf 0.0.0.0 0.0.0.0 10.94.242.161
 !
 end</entry>
 
@@ -47,7 +47,7 @@ end</entry>
     </node>
     <node name="core2" type="SIMPLE" subtype="CSR1000v" location="680,300">
         <extensions>
-            <entry key="static_ip" type="String">10.94.241.172</entry>
+            <entry key="static_ip" type="String">10.94.242.172</entry>
             <entry key="config" type="string">!
 hostname core2
 !
@@ -76,7 +76,7 @@ interface GigabitEthernet1
   cdp enable
   no shutdown
 !
-ip route vrf Mgmt-intf 0.0.0.0 0.0.0.0 10.94.241.161
+ip route vrf Mgmt-intf 0.0.0.0 0.0.0.0 10.94.242.161
 !
 end</entry>
         </extensions>
@@ -87,7 +87,7 @@ end</entry>
     </node>
     <node name="agg3" type="SIMPLE" subtype="NX-OSv 9000" location="430,500">
         <extensions>
-            <entry key="static_ip" type="String">10.94.241.173</entry>
+            <entry key="static_ip" type="String">10.94.242.173</entry>
             <entry key="config" type="string">! NX-OSv Config generated on 2017-12-15 12:31
 license grace-period
 !
@@ -99,7 +99,7 @@ username cisco role network-admin
 no password strength-check
 
 vrf context management
-  ip route 0.0.0.0 0.0.0.0 10.94.241.161
+  ip route 0.0.0.0 0.0.0.0 10.94.242.161
 hardware forwarding unicast trace
 
 interface mgmt0
@@ -121,7 +121,7 @@ interface mgmt0
     </node>
     <node name="agg4" type="SIMPLE" subtype="NX-OSv 9000" location="680,500">
         <extensions>
-            <entry key="static_ip" type="String">10.94.241.174</entry>
+            <entry key="static_ip" type="String">10.94.242.174</entry>
             <entry key="config" type="string">
 license grace-period
 !
@@ -132,7 +132,7 @@ username cisco role network-admin
 no password strength-check
 
 vrf context management
-  ip route 0.0.0.0 0.0.0.0 10.94.241.161
+  ip route 0.0.0.0 0.0.0.0 10.94.242.161
 
 interface mgmt0
   description OOB Management
@@ -152,7 +152,7 @@ interface mgmt0
     </node>
     <node name="leaf5" type="SIMPLE" subtype="NX-OSv 9000" location="430,680">
         <extensions>
-            <entry key="static_ip" type="String">10.94.241.175</entry>
+            <entry key="static_ip" type="String">10.94.242.175</entry>
             <entry key="config" type="string">
 license grace-period
 !
@@ -163,7 +163,7 @@ username cisco role network-admin
 no password strength-check
 
 vrf context management
-  ip route 0.0.0.0 0.0.0.0 10.94.241.161
+  ip route 0.0.0.0 0.0.0.0 10.94.242.161
 
 interface mgmt0
   description OOB Management
@@ -190,7 +190,7 @@ interface mgmt0
     </node>
     <node name="leaf6" type="SIMPLE" subtype="NX-OSv 9000" location="680,680">
         <extensions>
-            <entry key="static_ip" type="String">10.94.241.176</entry>
+            <entry key="static_ip" type="String">10.94.242.176</entry>
             <entry key="config" type="string">
 license grace-period
 !
@@ -201,7 +201,7 @@ username cisco role network-admin
 no password strength-check
 
 vrf context management
-  ip route 0.0.0.0 0.0.0.0 10.94.241.161
+  ip route 0.0.0.0 0.0.0.0 10.94.242.161
 
 interface mgmt0
   description OOB Management
@@ -300,7 +300,7 @@ write_files:
     </node>
     <node name="wan9" type="SIMPLE" subtype="CSR1000v" location="551,198">
         <extensions>
-            <entry key="static_ip" type="String">10.94.241.179</entry>
+            <entry key="static_ip" type="String">10.94.242.179</entry>
             <entry key="config" type="String">
 hostname wan9
 !
@@ -329,7 +329,7 @@ interface GigabitEthernet1
   cdp enable
   no shutdown
 !
-ip route vrf Mgmt-intf 0.0.0.0 0.0.0.0 10.94.241.161
+ip route vrf Mgmt-intf 0.0.0.0 0.0.0.0 10.94.242.161
 !
 end</entry>
             <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
@@ -343,7 +343,7 @@ end</entry>
     </node>
     <node name="branch10-router10" type="SIMPLE" subtype="CSR1000v" location="551,99">
         <extensions>
-            <entry key="static_ip" type="String">10.94.241.180</entry>
+            <entry key="static_ip" type="String">10.94.242.180</entry>
             <entry key="config" type="string">!
 hostname branch10-router10
 !
@@ -373,7 +373,7 @@ interface GigabitEthernet1
   cdp enable
   no shutdown
 !
-ip route vrf Mgmt-intf 0.0.0.0 0.0.0.0 10.94.241.161
+ip route vrf Mgmt-intf 0.0.0.0 0.0.0.0 10.94.242.161
 !
 end</entry>
             <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
