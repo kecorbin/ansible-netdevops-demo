@@ -1,0 +1,22 @@
+core:
+  hosts:
+    core1:
+      ansible_host: 10.94.242.170
+    core2:
+      ansible_host: 10.94.242.171
+
+distribution:
+  hosts:
+    agg3:
+      ansible_host: 10.94.242.166
+    agg4:
+      ansible_host: 10.94.242.167
+
+access:
+  children:
+    pod56:
+      hosts:
+        leaf5:
+          ansible_host: 10.94.242.172
+        leaf6:
+          ansible_host: 10.94.241.173
