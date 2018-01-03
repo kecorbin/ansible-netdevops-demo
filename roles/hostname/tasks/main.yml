@@ -1,6 +1,0 @@
----
-- tags: hostname
-  block:
-    - name: set hostname
-      hostname: name={{ inventory_hostname }}
-      notify: reboot

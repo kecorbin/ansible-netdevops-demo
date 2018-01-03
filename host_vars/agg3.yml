@@ -1,0 +1,63 @@
+hostname: agg3
+device_type: nxos
+
+features:
+  - telnet
+
+domain_name: "netdevops.is.cool"
+
+
+l3_interfaces:
+
+  - interface: Loopback0
+    ip: 192.168.255.3
+    description: router-id
+    mask: 32
+
+  - interface: Ethernet1/1
+    description: "to-core1-gig3"
+    ip: 10.0.0.9
+    mask: 30
+
+  - interface: Ethernet1/2
+    description: "to-core2-gig3"
+    ip: 10.0.0.21
+    mask: 30
+
+  - interface: Ethernet1/3
+    description: "to-agg4-gig3"
+    ip: 10.0.0.33
+    mask: 30
+
+  - interface: Ethernet1/4
+    description: "to-agg4-gig4"
+    ip: 10.0.0.37
+    mask: 30
+
+  - interface: Ethernet1/5
+    description: "to-leaf5-gig3"
+    ip: 10.0.0.41
+    mask: 30
+
+  - interface: Ethernet1/6
+    description: "to-leaf6-gig3"
+    ip: 10.0.0.45
+    mask: 30
+
+ospf:
+  process_id: 1
+  networks:
+    - interface: Ethernet1/1
+      area: 0
+    - interface: Ethernet1/2
+      area: 0
+    - interface: Ethernet1/3
+      area: 0
+    - interface: Ethernet1/4
+      area: 0
+    - interface: Ethernet1/5
+      area: 56
+    - interface: Ethernet1/6
+      area: 56
+    - interface: Loopback0
+      area: 0

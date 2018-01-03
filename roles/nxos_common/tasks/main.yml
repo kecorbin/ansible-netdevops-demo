@@ -1,0 +1,12 @@
+---
+
+- name: "Applying Common NX-OS template"
+  ios_config:
+    provider: "{{ cli }}"
+    src: "nxos_base_template.j2"
+
+- name: Enable NX-API
+  tags: [api, nxapi]
+  nxos_feature:
+    feature: nxapi
+    state: enabled

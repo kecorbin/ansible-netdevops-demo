@@ -1,0 +1,13 @@
+---
+# This approach may produce a deprecation error message like such:
+# [WARNING]: argument include_defaults is no longer supported, ignoring value
+# [WARNING]: argument save is no longer supported, ignoring value
+
+# Should be resolved in 2.5 for additional info see:
+# https://github.com/ansible/ansible/pull/31624
+
+vlans:
+  - id: 7
+    name: server-vlan7
+  - id: 8
+    name: server-vlan8

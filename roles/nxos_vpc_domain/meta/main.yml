@@ -1,0 +1,5 @@
+---
+
+dependencies:
+  - role: nxos_common
+  - role: nxos_switch

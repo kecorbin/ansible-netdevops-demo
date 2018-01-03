@@ -1,0 +1,72 @@
+hostname: leaf5
+device_type: nxos
+
+features:
+  - telnet
+  - interface-vlan
+
+domain_name: "netdevops.is.cool"
+
+
+l3_interfaces:
+
+  - interface: Loopback0
+    ip: 192.168.255.5
+    description: router-id
+    mask: 32
+
+  - interface: Ethernet1/3
+    description: "to-agg3-gig5"
+    ip: 10.0.0.42
+    mask: 30
+
+  - interface: Ethernet1/4
+    description: "to-agg4-gig5"
+    ip: 10.0.0.50
+    mask: 30
+
+
+svi_interfaces:
+  - interface: vlan7
+    description: servervlan7
+    ip: 192.168.7.5
+    mask: 24
+  - interface: vlan8
+    description: servervlan8
+    ip: 192.168.8.5
+    mask: 24
+
+
+ospf:
+  process_id: 1
+  networks:
+    - interface: Ethernet1/3
+      area: 56
+    - interface: Ethernet1/4
+      area: 56
+    - interface: Loopback0
+      area: 56
+
+pkl_src: 10.94.238.234
+pkl_dest: 10.94.238.235
+
+vpc:
+  domain: 56
+  pkl_vrf: management
+  pkl_src: "{{ pkl_src }}"
+  pkl_dest: "{{ pkl_dest }}"
+  peer_link:
+    mode: active
+    id: 56
+    members:
+      - Ethernet1/5
+
+port_channels:
+  - port_channel_id: 7
+    mode: active
+    members:
+      - Ethernet1/7
+  - port_channel_id: 8
+    mode: active
+    members:
+      - Ethernet1/8
