@@ -38,7 +38,6 @@ interface GigabitEthernet1
 ip route vrf Mgmt-intf 0.0.0.0 0.0.0.0 10.94.241.161
 !
 end</entry>
-
         </extensions>
         <interface id="0" name="GigabitEthernet2"/>
         <interface id="1" name="GigabitEthernet3"/>
@@ -179,7 +178,6 @@ interface mgmt0
             <entry key="AutoNetkit.IGP" type="String">ospf</entry>
             <entry key="AutoNetkit.ibgp_role" type="String">Disabled</entry>
             <entry key="AutoNetkit.ospf_area" type="String">56</entry>
-
         </extensions>
         <interface id="2" name="Ethernet1/3"/>
         <interface id="3" name="Ethernet1/4"/>
@@ -294,6 +292,7 @@ write_files:
     exit 0
 </entry>
             <entry key="AutoNetkit.ibgp_role" type="String">Disabled</entry>
+            <entry key="static_ip" type="String">10.94.241.178</entry>
         </extensions>
         <interface id="4" name="eth5"/>
         <interface id="5" name="eth6"/>
@@ -465,6 +464,7 @@ write_files:
             <entry key="AutoNetkit.custom_config_phy_ints" type="String">no shutdown</entry>
             <entry key="AutoNetkit.server_username" type="String">serveradmin</entry>
             <entry key="AutoNetkit.custom_config_global" type="String">username cisco password cisco</entry>
+            <entry key="static_ip" type="String">10.94.241.181</entry>
         </extensions>
         <interface id="10" name="eth11"/>
     </node>
@@ -539,6 +539,7 @@ write_files:
     exit 0
 </entry>
             <entry key="AutoNetkit.ibgp_role" type="String">Disabled</entry>
+            <entry key="static_ip" type="String">10.94.241.177</entry>
         </extensions>
         <interface id="4" name="eth5"/>
         <interface id="5" name="eth6"/>
