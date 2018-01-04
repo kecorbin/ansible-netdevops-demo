@@ -32,4 +32,4 @@ deploy_prod:
     name: production
   when: manual
   only:
-  - master
+  - production
