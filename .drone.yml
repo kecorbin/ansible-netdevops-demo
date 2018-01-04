@@ -28,3 +28,9 @@ build:
   commands:
     - env
     - ./deploy.sh --env prod
+
+notify:
+  spark:
+    image: hpreston/drone-spark
+    roomId: ${SPARK_ROOM}
+    auth_token: ${SPARK_TOKEN}
