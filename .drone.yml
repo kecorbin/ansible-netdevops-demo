@@ -2,7 +2,9 @@ pipeline:
   lint:
     image: kecorbin/ansible
     commands:
-      - make test
+      - ansible-playbook site.yml --syntax-check
+      - ansible-lint --exclude build/ site.yml
+      
   build:
     when:
         branch: test
