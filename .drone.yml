@@ -22,11 +22,12 @@ pipeline:
     when:
         branch: production
     image: kecorbin/ansible
+    secrets: [ ANSIBLE_NET_USERNAME, ANSIBLE_NET_PASSWORD, ANSIBLE_NET_AUTH_PASS ]
     environment:
-      - ANSIBLE_NET_USERNAME=cisco
-      - ANSIBLE_NET_PASSWORD=cisco
+      - ANSIBLE_NET_USERNAME=$ANSIBLE_NET_USERNAME
+      - ANSIBLE_NET_PASSWORD=$ANSIBLE_NET_PASSWORD
       - ANSIBLE_NET_AUTH=True
-      - ANSIBLE_NET_AUTH_PASS=cisco
+      - ANSIBLE_NET_AUTH_PASS=$ANSIBLE_NET_AUTH_PASS
     commands:
       - env
       - ./deploy.sh --env prod
