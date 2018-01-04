@@ -4,8 +4,8 @@ pipeline:
     commands:
       - ansible-playbook site.yml --syntax-check
       - ansible-lint --exclude build/ site.yml
-      
-  build:
+
+  configure:
     when:
         branch: test
     image: kecorbin/ansible
@@ -18,7 +18,7 @@ pipeline:
       - env
       - ./deploy.sh --env test
 
-  build:
+  configure:
     when:
         branch: master
     image: kecorbin/ansible
