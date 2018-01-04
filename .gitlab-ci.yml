@@ -4,17 +4,11 @@ stages:
   - deploy
   - notify
 
-syntax_check:
+lint:
   stage: validate
   image: kecorbin/ansible
   script:
-    - ansible-playbook site.yml --syntax-check
-
-ansible_lint:
-  stage: validate
-  image: kecorbin/ansible
-  script:
-    - ansible-lint --exclude build/ site.yml
+    - validate.sh
 
 deploy_test:
   image: kecorbin/ansible
