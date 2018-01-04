@@ -20,7 +20,7 @@ pipeline:
 
   configure:
     when:
-        branch: master
+        branch: production
     image: kecorbin/ansible
     environment:
       - ANSIBLE_NET_USERNAME=cisco
@@ -36,4 +36,4 @@ pipeline:
     secrets: [ SPARK_TOKEN, ROOMID, PERSONEMAIL ]
     roomId: $ROOMID
     when:
-      status: [ success, failure ]    
+      status: [ success, failure ]
