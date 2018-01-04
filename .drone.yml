@@ -3,7 +3,6 @@ lint:
   commands:
     - source activate.sh
     - make test
-
 build:
   when:
       branch: test
