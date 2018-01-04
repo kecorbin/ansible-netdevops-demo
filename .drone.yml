@@ -2,7 +2,7 @@ pipeline:
   lint:
     image: kecorbin/ansible
     commands:
-      - ./activate.sh
+      - . activate.sh
       - make test
   build:
     when:
