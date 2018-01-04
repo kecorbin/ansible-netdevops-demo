@@ -2,7 +2,6 @@ pipeline:
   lint:
     image: kecorbin/ansible
     commands:
-      - . activate.sh
       - make test
   build:
     when:
@@ -32,6 +31,5 @@ pipeline:
 
   notify:
     image: hpreston/drone-spark:0.7
-    secrets: [ SPARK_TOKEN, SPARK_ROOM ]
-    roomId: ${SPARK_ROOM}
-    auth_token: ${SPARK_TOKEN}
+    secrets: [ SPARK_TOKEN, ROOMID ]
+    message: Build Status
