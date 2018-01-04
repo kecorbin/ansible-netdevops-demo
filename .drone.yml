@@ -35,3 +35,5 @@ pipeline:
     image: hpreston/drone-spark:0.7
     secrets: [ SPARK_TOKEN, ROOMID, PERSONEMAIL ]
     roomId: $ROOMID
+    when:
+      status: [ success, failure ]    
