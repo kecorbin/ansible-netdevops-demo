@@ -1,0 +1,37 @@
+stages:
+  - validate
+  - test
+  - deploy
+  - notify
+
+syntax_check:
+  stage: validate
+  image: kecorbin/ansible
+  script:
+    - ansible-playbook site.yml --syntax-check
+
+ansible_lint:
+  stage: validate
+  image: kecorbin/ansible
+  script:
+    - ansible-lint --exclude build/ site.yml
+
+deploy_test:
+  image: kecorbin/ansible
+  stage: test
+  script:
+    - echo "Deploy to test env"
+  environment:
+    name: test
+  only:
+  - test
+
+deploy_prod:
+  stage: deploy
+  script:
+    - echo "Deploy to production server"
+  environment:
+    name: production
+  when: manual
+  only:
+  - master
