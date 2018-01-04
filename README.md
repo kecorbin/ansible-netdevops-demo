@@ -21,7 +21,7 @@ Each script also honors a `--` option, for passing options directly to
 `ansible-playbook`. This allows you to pass additional options for running the
 playbook.
 
-    $ ./deploy.sh -- --limit mariadb
+    $ ./deploy.sh -- --limit distribution
 
 
 ## Deploy
