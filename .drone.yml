@@ -33,5 +33,5 @@ pipeline:
 
   notify:
     image: hpreston/drone-spark:0.7
-    secrets: [ SPARK_TOKEN, ROOMID ]
+    secrets: [ SPARK_TOKEN, ROOMID, PERSONEMAIL ]
     message: Build Status
