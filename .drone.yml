@@ -1,36 +1,37 @@
-lint:
-  image: kecorbin/ansible
-  commands:
-    - source activate.sh
-    - make test
-build:
-  when:
-      branch: test
-  image: kecorbin/ansible
-  environment:
-    - ANSIBLE_NET_USERNAME=cisco
-    - ANSIBLE_NET_PASSWORD=cisco
-    - ANSIBLE_NET_AUTH=True
-    - ANSIBLE_NET_AUTH_PASS=cisco
-  commands:
-    - env
-    - ./deploy.sh --env test
+pipeline:
+  lint:
+    image: kecorbin/ansible
+    commands:
+      - source activate.sh
+      - make test
+  build:
+    when:
+        branch: test
+    image: kecorbin/ansible
+    environment:
+      - ANSIBLE_NET_USERNAME=cisco
+      - ANSIBLE_NET_PASSWORD=cisco
+      - ANSIBLE_NET_AUTH=True
+      - ANSIBLE_NET_AUTH_PASS=cisco
+    commands:
+      - env
+      - ./deploy.sh --env test
 
-build:
-  when:
-      branch: master
-  image: kecorbin/ansible
-  environment:
-    - ANSIBLE_NET_USERNAME=cisco
-    - ANSIBLE_NET_PASSWORD=cisco
-    - ANSIBLE_NET_AUTH=True
-    - ANSIBLE_NET_AUTH_PASS=cisco
-  commands:
-    - env
-    - ./deploy.sh --env prod
+  build:
+    when:
+        branch: master
+    image: kecorbin/ansible
+    environment:
+      - ANSIBLE_NET_USERNAME=cisco
+      - ANSIBLE_NET_PASSWORD=cisco
+      - ANSIBLE_NET_AUTH=True
+      - ANSIBLE_NET_AUTH_PASS=cisco
+    commands:
+      - env
+      - ./deploy.sh --env prod
 
-notify:
-  spark:
-    image: hpreston/drone-spark
-    roomId: ${SPARK_ROOM}
-    auth_token: ${SPARK_TOKEN}
+  notify:
+    spark:
+      image: hpreston/drone-spark
+      roomId: ${SPARK_ROOM}
+      auth_token: ${SPARK_TOKEN}
