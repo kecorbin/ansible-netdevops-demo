@@ -17,7 +17,7 @@ deploy_test:
   stage: test
   script:
     - echo "Deploy to test env"
-    - ./deploy.sh --env test
+    - ansible-playbook -v --diff --inventory-file ./inventory/test.yml -- site.yml
   environment:
     name: test
   only:
@@ -26,8 +26,8 @@ deploy_test:
 deploy_prod:
   stage: deploy
   script:
-    - echo "Deploy to production server"
-    - ./deploy.sh --env prod
+    - echo "Deploy to production env"
+    - ansible-playbook -v --diff --inventory-file ./inventory/prod.yml -- site.yml
   environment:
     name: production
   when: manual
