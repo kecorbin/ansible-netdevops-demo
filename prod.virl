@@ -5,7 +5,7 @@
     </extensions>
     <node name="core1" type="SIMPLE" subtype="IOS XRv 9000 - extra mem" location="430,300" vmFlavor="IOS XRv 9000 - extra mem">
         <extensions>
-            <entry key="static_ip" type="String">10.94.241.171</entry>
+            <entry key="static_ip" type="String">10.94.242.171</entry>
             <entry key="config" type="string">!! IOS XR Configuration version = 6.2.1
 hostname core1
 telnet vrf default ipv4 server max-servers 10
@@ -51,7 +51,7 @@ interface MgmtEth0/RP0/CPU0/0
 router static
  vrf Mgmt-intf
   address-family ipv4 unicast
-   0.0.0.0/0 10.94.241.161
+   0.0.0.0/0 10.94.242.161
   !
  !
 !
@@ -68,7 +68,7 @@ end</entry>
     </node>
     <node name="core2" type="SIMPLE" subtype="IOS XRv 9000 - extra mem" location="680,300" vmFlavor="IOS XRv 9000 - extra mem">
         <extensions>
-            <entry key="static_ip" type="String">10.94.241.172</entry>
+            <entry key="static_ip" type="String">10.94.242.172</entry>
             <entry key="config" type="string">!! IOS XR Configuration version = 6.2.1
 hostname core2
 telnet vrf default ipv4 server max-servers 10
@@ -114,7 +114,7 @@ interface MgmtEth0/RP0/CPU0/0
 router static
  vrf Mgmt-intf
   address-family ipv4 unicast
-   0.0.0.0/0 10.94.241.161
+   0.0.0.0/0 10.94.242.161
   !
  !
 !
@@ -130,7 +130,7 @@ end</entry>
     </node>
     <node name="agg3" type="SIMPLE" subtype="NX-OSv 9000" location="430,500">
         <extensions>
-            <entry key="static_ip" type="String">10.94.241.173</entry>
+            <entry key="static_ip" type="String">10.94.242.173</entry>
             <entry key="config" type="string">! NX-OSv Config generated on 2017-12-15 12:31
 license grace-period
 !
@@ -142,7 +142,7 @@ username cisco role network-admin
 no password strength-check
 
 vrf context management
-  ip route 0.0.0.0 0.0.0.0 10.94.241.161
+  ip route 0.0.0.0 0.0.0.0 10.94.242.161
 hardware forwarding unicast trace
 
 interface mgmt0
@@ -164,7 +164,7 @@ interface mgmt0
     </node>
     <node name="agg4" type="SIMPLE" subtype="NX-OSv 9000" location="680,500">
         <extensions>
-            <entry key="static_ip" type="String">10.94.241.174</entry>
+            <entry key="static_ip" type="String">10.94.242.174</entry>
             <entry key="config" type="string">
 license grace-period
 !
@@ -175,7 +175,7 @@ username cisco role network-admin
 no password strength-check
 
 vrf context management
-  ip route 0.0.0.0 0.0.0.0 10.94.241.161
+  ip route 0.0.0.0 0.0.0.0 10.94.242.161
 
 interface mgmt0
   description OOB Management
@@ -195,7 +195,7 @@ interface mgmt0
     </node>
     <node name="leaf5" type="SIMPLE" subtype="NX-OSv 9000" location="430,680">
         <extensions>
-            <entry key="static_ip" type="String">10.94.241.175</entry>
+            <entry key="static_ip" type="String">10.94.242.175</entry>
             <entry key="config" type="string">
 license grace-period
 !
@@ -206,7 +206,7 @@ username cisco role network-admin
 no password strength-check
 
 vrf context management
-  ip route 0.0.0.0 0.0.0.0 10.94.241.161
+  ip route 0.0.0.0 0.0.0.0 10.94.242.161
 
 interface mgmt0
   description OOB Management
@@ -232,7 +232,7 @@ interface mgmt0
     </node>
     <node name="leaf6" type="SIMPLE" subtype="NX-OSv 9000" location="680,680">
         <extensions>
-            <entry key="static_ip" type="String">10.94.241.176</entry>
+            <entry key="static_ip" type="String">10.94.242.176</entry>
             <entry key="config" type="string">
 license grace-period
 !
@@ -243,7 +243,7 @@ username cisco role network-admin
 no password strength-check
 
 vrf context management
-  ip route 0.0.0.0 0.0.0.0 10.94.241.161
+  ip route 0.0.0.0 0.0.0.0 10.94.242.161
 
 interface mgmt0
   description OOB Management
@@ -336,14 +336,14 @@ write_files:
     exit 0
 </entry>
             <entry key="AutoNetkit.ibgp_role" type="String">Disabled</entry>
-            <entry key="static_ip" type="String">10.94.241.178</entry>
+            <entry key="static_ip" type="String">10.94.242.178</entry>
         </extensions>
         <interface id="4" name="eth5"/>
         <interface id="5" name="eth6"/>
     </node>
     <node name="wan9" type="SIMPLE" subtype="IOS XRv 9000 - extra mem" location="551,198" vmFlavor="IOS XRv 9000 - extra mem">
         <extensions>
-            <entry key="static_ip" type="String">10.94.241.179</entry>
+            <entry key="static_ip" type="String">10.94.242.179</entry>
             <entry key="config" type="String">!! IOS XR Configuration version = 6.2.1
 hostname wan9
 telnet vrf default ipv4 server max-servers 10
@@ -389,7 +389,7 @@ interface MgmtEth0/RP0/CPU0/0
 router static
  vrf Mgmt-intf
   address-family ipv4 unicast
-   0.0.0.0/0 10.94.241.161
+   0.0.0.0/0 10.94.242.161
   !
  !
 !
@@ -408,7 +408,7 @@ end</entry>
     </node>
     <node name="branch10-router10" type="SIMPLE" subtype="CSR1000v" location="551,99">
         <extensions>
-            <entry key="static_ip" type="String">10.94.241.180</entry>
+            <entry key="static_ip" type="String">10.94.242.180</entry>
             <entry key="config" type="string">!
 hostname branch10-router10
 !
@@ -438,7 +438,7 @@ interface GigabitEthernet1
   cdp enable
   no shutdown
 !
-ip route vrf Mgmt-intf 0.0.0.0 0.0.0.0 10.94.241.161
+ip route vrf Mgmt-intf 0.0.0.0 0.0.0.0 10.94.242.161
 !
 end</entry>
             <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
@@ -530,7 +530,7 @@ write_files:
             <entry key="AutoNetkit.custom_config_phy_ints" type="String">no shutdown</entry>
             <entry key="AutoNetkit.server_username" type="String">serveradmin</entry>
             <entry key="AutoNetkit.custom_config_global" type="String">username cisco password cisco</entry>
-            <entry key="static_ip" type="String">10.94.241.181</entry>
+            <entry key="static_ip" type="String">10.94.242.181</entry>
         </extensions>
         <interface id="10" name="eth11"/>
     </node>
@@ -605,7 +605,7 @@ write_files:
     exit 0
 </entry>
             <entry key="AutoNetkit.ibgp_role" type="String">Disabled</entry>
-            <entry key="static_ip" type="String">10.94.241.177</entry>
+            <entry key="static_ip" type="String">10.94.242.177</entry>
         </extensions>
         <interface id="4" name="eth5"/>
         <interface id="5" name="eth6"/>
