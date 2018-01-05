@@ -3,7 +3,7 @@
     <extensions>
         <entry key="management_network" type="String">flat</entry>
     </extensions>
-    <node name="core1" type="SIMPLE" subtype="CSR1000v" location="430,300">
+    <node name="core1" type="SIMPLE" subtype="IOS XRv 9000" location="430,300">
         <extensions>
             <entry key="static_ip" type="String">10.94.241.171</entry>
             <entry key="config" type="string">
@@ -39,12 +39,12 @@ ip route vrf Mgmt-intf 0.0.0.0 0.0.0.0 10.94.241.161
 !
 end</entry>
         </extensions>
-        <interface id="0" name="GigabitEthernet2"/>
-        <interface id="1" name="GigabitEthernet3"/>
-        <interface id="2" name="GigabitEthernet4"/>
-        <interface id="3" name="GigabitEthernet5"/>
+        <interface id="2" name="GigabitEthernet0/0/0/2"/>
+        <interface id="3" name="GigabitEthernet0/0/0/3"/>
+        <interface id="4" name="GigabitEthernet0/0/0/4"/>
+        <interface id="5" name="GigabitEthernet0/0/0/5"/>
     </node>
-    <node name="core2" type="SIMPLE" subtype="CSR1000v" location="680,300">
+    <node name="core2" type="SIMPLE" subtype="IOS XRv 9000" location="680,300">
         <extensions>
             <entry key="static_ip" type="String">10.94.241.172</entry>
             <entry key="config" type="string">!
@@ -79,10 +79,10 @@ ip route vrf Mgmt-intf 0.0.0.0 0.0.0.0 10.94.241.161
 !
 end</entry>
         </extensions>
-        <interface id="0" name="GigabitEthernet2"/>
-        <interface id="1" name="GigabitEthernet3"/>
-        <interface id="2" name="GigabitEthernet4"/>
-        <interface id="3" name="GigabitEthernet5"/>
+        <interface id="1" name="GigabitEthernet0/0/0/1"/>
+        <interface id="3" name="GigabitEthernet0/0/0/3"/>
+        <interface id="4" name="GigabitEthernet0/0/0/4"/>
+        <interface id="5" name="GigabitEthernet0/0/0/5"/>
     </node>
     <node name="agg3" type="SIMPLE" subtype="NX-OSv 9000" location="430,500">
         <extensions>
@@ -297,7 +297,7 @@ write_files:
         <interface id="4" name="eth5"/>
         <interface id="5" name="eth6"/>
     </node>
-    <node name="wan9" type="SIMPLE" subtype="CSR1000v" location="551,198">
+    <node name="wan9" type="SIMPLE" subtype="IOS XRv 9000" location="551,198">
         <extensions>
             <entry key="static_ip" type="String">10.94.241.179</entry>
             <entry key="config" type="String">
@@ -336,9 +336,9 @@ end</entry>
             <entry key="AutoNetkit.ibgp_role" type="String">RR</entry>
             <entry key="AutoNetkit.RR_cluster" type="String">10</entry>
         </extensions>
-        <interface id="0" name="GigabitEthernet2"/>
-        <interface id="1" name="GigabitEthernet3"/>
-        <interface id="2" name="GigabitEthernet4"/>
+        <interface id="1" name="GigabitEthernet0/0/0/1"/>
+        <interface id="2" name="GigabitEthernet0/0/0/2"/>
+        <interface id="3" name="GigabitEthernet0/0/0/3"/>
     </node>
     <node name="branch10-router10" type="SIMPLE" subtype="CSR1000v" location="551,99">
         <extensions>
