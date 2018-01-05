@@ -6,37 +6,51 @@
     <node name="core1" type="SIMPLE" subtype="IOS XRv 9000 - extra mem" vmFlavor="IOS XRv 9000 - extra mem" location="430,300">
         <extensions>
             <entry key="static_ip" type="String">10.94.241.171</entry>
-            <entry key="config" type="string">
+            <entry key="config" type="string">!! IOS XR Configuration version = 6.2.1
 hostname core1
+telnet vrf default ipv4 server max-servers 10
+telnet vrf Mgmt-intf ipv4 server max-servers 10
+domain lookup disable
+username cisco
+ group root-lr
+ group cisco-support
+ secret 5 $1$8XKH$gE1JmJDZy0YQeWZ3ZANMo/
+ password 7 070C285F4D06
 !
-license accept end user agreement
-license boot level premium
+username admin
+ group root-lr
+ group cisco-support
+ password 7 011202095205
 !
-vrf definition Mgmt-intf
+username lab
+ group root-lr
+ group cisco-support
+ password 7 04570A04
 !
- address-family ipv4
- exit-address-family
+vrf Mgmt-intf
+ address-family ipv4 unicast
  !
- address-family ipv6
- exit-address-family
+ address-family ipv6 unicast
+ !
+!
+control-plane
+ management-plane
+  inband
+   interface all
+    allow all
+   !
+  !
+ !
+!
+interface MgmtEth0/RP0/CPU0/0
+ description OOB Management
+ ! Configured on launch
+ vrf Mgmt-intf
+ ipv4 address dhcp
 !
 !
-enable password cisco
-enable secret 4 tnhtc92DXBhelxjYk8LWJrPV36S2i4ntXrpb4RFmfqY
-crypto key generate rsa modulus 1024
-ip ssh server algorithm authentication password
-username cisco privilege 15 secret cisco
-!
-interface GigabitEthernet1
-  description OOB Management
-  vrf forwarding Mgmt-intf
-  ! Configured on launch
-  no ip address
-  cdp enable
-  no shutdown
-!
-ip route vrf Mgmt-intf 0.0.0.0 0.0.0.0 10.94.241.161
-!
+ssh server v2
+ssh server vrf Mgmt-intf
 end</entry>
         </extensions>
         <interface id="2" name="GigabitEthernet0/0/0/2"/>
@@ -47,36 +61,51 @@ end</entry>
     <node name="core2" type="SIMPLE" subtype="IOS XRv 9000 - extra mem" vmFlavor="IOS XRv 9000 - extra mem" location="680,300">
         <extensions>
             <entry key="static_ip" type="String">10.94.241.172</entry>
-            <entry key="config" type="string">!
+            <entry key="config" type="string">!! IOS XR Configuration version = 6.2.1
 hostname core2
+telnet vrf default ipv4 server max-servers 10
+telnet vrf Mgmt-intf ipv4 server max-servers 10
+domain lookup disable
+username cisco
+ group root-lr
+ group cisco-support
+ secret 5 $1$8XKH$gE1JmJDZy0YQeWZ3ZANMo/
+ password 7 070C285F4D06
 !
-license accept end user agreement
-license boot level premium
+username admin
+ group root-lr
+ group cisco-support
+ password 7 011202095205
 !
-vrf definition Mgmt-intf
+username lab
+ group root-lr
+ group cisco-support
+ password 7 04570A04
 !
- address-family ipv4
- exit-address-family
+vrf Mgmt-intf
+ address-family ipv4 unicast
  !
- address-family ipv6
- exit-address-family
+ address-family ipv6 unicast
+ !
 !
-enable password cisco
-enable secret 4 tnhtc92DXBhelxjYk8LWJrPV36S2i4ntXrpb4RFmfqY
-crypto key generate rsa modulus 1024
-ip ssh server algorithm authentication password
-username cisco privilege 15 secret cisco
+control-plane
+ management-plane
+  inband
+   interface all
+    allow all
+   !
+  !
+ !
 !
-interface GigabitEthernet1
-  description OOB Management
-  vrf forwarding Mgmt-intf
-  ! Configured on launch
-  no ip address
-  cdp enable
-  no shutdown
+interface MgmtEth0/RP0/CPU0/0
+ description OOB Management
+ ! Configured on launch
+ vrf Mgmt-intf
+ ipv4 address dhcp
 !
-ip route vrf Mgmt-intf 0.0.0.0 0.0.0.0 10.94.241.161
 !
+ssh server v2
+ssh server vrf Mgmt-intf
 end</entry>
         </extensions>
         <interface id="1" name="GigabitEthernet0/0/0/1"/>
@@ -300,36 +329,51 @@ write_files:
     <node name="wan9" type="SIMPLE" subtype="IOS XRv 9000 - extra mem" vmFlavor="IOS XRv 9000 - extra mem" location="551,198">
         <extensions>
             <entry key="static_ip" type="String">10.94.241.179</entry>
-            <entry key="config" type="String">
-hostname wan9
+            <entry key="config" type="String">!! IOS XR Configuration version = 6.2.1
+hostname core1
+telnet vrf default ipv4 server max-servers 10
+telnet vrf Mgmt-intf ipv4 server max-servers 10
+domain lookup disable
+username cisco
+ group root-lr
+ group cisco-support
+ secret 5 $1$8XKH$gE1JmJDZy0YQeWZ3ZANMo/
+ password 7 070C285F4D06
 !
-license accept end user agreement
-license boot level premium
+username admin
+ group root-lr
+ group cisco-support
+ password 7 011202095205
 !
-vrf definition Mgmt-intf
+username lab
+ group root-lr
+ group cisco-support
+ password 7 04570A04
 !
- address-family ipv4
- exit-address-family
+vrf Mgmt-intf
+ address-family ipv4 unicast
  !
- address-family ipv6
- exit-address-family
+ address-family ipv6 unicast
+ !
 !
-enable password cisco
-enable secret 4 tnhtc92DXBhelxjYk8LWJrPV36S2i4ntXrpb4RFmfqY
-crypto key generate rsa modulus 1024
-ip ssh server algorithm authentication password
-username cisco privilege 15 secret cisco
+control-plane
+ management-plane
+  inband
+   interface all
+    allow all
+   !
+  !
+ !
 !
-interface GigabitEthernet1
-  description OOB Management
-  vrf forwarding Mgmt-intf
-  ! Configured on launch
-  no ip address
-  cdp enable
-  no shutdown
+interface MgmtEth0/RP0/CPU0/0
+ description OOB Management
+ ! Configured on launch
+ vrf Mgmt-intf
+ ipv4 address dhcp
 !
-ip route vrf Mgmt-intf 0.0.0.0 0.0.0.0 10.94.241.161
 !
+ssh server v2
+ssh server vrf Mgmt-intf
 end</entry>
             <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
             <entry key="AutoNetkit.IGP" type="String">ospf</entry>
