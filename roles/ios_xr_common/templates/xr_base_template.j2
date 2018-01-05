@@ -1,0 +1,43 @@
+hostname {{ inventory_hostname }}
+!
+{%- for vrf in vrfs %}
+vrf {{ vrf }}
+{%- endfor %}
+
+!
+cdp
+domain name {{ domain_name }}
+
+{% for loopback, props in loopbacks.items() %}
+
+interface {{ loopback }}
+  description {{ props.description }}
+  ipv4 address {{ props.ip }} {{ props.mask }}
+{% endfor %}
+!
+
+{% for interface, props  in interfaces.items() %}
+interface {{ interface }}
+  cdp
+  description {{ props.description }}
+  {% if 'vrf' in props %}
+    vrf {{ props.vrf }}
+  {% endif %}
+  {% if 'ip' in props %}
+  ipv4 address {{ props.ip }} {{ props.mask }}
+  {% endif %}
+  no shutdown
+
+{% endfor %}
+
+router ospf {{ ospf.process }}
+  log adjacency changes
+
+  {% for area, props in ospf.areas.items() %}
+    area {{ area }}
+      {% for interface in props['interfaces'] %}
+      interface {{ interface }}
+      {% endfor %}
+  {% endfor %}
+!
+!
