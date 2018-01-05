@@ -330,7 +330,7 @@ write_files:
         <extensions>
             <entry key="static_ip" type="String">10.94.241.179</entry>
             <entry key="config" type="String">!! IOS XR Configuration version = 6.2.1
-hostname core1
+hostname wan9
 telnet vrf default ipv4 server max-servers 10
 telnet vrf Mgmt-intf ipv4 server max-servers 10
 domain lookup disable
