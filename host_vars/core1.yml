@@ -25,6 +25,7 @@ ospf:
           - GigabitEthernet0/0/0/2
           - GigabitEthernet0/0/0/3
           - GigabitEthernet0/0/0/4
+          - GigabitEthernet0/0/0/5
 
     # the following lines are only needed for IOS-XE/IOS devices, but leaving for now
     networks:

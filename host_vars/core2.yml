@@ -25,8 +25,9 @@ ospf:
           - GigabitEthernet0/0/0/2
           - GigabitEthernet0/0/0/3
           - GigabitEthernet0/0/0/4
+          - GigabitEthernet0/0/0/5
 
-    # the following lines are only needed for IOS-XE/IOS devices, but leaving for now          
+    # the following lines are only needed for IOS-XE/IOS devices, but leaving for now
     networks:
       10.0.0.4:
         wildcard_mask: 0.0.0.3
@@ -77,6 +78,6 @@ interfaces:
     mask: 255.255.255.252
 
   GigabitEthernet0/0/0/5:
-    description: "to-wan9"
+    description: "to-wan9-g0/0/0/2"
     ip: 10.0.0.29
     mask: 255.255.255.252
