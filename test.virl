@@ -3,7 +3,7 @@
     <extensions>
         <entry key="management_network" type="String">flat</entry>
     </extensions>
-    <node name="core1" type="SIMPLE" subtype="IOS XRv 9000 - extra mem" vmFlavor="IOS XRv 9000 - extra mem" location="430,300">
+    <node name="core1" type="SIMPLE" subtype="IOS XRv 9000 - extra mem" location="430,300" vmFlavor="IOS XRv 9000 - extra mem">
         <extensions>
             <entry key="static_ip" type="String">10.94.241.171</entry>
             <entry key="config" type="string">!! IOS XR Configuration version = 6.2.1
@@ -48,17 +48,25 @@ interface MgmtEth0/RP0/CPU0/0
  vrf Mgmt-intf
  ipv4 address dhcp
 !
+router static
+ vrf Mgmt-intf
+  address-family ipv4 unicast
+   0.0.0.0/0 10.94.241.161
+  !
+ !
+!
 !
 ssh server v2
 ssh server vrf Mgmt-intf
 end</entry>
         </extensions>
+        <interface id="1" name="GigabitEthernet0/0/0/1"/>
         <interface id="2" name="GigabitEthernet0/0/0/2"/>
         <interface id="3" name="GigabitEthernet0/0/0/3"/>
         <interface id="4" name="GigabitEthernet0/0/0/4"/>
         <interface id="5" name="GigabitEthernet0/0/0/5"/>
     </node>
-    <node name="core2" type="SIMPLE" subtype="IOS XRv 9000 - extra mem" vmFlavor="IOS XRv 9000 - extra mem" location="680,300">
+    <node name="core2" type="SIMPLE" subtype="IOS XRv 9000 - extra mem" location="680,300" vmFlavor="IOS XRv 9000 - extra mem">
         <extensions>
             <entry key="static_ip" type="String">10.94.241.172</entry>
             <entry key="config" type="string">!! IOS XR Configuration version = 6.2.1
@@ -103,12 +111,19 @@ interface MgmtEth0/RP0/CPU0/0
  vrf Mgmt-intf
  ipv4 address dhcp
 !
+router static
+ vrf Mgmt-intf
+  address-family ipv4 unicast
+   0.0.0.0/0 10.94.241.161
+  !
+ !
 !
 ssh server v2
 ssh server vrf Mgmt-intf
 end</entry>
         </extensions>
         <interface id="1" name="GigabitEthernet0/0/0/1"/>
+        <interface id="2" name="GigabitEthernet0/0/0/2"/>
         <interface id="3" name="GigabitEthernet0/0/0/3"/>
         <interface id="4" name="GigabitEthernet0/0/0/4"/>
         <interface id="5" name="GigabitEthernet0/0/0/5"/>
@@ -326,7 +341,7 @@ write_files:
         <interface id="4" name="eth5"/>
         <interface id="5" name="eth6"/>
     </node>
-    <node name="wan9" type="SIMPLE" subtype="IOS XRv 9000 - extra mem" vmFlavor="IOS XRv 9000 - extra mem" location="551,198">
+    <node name="wan9" type="SIMPLE" subtype="IOS XRv 9000 - extra mem" location="551,198" vmFlavor="IOS XRv 9000 - extra mem">
         <extensions>
             <entry key="static_ip" type="String">10.94.241.179</entry>
             <entry key="config" type="String">!! IOS XR Configuration version = 6.2.1
@@ -370,6 +385,13 @@ interface MgmtEth0/RP0/CPU0/0
  ! Configured on launch
  vrf Mgmt-intf
  ipv4 address dhcp
+!
+router static
+ vrf Mgmt-intf
+  address-family ipv4 unicast
+   0.0.0.0/0 10.94.241.161
+  !
+ !
 !
 !
 ssh server v2
@@ -601,13 +623,14 @@ write_files:
     <connection dst="/virl:topology/virl:node[3]/virl:interface[6]" src="/virl:topology/virl:node[6]/virl:interface[1]"/>
     <connection dst="/virl:topology/virl:node[4]/virl:interface[3]" src="/virl:topology/virl:node[3]/virl:interface[3]"/>
     <connection dst="/virl:topology/virl:node[4]/virl:interface[4]" src="/virl:topology/virl:node[3]/virl:interface[4]"/>
-    <connection dst="/virl:topology/virl:node[1]/virl:interface[2]" src="/virl:topology/virl:node[3]/virl:interface[1]"/>
-    <connection dst="/virl:topology/virl:node[2]/virl:interface[2]" src="/virl:topology/virl:node[3]/virl:interface[2]"/>
-    <connection dst="/virl:topology/virl:node[1]/virl:interface[3]" src="/virl:topology/virl:node[4]/virl:interface[1]"/>
-    <connection dst="/virl:topology/virl:node[2]/virl:interface[3]" src="/virl:topology/virl:node[4]/virl:interface[2]"/>
+    <connection dst="/virl:topology/virl:node[1]/virl:interface[3]" src="/virl:topology/virl:node[3]/virl:interface[1]"/>
+    <connection dst="/virl:topology/virl:node[2]/virl:interface[3]" src="/virl:topology/virl:node[3]/virl:interface[2]"/>
+    <connection dst="/virl:topology/virl:node[1]/virl:interface[4]" src="/virl:topology/virl:node[4]/virl:interface[1]"/>
+    <connection dst="/virl:topology/virl:node[2]/virl:interface[4]" src="/virl:topology/virl:node[4]/virl:interface[2]"/>
     <connection dst="/virl:topology/virl:node[10]/virl:interface[1]" src="/virl:topology/virl:node[9]/virl:interface[2]"/>
-    <connection dst="/virl:topology/virl:node[2]/virl:interface[1]" src="/virl:topology/virl:node[1]/virl:interface[1]"/>
-    <connection dst="/virl:topology/virl:node[8]/virl:interface[1]" src="/virl:topology/virl:node[1]/virl:interface[4]"/>
-    <connection dst="/virl:topology/virl:node[2]/virl:interface[4]" src="/virl:topology/virl:node[8]/virl:interface[2]"/>
+    <connection dst="/virl:topology/virl:node[8]/virl:interface[1]" src="/virl:topology/virl:node[1]/virl:interface[5]"/>
+    <connection dst="/virl:topology/virl:node[2]/virl:interface[5]" src="/virl:topology/virl:node[8]/virl:interface[2]"/>
     <connection dst="/virl:topology/virl:node[9]/virl:interface[1]" src="/virl:topology/virl:node[8]/virl:interface[3]"/>
+    <connection dst="/virl:topology/virl:node[2]/virl:interface[1]" src="/virl:topology/virl:node[1]/virl:interface[1]"/>
+    <connection dst="/virl:topology/virl:node[2]/virl:interface[2]" src="/virl:topology/virl:node[1]/virl:interface[2]"/>
 </topology>
