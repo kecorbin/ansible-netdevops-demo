@@ -4,6 +4,9 @@ core:
       ansible_host: 10.94.242.171
     core2:
       ansible_host: 10.94.242.172
+    wan9:
+      ansible_host: 10.94.242.179
+
 
 distribution:
   hosts:
