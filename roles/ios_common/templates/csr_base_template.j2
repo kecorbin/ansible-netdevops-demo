@@ -36,6 +36,9 @@ crypto key generate rsa modulus 768
 
 ip ssh server algorithm authentication password
 
+snmp-server community {{ snmp_ro }} ro
+snmp-server community {{ snmp_rw }} rw
+
 username {{ username }} secret {{ password }}
 line vty 0 4
  transport input ssh telnet

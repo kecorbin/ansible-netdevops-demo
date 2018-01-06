@@ -8,6 +8,9 @@ vrf {{ vrf }}
 cdp
 domain name {{ domain_name }}
 
+snmp-server community {{ snmp_ro }} ro
+snmp-server community {{ snmp_rw }} rw
+
 {% for loopback, props in loopbacks.items() %}
 
 interface {{ loopback }}
