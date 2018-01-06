@@ -1,5 +1,5 @@
 ---
-  
+
 - name: Enable Features
   tags: [api, nxapi, ospf]
   with_items:

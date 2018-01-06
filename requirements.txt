@@ -1,4 +1,6 @@
 ansible==2.4.2.0
+virlutils
+ansible-lint
 asn1crypto==0.24.0
 bcrypt==3.1.4
 cffi==1.11.2

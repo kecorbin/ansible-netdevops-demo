@@ -17,6 +17,17 @@ bgp:
 
 ospf:
     process: 1
+    areas:
+      0:
+        interfaces:
+          - Loopback0
+          - GigabitEthernet0/0/0/1
+          - GigabitEthernet0/0/0/2
+          - GigabitEthernet0/0/0/3
+          - GigabitEthernet0/0/0/4
+          - GigabitEthernet0/0/0/5
+
+    # the following lines are only needed for IOS-XE/IOS devices, but leaving for now
     networks:
       10.0.0.4:
         wildcard_mask: 0.0.0.3
@@ -49,28 +60,25 @@ loopbacks:
 
 
 interfaces:
-  GigabitEthernet1:
-    description: "OOB Management"
-    vrf: "Mgmt-intf"
 
-  GigabitEthernet2:
-    description: "to-core2-gig1"
+  GigabitEthernet0/0/0/1:
+    description: "to-core2-gig0/0/01"
     ip: 10.0.0.5
     mask: 255.255.255.252
     ospf:
       cost: 1
 
-  GigabitEthernet3:
+  GigabitEthernet0/0/0/3:
     description: "to-agg3-gig1"
     ip: 10.0.0.10
     mask: 255.255.255.252
 
-  GigabitEthernet4:
+  GigabitEthernet0/0/0/4:
     description: "to-agg4-gig1"
     ip: 10.0.0.14
     mask: 255.255.255.252
 
-  GigabitEthernet5:
+  GigabitEthernet0/0/0/5:
     description: "to-wan9"
     ip: 10.0.0.17
     mask: 255.255.255.252

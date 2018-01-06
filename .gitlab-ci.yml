@@ -1,0 +1,48 @@
+stages:
+  - validate
+  - test
+  - dry_run
+  - deploy
+  - notify
+
+lint:
+  stage: validate
+  image: kecorbin/ansible
+  variables:
+  script:
+    - ansible-playbook site.yml --syntax-check
+    - ansible-lint --exclude build/ site.yml
+
+deploy_test:
+  image: kecorbin/ansible
+  stage: test
+  script:
+    - echo "Deploy to test env"
+    - ansible-playbook -v --diff --inventory-file ./inventory/test.yml -- site.yml
+  environment:
+    name: test
+  only:
+  - test
+
+deploy_prod_dry_run:
+  image: kecorbin/ansible
+  stage: dry_run
+  script:
+    - echo "Performing dry run to production env"
+    - ansible-playbook --diff --check --inventory-file ./inventory/prod.yml -- site.yml
+  environment:
+    name: production
+  only:
+  - production
+
+deploy_prod:
+  image: kecorbin/ansible
+  stage: deploy
+  script:
+    - echo "Deploy to production env"
+    - ansible-playbook -v --diff --inventory-file ./inventory/prod.yml -- site.yml
+  environment:
+    name: production
+  when: manual
+  only:
+  - production

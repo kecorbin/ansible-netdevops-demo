@@ -8,7 +8,7 @@
     cli:
       host: "{{ ansible_host }}"
   roles:
-    - ios_common
+    - ios_xr_common
 
 - name: Configure Distribution Switches
   hosts: distribution

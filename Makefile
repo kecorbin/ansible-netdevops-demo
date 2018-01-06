@@ -4,9 +4,6 @@ all:
 virtualenv: build/virtualenv/.built
 .PHONY: virtualenv
 
-galaxy: build/galaxy/.built
-.PHONY: galaxy
-
 check-env:
 	@if ! test "$(shell which pip)" -ef "$(shell which build/virtualenv/bin/pip)"; then \
 		echo "ERROR: virtualenv not activated" >&2; \
@@ -19,12 +16,6 @@ build/virtualenv/.built: requirements.txt
 	rm -rf build/virtualenv
 	virtualenv build/virtualenv
 	. build/virtualenv/bin/activate && pip install -r requirements.txt
-	touch $@
-
-build/galaxy/.built: requirements.yml
-	@$(MAKE) check-env
-	rm -rf build/galaxy
-	ansible-galaxy install -r requirements.yml
 	touch $@
 
 test:
