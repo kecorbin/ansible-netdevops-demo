@@ -1,20 +1,20 @@
 stages:
   - validate
-  - test
   - dry_run
   - deploy
+  - test
   - notify
 
 lint:
   stage: validate
-  image: kecorbin/ansible
+  image: kecorbin/netdevops-demo
   variables:
   script:
     - ansible-playbook site.yml --syntax-check
     - ansible-lint --exclude build/ site.yml
 
 deploy_test:
-  image: kecorbin/ansible
+  image: kecorbin/netdevops-demo
   stage: test
   script:
     - echo "Deploy to test env"
@@ -25,7 +25,7 @@ deploy_test:
   - test
 
 deploy_prod_dry_run:
-  image: kecorbin/ansible
+  image: kecorbin/netdevops-demo
   stage: dry_run
   script:
     - echo "Performing dry run to production env"
@@ -36,7 +36,7 @@ deploy_prod_dry_run:
   - production
 
 deploy_prod:
-  image: kecorbin/ansible
+  image: kecorbin/netdevops-demo
   stage: deploy
   script:
     - echo "Deploy to production env"
