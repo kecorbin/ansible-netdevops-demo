@@ -1,6 +1,7 @@
 stages:
   - validate
   - test
+  - dry_run
   - deploy
   - notify
 
@@ -25,7 +26,7 @@ deploy_test:
 
 deploy_prod_dry_run:
   image: kecorbin/ansible
-  stage: deploy
+  stage: dry_run
   script:
     - echo "Performing dry run to production env"
     - ansible-playbook --diff --check --inventory-file ./inventory/prod.yml -- site.yml
