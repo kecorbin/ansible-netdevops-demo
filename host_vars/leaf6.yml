@@ -3,6 +3,7 @@ device_type: nxos
 
 features:
   - telnet
+  - interface-vlan
 
 domain_name: "netdevops.is.cool"
 
@@ -46,8 +47,8 @@ ospf:
     - interface: Loopback0
       area: 56
 
-pkl_src: 10.94.238.235
-pkl_dest: 10.94.238.234
+pkl_src: 10.94.241.176
+pkl_dest: 10.94.241.175
 
 vpc:
   domain: 56
