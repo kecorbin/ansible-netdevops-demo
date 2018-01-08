@@ -17,3 +17,10 @@
   iosxr_config:
     provider: "{{ cli }}"
     src: "xr_base_template.j2"
+
+- name: Enable XML Agent
+  iosxr_config:
+    provider: "{{ cli }}"
+    lines:
+      - xml agent ssl
+      - xml agent tty
