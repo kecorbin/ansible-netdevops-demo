@@ -11,3 +11,9 @@ vlans:
     name: server-vlan7
   - id: 8
     name: server-vlan8
+
+vpcs:
+  - portchannel: 7
+    id: 7
+  - portchannel: 8
+    id: 8

@@ -9,6 +9,29 @@
     vlan_id: "{{ item.id }}"
     name: "{{ item.name }}"
 
+
+- name: Create Port Channels
+  with_items: "{{ port_channels }}"
+  nxos_interface:
+    provider:
+      host: "{{ ansible_host }}"
+      transport: nxapi
+    interface: "port-channel{{ item.port_channel_id }}"
+    admin_state: up
+
+- name: Configure Layer2 Port-Channels
+  with_items: "{{ port_channels}}"
+  nxos_portchannel:
+    provider:
+      host: "{{ ansible_host }}"
+      transport: nxapi
+    group: "{{ item.port_channel_id }}"
+    members: "{{ item.members }}"
+    force: true
+    mode: "{{ item.mode }}"
+    state: present
+
+
 - name: Configure Trunk Ports
   with_items: "{{ trunk_ports }}"
   nxos_switchport:

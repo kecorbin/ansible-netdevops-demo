@@ -33,7 +33,12 @@
     interface: "port-channel{{ vpc.peer_link.id }}"
     admin_state: up
 
-- name: Configure VPC Peer Link
+- name: Enable Trunking on VPC Peer link
+  nxos_switchport:
+    interface: "port-channel{{ vpc.peer_link.id }}"
+    mode: trunk
+
+- name: Configure Port-Channel for VPC Peer Link
   tags: vpc
   nxos_portchannel:
     provider:
@@ -54,6 +59,11 @@
     portchannel: "{{ vpc.peer_link.id }}"
     peer_link: true
 
+- name: Configure VPC interfaces
+  with_items: "{{ vpcs }}"
+  nxos_vpc_interface:
+    portchannel: "{{ item.portchannel }}"
+    vpc: "{{ item.id }}"
 #
 #
 # - name: Configure IPv4 Address on Interface

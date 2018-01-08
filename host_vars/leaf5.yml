@@ -63,10 +63,11 @@ vpc:
 
 port_channels:
   - port_channel_id: 7
-    mode: active
+    mode: on
     members:
       - Ethernet1/7
   - port_channel_id: 8
-    mode: active
+    mode: on
+    force: true
     members:
       - Ethernet1/8

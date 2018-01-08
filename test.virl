@@ -511,19 +511,8 @@ write_files:
   permissions: '0755'
   content: |-
     #!/bin/sh
-    ifconfig eth11 up 10.0.0.85 netmask 255.255.255.252
-    route add -host 192.168.255.1 gw 10.0.0.86 dev eth11
-    route add -host 192.168.255.6 gw 10.0.0.86 dev eth11
-    route add -host 192.168.255.9 gw 10.0.0.86 dev eth11
-    route add -host 192.168.255.10 gw 10.0.0.86 dev eth11
-    route add -net 10.0.0.4/30 gw 10.0.0.86 dev eth11
-    route add -net 10.0.0.8/29 gw 10.0.0.86 dev eth11
-    route add -net 10.0.0.16/28 gw 10.0.0.86 dev eth11
-    route add -net 10.0.0.32/27 gw 10.0.0.86 dev eth11
-    route add -net 10.0.0.64/28 gw 10.0.0.86 dev eth11
-    route add -net 10.0.0.80/29 gw 10.0.0.86 dev eth11
-    route add -net 192.168.255.2/31 gw 10.0.0.86 dev eth11
-    route add -net 192.168.255.4/31 gw 10.0.0.86 dev eth11
+      ifconfig eth11 up 192.168.10.11 netmask 255.255.255.0
+      route add -net 192.168.0.0/16 gw 192.168.10.1 dev eth11
     exit 0
 </entry>
             <entry key="AutoNetkit.ibgp_role" type="String">Disabled</entry>
