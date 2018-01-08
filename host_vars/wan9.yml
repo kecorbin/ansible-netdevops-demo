@@ -52,5 +52,5 @@ interfaces:
 
   GigabitEthernet0/0/0/3:
     description: "to-branch10-gig2"
-    ip: 10.0.0.14
-    mask: 255.255.255.252
+    ip: 10.9.10.9
+    mask: 255.255.255.0

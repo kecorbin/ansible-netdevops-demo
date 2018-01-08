@@ -23,3 +23,8 @@ access:
           ansible_host: 10.94.242.175
         leaf6:
           ansible_host: 10.94.242.176
+
+wan:
+  hosts:
+    branch10-router10:
+      ansible_host: 10.94.242.180
