@@ -265,7 +265,7 @@ interface mgmt0
         <interface id="6" name="Ethernet1/7"/>
         <interface id="7" name="Ethernet1/8"/>
     </node>
-    <node name="server8" type="SIMPLE" subtype="server" location="687,816">
+    <node name="server8" type="SIMPLE" subtype="server" location="687,816" vmFlavor="m1.medium [3]">
         <extensions>
             <entry key="config" type="string">#cloud-config
 bootcmd:
@@ -280,6 +280,15 @@ runcmd:
 - echo "UseDNS no" &gt;&gt; /etc/ssh/sshd_config
 - service ssh restart
 - service sshd restart
+
+package_update: true
+package_upgrade: false
+
+packages:
+- docker
+- docker-compose
+
+
 users:
 - default
 - gecos: User configured by VIRL Configuration Engine 0.23.10
@@ -334,6 +343,19 @@ write_files:
     route add -net 192.168.255.2/31 gw 192.168.8.1 dev bond0
     route add -net 192.168.255.4/31 gw 192.168.8.1 dev bond0
     exit 0
+- path: /etc/systemd/system/docker.service.d/http-proxy.conf
+  owner: root:root
+  permissions: '0755'
+  content: |
+    [Service]
+    Environment="HTTP_PROXY=http://proxy-wsa.esl.cisco.com:80/"
+- path: /etc/systemd/system/docker.service.d/https-proxy.conf
+  owner: root:root
+  permissions: '0755'
+  content: |
+    [Service]
+    Environment="HTTPS_PROXY=http://proxy-wsa.esl.cisco.com:80/"
+
 </entry>
             <entry key="AutoNetkit.ibgp_role" type="String">Disabled</entry>
             <entry key="static_ip" type="String">10.94.242.178</entry>
@@ -450,7 +472,7 @@ end</entry>
         <interface id="0" name="GigabitEthernet2"/>
         <interface id="1" name="GigabitEthernet3"/>
     </node>
-    <node name="branch10-host11" type="SIMPLE" subtype="server" location="550,30">
+    <node name="branch10-host11" type="SIMPLE" subtype="server" location="550,30" vmFlavor="m1.medium [3]">
         <extensions>
             <entry key="config" type="string">#cloud-config
 bootcmd:
@@ -465,6 +487,15 @@ runcmd:
 - echo "UseDNS no" &gt;&gt; /etc/ssh/sshd_config
 - service ssh restart
 - service sshd restart
+
+package_update: true
+package_upgrade: false
+
+packages:
+- docker
+- docker-compose
+
+
 users:
 - default
 - gecos: User configured by VIRL Configuration Engine 0.23.10
@@ -515,7 +546,18 @@ write_files:
       route add -net 192.168.0.0/16 gw 192.168.10.1 dev eth11
       route add -net 10.0.0.0/24 gw 192.168.10.1 dev eth11
     exit 0
-
+- path: /etc/systemd/system/docker.service.d/http-proxy.conf
+  owner: root:root
+  permissions: '0755'
+  content: |
+    [Service]
+    Environment="HTTP_PROXY=http://proxy-wsa.esl.cisco.com:80/"
+- path: /etc/systemd/system/docker.service.d/https-proxy.conf
+  owner: root:root
+  permissions: '0755'
+  content: |
+    [Service]
+    Environment="HTTPS_PROXY=http://proxy-wsa.esl.cisco.com:80/"
 </entry>
             <entry key="AutoNetkit.ibgp_role" type="String">Disabled</entry>
             <entry key="AutoNetkit.custom_config_phy_ints" type="String">no shutdown</entry>
@@ -525,7 +567,7 @@ write_files:
         </extensions>
         <interface id="10" name="eth11"/>
     </node>
-    <node name="server7" type="SIMPLE" subtype="server" location="430,810">
+    <node name="server7" type="SIMPLE" subtype="server" location="430,810" vmFlavor="m1.medium [3]">
         <extensions>
             <entry key="config" type="string">#cloud-config
 bootcmd:
@@ -540,6 +582,15 @@ runcmd:
 - echo "UseDNS no" &gt;&gt; /etc/ssh/sshd_config
 - service ssh restart
 - service sshd restart
+
+package_update: true
+package_upgrade: false
+
+packages:
+- docker
+- docker-compose
+
+
 users:
 - default
 - gecos: User configured by VIRL Configuration Engine 0.23.10
@@ -594,6 +645,19 @@ write_files:
     route add -net 192.168.255.2/31 gw 192.168.7.1 dev bond0
     route add -net 192.168.255.4/31 gw 192.168.7.1 dev bond0
     exit 0
+- path: /etc/systemd/system/docker.service.d/http-proxy.conf
+  owner: root:root
+  permissions: '0755'
+  content: |
+    [Service]
+    Environment="HTTP_PROXY=http://proxy-wsa.esl.cisco.com:80/"
+- path: /etc/systemd/system/docker.service.d/https-proxy.conf
+  owner: root:root
+  permissions: '0755'
+  content: |
+    [Service]
+    Environment="HTTPS_PROXY=http://proxy-wsa.esl.cisco.com:80/"
+
 </entry>
             <entry key="AutoNetkit.ibgp_role" type="String">Disabled</entry>
             <entry key="static_ip" type="String">10.94.242.177</entry>
