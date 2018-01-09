@@ -485,8 +485,8 @@ runcmd:
 - echo "UseDNS no" &gt;&gt; /etc/ssh/sshd_config
 - service ssh restart
 - service sshd restart
-- [git, clone, "http://opk-git.cisco.com/kecorbin/pipeline", "/home/cisco/pipeline"]
-- /home/cisco/pipeline/docker/setup.sh
+- [git, clone, "http://opk-git.cisco.com/kecorbin/netdevops-metrics", "/home/cisco/netdevops-metrics"]
+- /home/cisco/netdevops-metrics/setup.sh
 
 package_update: true
 package_upgrade: false
@@ -544,6 +544,7 @@ write_files:
       ifconfig eth11 up 192.168.10.11 netmask 255.255.255.0
       route add -net 192.168.0.0/16 gw 192.168.10.1 dev eth11
       route add -net 10.0.0.0/24 gw 192.168.10.1 dev eth11
+      route add -net 10.9.10.0/24 gw 192.168.10.1 dev eth11
     exit 0
 - path: /etc/systemd/system/docker.service.d/http-proxy.conf
   owner: root:root
