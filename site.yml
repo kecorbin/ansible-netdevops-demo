@@ -9,6 +9,7 @@
       host: "{{ ansible_host }}"
   roles:
     - ios_xr_common
+    - ios_xr_telemetry
 
 - name: Configure Distribution Switches
   hosts: distribution

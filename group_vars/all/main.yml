@@ -1,3 +1,7 @@
 ---
 snmp_ro: netdevops_ro
 snmp_rw: netdevops_rw
+
+
+telemetry_host: 192.168.10.11
+telemetry_port: 5432
