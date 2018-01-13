@@ -63,10 +63,12 @@ deploy_to_prod:
 
 basic_reachability_in_prod:
   image: ciscotestautomation/pyats
-  stage: verify_deploy_to_test
+  stage: verify_deploy_to_prod
+  dependencies:
+    - deploy_to_prod
   only:
     - production
   script:
     - pwd
     - cd tests
-    - ./run_test_prod.sh
+    - ./run_prod_tests.sh
