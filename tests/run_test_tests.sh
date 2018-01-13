@@ -1,1 +1,1 @@
-easypy ./pyats_job.py -testbed_file ./test_testbed.yml
+easypy ./pyats_job.py -testbed_file ./testbed_test.yml
