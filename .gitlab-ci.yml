@@ -26,9 +26,11 @@ deploy_to_test:
   only:
   - test
 
-basic_reachability_test:
+basic_reachability_in_test:
   image: ciscotestautomation/pyats
   stage: verify_deploy_to_test
+  environment:
+    name: test
   only:
     - test
   script:
@@ -59,7 +61,7 @@ deploy_to_prod:
   only:
   - production
 
-basic_reachability_test:
+basic_reachability_in_prod:
   image: ciscotestautomation/pyats
   stage: verify_deploy_to_test
   only:
