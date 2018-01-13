@@ -1,6 +1,7 @@
 ---
 
 - name: "Configuring Streaming Telemetry"
+  tags: telemetry
   iosxr_config:
     provider: "{{ cli }}"
     src: "xr_telemetry_template.j2"
