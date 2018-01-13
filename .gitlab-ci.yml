@@ -7,25 +7,25 @@ stages:
   - verify_deploy_to_prod
   - notify
 
-lint:
-  stage: validate
-  image: kecorbin/netdevops-demo
-  variables:
-  script:
-    - ansible-playbook site.yml --syntax-check
-    - ansible-lint --exclude build/ site.yml
-
-deploy_to_test:
-  image: kecorbin/netdevops-demo
-  stage: deploy_to_test
-  script:
-    - echo "Deploy to test env"
-    - ansible-playbook -v --diff --inventory-file ./inventory/test.yml -- site.yml
-  environment:
-    name: test
-  only:
-  - test
-
+# lint:
+#   stage: validate
+#   image: kecorbin/netdevops-demo
+#   variables:
+#   script:
+#     - ansible-playbook site.yml --syntax-check
+#     - ansible-lint --exclude build/ site.yml
+#
+# deploy_to_test:
+#   image: kecorbin/netdevops-demo
+#   stage: deploy_to_test
+#   script:
+#     - echo "Deploy to test env"
+#     - ansible-playbook -v --diff --inventory-file ./inventory/test.yml -- site.yml
+#   environment:
+#     name: test
+#   only:
+#   - test
+#
 basic_reachability_test:
   image: ciscotestautomation/pyats
   stage: verify_deploy_to_test
@@ -34,7 +34,7 @@ basic_reachability_test:
   script:
     - pwd
     - cd tests
-    - easypy ./tests/pyats_job.py -testbed_file test_testbed.yml
+    - ./run_tests.sh
 
 deploy_prod_dry_run:
   image: kecorbin/netdevops-demo
