@@ -13,6 +13,11 @@
       - "2048"
       - term len 0
 
+# Doing crypto stuff can take a minute..
+- name: Pausing to ensure ssh is enabled after crypto generation
+  pause:
+    minutes: 1
+
 - name: "Applying Common IOS Template"
   iosxr_config:
     provider: "{{ cli }}"
