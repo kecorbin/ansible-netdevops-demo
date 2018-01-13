@@ -1,8 +1,10 @@
 stages:
   - validate
-  - dry_run
-  - deploy
-  - test
+  - deploy_to_test
+  - verify_deploy_to_test
+  - dry_run_to_prod
+  - deploy_to_prod
+  - verify_deploy_to_prod
   - notify
 
 lint:
@@ -13,9 +15,9 @@ lint:
     - ansible-playbook site.yml --syntax-check
     - ansible-lint --exclude build/ site.yml
 
-deploy_test:
+deploy_to_test:
   image: kecorbin/netdevops-demo
-  stage: test
+  stage: deploy_to_test
   script:
     - echo "Deploy to test env"
     - ansible-playbook -v --diff --inventory-file ./inventory/test.yml -- site.yml
@@ -26,6 +28,7 @@ deploy_test:
 
 basic_reachability_test:
   image: ciscotestautomation/pyats
+  stage: verify_deploy_to_test
   only:
     - test
   script:
@@ -35,7 +38,7 @@ basic_reachability_test:
 
 deploy_prod_dry_run:
   image: kecorbin/netdevops-demo
-  stage: dry_run
+  stage: dry_run_to_prod
   script:
     - echo "Performing dry run to production env"
     - ansible-playbook --diff --check --inventory-file ./inventory/prod.yml -- site.yml
@@ -44,9 +47,9 @@ deploy_prod_dry_run:
   only:
   - production
 
-deploy_prod:
+deploy_to_prod:
   image: kecorbin/netdevops-demo
-  stage: deploy
+  stage: deploy_to_prod
   script:
     - echo "Deploy to production env"
     - ansible-playbook -v --diff --inventory-file ./inventory/prod.yml -- site.yml
