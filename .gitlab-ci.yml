@@ -24,6 +24,13 @@ deploy_test:
   only:
   - test
 
+basic_reachability_test:
+  image: ciscotestautomation/pyats
+  only:
+    - test
+  script:
+    - easypy ./tests/pyats_job.py -testbed_file test_testbed.yml
+
 deploy_prod_dry_run:
   image: kecorbin/netdevops-demo
   stage: dry_run
