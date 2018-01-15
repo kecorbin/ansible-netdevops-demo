@@ -58,6 +58,7 @@ deploy_to_prod:
   environment:
     name: production
   when: manual
+  allow_failure: false
   only:
   - production
 
