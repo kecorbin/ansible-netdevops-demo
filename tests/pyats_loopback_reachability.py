@@ -42,6 +42,8 @@ class common_setup(aetest.CommonSetup):
 
         core1 = testbed.devices[core1_name]
         core2 = testbed.devices[core2_name]
+        agg3 = testbed.devices['agg3']
+        agg4 = tesetbed.devices['agg4']
 
         # add them to testscript parameters
         self.parent.parameters.update(core1 = core1, core2 = core2)
@@ -55,24 +57,35 @@ class common_setup(aetest.CommonSetup):
 
 
     @aetest.subsection
-    def establish_connections(self, steps, core1, core2):
+    def establish_connections(self, steps, core1, core2, agg3, agg4):
         '''
         establish connection to both devices
         '''
 
-        with steps.start('Connecting to Router-1'):
+        with steps.start('Connecting to core1'):
             core1.connect()
 
-        with steps.start('Connecting to Router-2'):
+        with steps.start('Connecting to core2'):
             core2.connect()
+
+        with steps.start('Connecting to agg3'):
+            agg3.connect()
+
+        with steps.start('Connecting to agg4'):
+            agg4.connect()
 
         # abort/fail the testscript if any device isn't connected
         if not core1.connected or not core2.connected:
             self.failed('One of the devices could not be connected to',
                         goto = ['exit'])
 
+        if not agg3.connected or not agg4.connected:
+            self.failed('One of the devices could not be connected to',
+                        goto = ['exit'])
+
+
 # Ping Testcase: leverage dual-level looping
-@aetest.loop(device = ('core1', 'core2'))
+@aetest.loop(device = ('core1', 'core2', 'agg3', 'agg4'))
 class PingTestcase(aetest.Testcase):
     '''Ping test'''
 
@@ -137,7 +150,19 @@ class common_cleanup(aetest.CommonCleanup):
         with steps.start('Disconnecting from core2'):
             core2.disconnect()
 
+        with steps.start('Disconnecting from agg3'):
+            agg3.disconnect()
+
+        with steps.start('Disconnecting from agg4'):
+            agg4.disconnect()
+
+
         if core1.connected or core2.connected:
+            # abort/fail the testscript if device connection still exists
+            self.failed('One of the two devices could not be disconnected from',
+                        goto = ['exit'])
+
+        if agg3.connected or agg4.connected:
             # abort/fail the testscript if device connection still exists
             self.failed('One of the two devices could not be disconnected from',
                         goto = ['exit'])

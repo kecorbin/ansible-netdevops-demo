@@ -108,6 +108,7 @@ devices:
   agg4:
     alias: agg4
     type: NX-OSv 9000
+    os: nxos
     connections:
 
       defaults:
@@ -132,6 +133,7 @@ devices:
   agg3:
     alias: agg3
     type: NX-OSv 9000
+    os: nxos
     connections:
 
       defaults:
