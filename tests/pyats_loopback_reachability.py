@@ -47,6 +47,7 @@ class common_setup(aetest.CommonSetup):
 
         # add them to testscript parameters
         self.parent.parameters.update(core1 = core1, core2 = core2)
+        self.parent.parameters.update(agg3 = agg3, agg4 = agg4)
 
         # get corresponding links
         links = core1.find_links(core2)
