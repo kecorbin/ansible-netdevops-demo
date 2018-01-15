@@ -43,7 +43,7 @@ class common_setup(aetest.CommonSetup):
         core1 = testbed.devices[core1_name]
         core2 = testbed.devices[core2_name]
         agg3 = testbed.devices['agg3']
-        agg4 = tesetbed.devices['agg4']
+        agg4 = testbed.devices['agg4']
 
         # add them to testscript parameters
         self.parent.parameters.update(core1 = core1, core2 = core2)
