@@ -36,6 +36,9 @@ As mentioned above, to pass arbitrary option to the `ansible-playbook` call, you
 can set them after the `--` option. This is especially useful for passing along
 `--tags`, `--limit` or `--check`.
 
+    $./deploy.sh --env test -- --tags telemetry
+
+    
 ## Development
 
 The infrastructure scripts must be idempotent. It should be safe to simple run
