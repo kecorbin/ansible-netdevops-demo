@@ -145,7 +145,6 @@ devices:
     alias: branch10-router10
     type: CSR1000v
     connections:
-
       defaults:
         class: unicon.Unicon
       console:
@@ -156,8 +155,8 @@ devices:
   wan9:
     alias: wan9
     type: CSR1000v
+    os: iosxr
     connections:
-
       defaults:
         class: unicon.Unicon
       console:

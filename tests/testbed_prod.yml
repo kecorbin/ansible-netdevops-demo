@@ -152,8 +152,8 @@ devices:
   wan9:
     alias: wan9
     type: CSR1000v
-    connections:
     os: iosxr
+    connections:
       defaults:
         class: unicon.Unicon
       console:
