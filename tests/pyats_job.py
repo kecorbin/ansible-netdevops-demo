@@ -51,6 +51,7 @@ def main():
     # Find the location of the script in relation to the job file
     test_path = os.path.dirname(os.path.abspath(__file__))
     testscript = os.path.join(test_path, 'pyats_loopback_reachability.py')
+    testscript = os.path.join(test_path, 'pyats_nxos_loopback_reachability.py')
 
     # run it
     run(testscript)

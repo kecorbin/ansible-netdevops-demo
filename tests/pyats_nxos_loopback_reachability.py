@@ -18,10 +18,7 @@ class common_setup(aetest.CommonSetup):
     '''
 
     @aetest.subsection
-    def check_topology(self,
-                       testbed,
-                       core1_name = 'core1',
-                       core2_name = 'core2'):
+    def check_topology(self, testbed):
         '''
         check that we have at least two devices and a link between the devices
         If so, mark the next subsection for looping.
@@ -32,49 +29,39 @@ class common_setup(aetest.CommonSetup):
             self.failed('No testbed was provided to script launch',
                         goto = ['exit'])
 
-        # abort/fail the testscript if no matching device was provided
-        for name in (core1_name, core2_name):
-            if name not in testbed:
-                self.failed('testbed needs to contain device {name}'.format(
-                                        name=name,
-                                    ),
-                            goto = ['exit'])
-
-        core1 = testbed.devices[core1_name]
-        core2 = testbed.devices[core2_name]
+        agg3 = testbed.devices['agg3']
+        agg4 = testbed.devices['agg4']
 
         # add them to testscript parameters
-        self.parent.parameters.update(core1 = core1, core2 = core2)
+        self.parent.parameters.update(agg3 = agg3, agg4 = agg4)
 
         # get corresponding links
-        links = core1.find_links(core2)
-        assert len(links) >= 1, 'require one link between core1 and core2'
 
         # save link as uut link parameter
         self.parent.parameters['uut_link'] = links.pop()
 
 
     @aetest.subsection
-    def establish_connections(self, steps, core1, core2):
+    def establish_connections(self, steps, agg3, agg4):
         '''
         establish connection to both devices
         '''
 
-        with steps.start('Connecting to core1'):
-            core1.connect()
 
-        with steps.start('Connecting to core2'):
-            core2.connect()
+        with steps.start('Connecting to agg3'):
+            agg3.connect()
+
+        with steps.start('Connecting to agg4'):
+            agg4.connect()
 
         # abort/fail the testscript if any device isn't connected
-        if not core1.connected or not core2.connected:
+        if not agg3.connected or not agg4.connected:
             self.failed('One of the devices could not be connected to',
                         goto = ['exit'])
 
 
-
 # Ping Testcase: leverage dual-level looping
-@aetest.loop(device = ('core1', 'core2'))
+@aetest.loop(device = ('agg3', 'agg4'))
 class PingTestcase(aetest.Testcase):
     '''Ping test'''
 
@@ -115,8 +102,8 @@ class PingTestcase(aetest.Testcase):
                         goto = ['exit'])
         else:
             # extract success rate from ping result with regular expression
-            match = re.search(r'Success rate is (?P<rate>\d+) percent', result)
-            success_rate = match.group('rate')
+            match = re.search(r'(?P<rate>\d+)% packet loss
+            success_rate = 100 - (match.group('rate'))
             # log the success rate
             logger.info(banner('Ping {} with success rate of {}%'.format(
                                         destination,
@@ -139,12 +126,22 @@ class common_cleanup(aetest.CommonCleanup):
         with steps.start('Disconnecting from core2'):
             core2.disconnect()
 
+        with steps.start('Disconnecting from agg3'):
+            agg3.disconnect()
+
+        with steps.start('Disconnecting from agg4'):
+            agg4.disconnect()
+
 
         if core1.connected or core2.connected:
             # abort/fail the testscript if device connection still exists
             self.failed('One of the two devices could not be disconnected from',
                         goto = ['exit'])
 
+        if agg3.connected or agg4.connected:
+            # abort/fail the testscript if device connection still exists
+            self.failed('One of the two devices could not be disconnected from',
+                        goto = ['exit'])
 
 
 if __name__ == '__main__':
