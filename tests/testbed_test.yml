@@ -97,13 +97,13 @@ devices:
   leaf5:
     alias: leaf5
     type: NX-OSv 9000
+    os: nxos
     connections:
       defaults:
         class: unicon.Unicon
       console:
-        ip: 10.94.241.130
+        ip: 10.94.241.175
         protocol: telnet
-        port: 17011
 
   agg4:
     alias: agg4
@@ -114,21 +114,20 @@ devices:
       defaults:
         class: unicon.Unicon
       console:
-        ip: 10.94.241.130
+        ip: 10.94.241.174
         protocol: telnet
-        port: 17002
 
   leaf6:
     alias: leaf6
     type: NX-OSv 9000
+    os: nxos
     connections:
 
       defaults:
         class: unicon.Unicon
       console:
-        ip: 10.94.241.130
+        ip: 10.94.241.176
         protocol: telnet
-        port: 17013
 
   agg3:
     alias: agg3
@@ -139,9 +138,8 @@ devices:
       defaults:
         class: unicon.Unicon
       console:
-        ip: 10.94.241.130
+        ip: 10.94.241.173
         protocol: telnet
-        port: 17000
 
   branch10-router10:
     alias: branch10-router10
@@ -151,9 +149,9 @@ devices:
       defaults:
         class: unicon.Unicon
       console:
-        ip: 10.94.241.130
+        ip: 10.94.241.180
         protocol: telnet
-        port: 17005
+
 
   wan9:
     alias: wan9
@@ -163,9 +161,9 @@ devices:
       defaults:
         class: unicon.Unicon
       console:
-        ip: 10.94.241.130
+        ip: 10.94.241.179
         protocol: telnet
-        port: 17017
+
 
 topology:
   wan9:

@@ -74,7 +74,6 @@ devices:
     alias: server7
     type: server
     connections:
-
       defaults:
         class: unicon.Unicon
       console:
@@ -86,7 +85,6 @@ devices:
     alias: branch10-host11
     type: server
     connections:
-
       defaults:
         class: unicon.Unicon
       console:
@@ -97,16 +95,27 @@ devices:
   leaf5:
     alias: leaf5
     type: NX-OSv 9000
+    os: nxos
     connections:
       defaults:
         class: unicon.Unicon
       console:
-        ip: 10.94.242.130
+        ip: 10.94.242.175
         protocol: telnet
-        port: 17011
 
   agg4:
     alias: agg4
+    type: NX-OSv 9000
+    os: nxos
+    connections:
+      defaults:
+        class: unicon.Unicon
+      console:
+        ip: 10.94.242.174
+        protocol: telnet
+
+  leaf6:
+    alias: leaf6
     type: NX-OSv 9000
     os: nxos
     connections:
@@ -114,21 +123,8 @@ devices:
       defaults:
         class: unicon.Unicon
       console:
-        ip: 10.94.242.130
+        ip: 10.94.242.176
         protocol: telnet
-        port: 17002
-
-  leaf6:
-    alias: leaf6
-    type: NX-OSv 9000
-    connections:
-
-      defaults:
-        class: unicon.Unicon
-      console:
-        ip: 10.94.242.130
-        protocol: telnet
-        port: 17013
 
   agg3:
     alias: agg3
@@ -139,9 +135,8 @@ devices:
       defaults:
         class: unicon.Unicon
       console:
-        ip: 10.94.242.130
+        ip: 10.94.242.173
         protocol: telnet
-        port: 17000
 
   branch10-router10:
     alias: branch10-router10
@@ -151,21 +146,19 @@ devices:
       defaults:
         class: unicon.Unicon
       console:
-        ip: 10.94.242.130
+        ip: 10.94.242.180
         protocol: telnet
-        port: 17005
 
   wan9:
     alias: wan9
     type: CSR1000v
     connections:
-
+    os: iosxr
       defaults:
         class: unicon.Unicon
       console:
-        ip: 10.94.242.130
+        ip: 10.94.242.179
         protocol: telnet
-        port: 17017
 
 topology:
   wan9:

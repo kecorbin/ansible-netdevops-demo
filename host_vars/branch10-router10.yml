@@ -22,7 +22,7 @@ ospf:
         wildcard_mask: 0.0.0.255
         area: 0
       192.168.10.0:
-        wildcard_mask: 0.0.0.255
+        wildcard_mask: 0.0.0.0
         area: 0
 
     passive_interfaces:
