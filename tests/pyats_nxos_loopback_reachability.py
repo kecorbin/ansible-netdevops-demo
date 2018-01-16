@@ -102,7 +102,7 @@ class PingTestcase(aetest.Testcase):
                         goto = ['exit'])
         else:
             # extract success rate from ping result with regular expression
-            match = re.search(r'(?P<rate>\d+)% packet loss
+            match = re.search(r'(?P<rate>\d+)% packet loss')
             success_rate = 100 - (match.group('rate'))
             # log the success rate
             logger.info(banner('Ping {} with success rate of {}%'.format(
