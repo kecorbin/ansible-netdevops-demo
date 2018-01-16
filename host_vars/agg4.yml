@@ -4,7 +4,7 @@ device_type: nxos
 features:
   - telnet
 
-domain_name: "netdevops.is.cool"
+domain_name: "pyats.is.cool"
 
 
 l3_interfaces:
