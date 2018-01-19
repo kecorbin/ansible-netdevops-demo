@@ -1,0 +1,6 @@
+---
+net_env: prod
+
+
+syslog_server: 10.94.242.177
+syslog_port: 5140

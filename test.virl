@@ -485,8 +485,8 @@ runcmd:
 - echo "UseDNS no" &gt;&gt; /etc/ssh/sshd_config
 - service ssh restart
 - service sshd restart
-- [git, clone, "http://opk-git.cisco.com/kecorbin/netdevops-metrics", "/home/cisco/netdevops-metrics"]
-- /home/cisco/netdevops-metrics/setup.sh
+- [git, clone, "http://opk-git.cisco.com/netdevops/metrics", "/home/cisco/metrics"]
+- /home/cisco/metrics/setup.sh
 
 package_update: true
 package_upgrade: false
@@ -582,6 +582,8 @@ runcmd:
 - echo "UseDNS no" &gt;&gt; /etc/ssh/sshd_config
 - service ssh restart
 - service sshd restart
+- [git, clone, "http://opk-git.cisco.com/netdevops/elknet", "/home/cisco/elknet"]
+- /home/cisco/elknet/setup.sh
 
 package_update: true
 package_upgrade: false

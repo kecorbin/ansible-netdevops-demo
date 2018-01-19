@@ -1,0 +1,6 @@
+---
+net_env: test
+
+
+syslog_server: 10.94.241.177
+syslog_port: 5140

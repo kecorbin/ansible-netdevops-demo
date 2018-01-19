@@ -1,29 +1,31 @@
-core:
-  hosts:
-    core1:
-      ansible_host: 10.94.241.171
-    core2:
-      ansible_host: 10.94.241.172
-    wan9:
-      ansible_host: 10.94.241.179
-
-distribution:
-  hosts:
-    agg3:
-      ansible_host: 10.94.241.173
-    agg4:
-      ansible_host: 10.94.241.174
-
-access:
+test:
   children:
-    pod56:
+    core:
       hosts:
-        leaf5:
-          ansible_host: 10.94.241.175
-        leaf6:
-          ansible_host: 10.94.241.176
+        core1:
+          ansible_host: 10.94.241.171
+        core2:
+          ansible_host: 10.94.241.172
+        wan9:
+          ansible_host: 10.94.241.179
 
-wan:
-  hosts:
-    branch10-router10:
-      ansible_host: 10.94.241.180
+    distribution:
+      hosts:
+        agg3:
+          ansible_host: 10.94.241.173
+        agg4:
+          ansible_host: 10.94.241.174
+
+    access:
+      children:
+        pod56:
+          hosts:
+            leaf5:
+              ansible_host: 10.94.241.175
+            leaf6:
+              ansible_host: 10.94.241.176
+
+    wan:
+      hosts:
+        branch10-router10:
+          ansible_host: 10.94.241.180
