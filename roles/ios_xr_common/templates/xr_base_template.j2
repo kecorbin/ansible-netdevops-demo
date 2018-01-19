@@ -1,4 +1,5 @@
 hostname {{ inventory_hostname }}
+service timestamps log datetime show-timezone
 !
 {%- for vrf in vrfs %}
 vrf {{ vrf }}
@@ -7,6 +8,8 @@ vrf {{ vrf }}
 !
 cdp
 domain name {{ domain_name }}
+
+logging {{syslog_server}} vrf Mgmt-intf port {{syslog_port}}
 
 snmp-server community {{ snmp_ro }} ro
 snmp-server community {{ snmp_rw }} rw

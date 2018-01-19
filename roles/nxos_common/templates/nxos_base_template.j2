@@ -9,3 +9,7 @@ ip domain-name {{ domain_name }}
 
 snmp-server community {{ snmp_ro }} ro
 snmp-server community {{ snmp_rw }} rw
+
+logging server {{syslog_server}} 5 port {{syslog_port}} use-vrf management
+logging source-interface mgmt0
+logging timestamp milliseconds

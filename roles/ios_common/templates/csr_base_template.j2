@@ -25,6 +25,8 @@ service timestamps log datetime msec
 no service password-encryption
 no service config
 
+logging host {{syslog_server}} vrf Mgmt-intf transport udp port {{syslog_port}}
+
 enable password {{ enable_password }}
 enable secret {{ enable_secret }}
 
