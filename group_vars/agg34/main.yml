@@ -1,0 +1,70 @@
+---
+# This approach may produce a deprecation error message like such:
+# [WARNING]: argument include_defaults is no longer supported, ignoring value
+# [WARNING]: argument save is no longer supported, ignoring value
+
+# Should be resolved in 2.5 for additional info see:
+# https://github.com/ansible/ansible/pull/31624
+
+ospf:
+  process_id: 1
+  networks:
+    - interface: Ethernet1/1
+      area: 0
+    - interface: Ethernet1/2
+      area: 0
+    - interface: Loopback0
+      area: 0
+
+hsrp_vips:
+  - interface: vlan7
+    group: 7
+    vip: 192.168.7.1
+  - interface: vlan8
+    group: 8
+    vip: 192.168.7.1
+
+
+vlans:
+  - id: 7
+    name: server-vlan7
+  - id: 8
+    name: server-vlan8
+
+vpc:
+  domain: 34
+  pkl_vrf: management
+  pkl_src: "{{ pkl_src }}"
+  pkl_dest: "{{ pkl_dest }}"
+  peer_link:
+    mode: on
+    id: 34
+    members:
+      - Ethernet1/3
+      - Ethernet1/4
+
+vpcs:
+  - portchannel: 5
+    id: 5
+  - portchannel: 6
+    id: 6
+
+port_channels:
+  - port_channel_id: 5
+    mode: on
+    members:
+      - Ethernet1/5
+  - port_channel_id: 6
+    mode: on
+    force: true
+    members:
+      - Ethernet1/6
+
+trunk_ports:
+  - interface: Port-Channel5
+    native_vlan: 1
+    trunk_vlans: 7-8
+
+  - interface: Port-Channel6
+    native_vlan: 1
+    trunk_vlans: 7-8

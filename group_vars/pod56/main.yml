@@ -12,8 +12,23 @@ vlans:
   - id: 8
     name: server-vlan8
 
-vpcs:
-  - portchannel: 7
-    id: 7
-  - portchannel: 8
-    id: 8
+port_channels:
+  - port_channel_id: 34
+    mode: on
+    members:
+      - Ethernet1/3
+      - Ethernet1/4
+
+trunk_ports:
+  - interface: Port-Channel34
+    native_vlan: 1
+    trunk_vlans: 7-8
+
+access_ports:
+  - interface: Ethernet1/7
+    access_vlan: 7
+    type: edge
+
+  - interface: Ethernet1/8
+    access_vlan: 8
+    type: edge

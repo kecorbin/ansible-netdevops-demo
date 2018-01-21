@@ -6,6 +6,8 @@ features:
 
 domain_name: "byron.is.cool"
 
+pkl_src: 10.94.241.174
+pkl_dest: 10.94.241.173
 
 l3_interfaces:
 
@@ -24,40 +26,12 @@ l3_interfaces:
     ip: 10.0.0.25
     mask: 30
 
-  - interface: Ethernet1/3
-    description: "to-agg3-e1/3"
-    ip: 10.0.0.34
-    mask: 30
-
-  - interface: Ethernet1/4
-    description: "to-agg3-e1/4"
-    ip: 10.0.0.38
-    mask: 30
-
-  - interface: Ethernet1/5
-    description: "to-leaf5-e1/4"
-    ip: 10.0.0.49
-    mask: 30
-
-  - interface: Ethernet1/6
-    description: "to-leaf6-gig4"
-    ip: 10.0.0.53
-    mask: 30
-
-ospf:
-  process_id: 1
-  networks:
-    - interface: Ethernet1/1
-      area: 0
-    - interface: Ethernet1/2
-      area: 0
-    - interface: Ethernet1/3
-      area: 0
-    - interface: Ethernet1/4
-      area: 0
-    - interface: Ethernet1/5
-      area: 56
-    - interface: Ethernet1/6
-      area: 56
-    - interface: Loopback0
-      area: 0
+svi_interfaces:
+  - interface: vlan7
+    description: servervlan7
+    ip: 192.168.7.6
+    mask: 24
+  - interface: vlan8
+    description: servervlan8
+    ip: 192.168.8.6
+    mask: 24
