@@ -22,7 +22,7 @@ hsrp_vips:
     vip: 192.168.7.1
   - interface: vlan8
     group: 8
-    vip: 192.168.7.1
+    vip: 192.168.8.1
 
 
 vlans:
