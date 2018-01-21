@@ -21,10 +21,7 @@ Each script also honors a `--` option, for passing options directly to
 `ansible-playbook`. This allows you to pass additional options for running the
 playbook.
 
-    $ ./deploy.sh -- --limit distribution
-
-
-## Deploy
+## Full Deployment
 
     $ ./deploy.sh --env test
 
@@ -38,7 +35,21 @@ can set them after the `--` option. This is especially useful for passing along
 
     $./deploy.sh --env test -- --tags telemetry
 
-    
+## Targeted Deployment
+
+Full Configuration On aggregation switches
+
+    $ ./deploy.sh -- --limit distribution
+
+Deploy default gateway configurations
+
+    $ ./deploy.sh -- --tags dgw
+
+
+Deploy only layer3 configurations
+
+        $ ./deploy.sh -- --tags layer3
+
 ## Development
 
 The infrastructure scripts must be idempotent. It should be safe to simple run
