@@ -13,10 +13,16 @@
       - "2048"
       - term len 0
 
-# Doing crypto stuff can take a minute..
-- name: Pausing to ensure ssh is enabled after crypto generation
-  pause:
-    minutes: 1
+- name: Validate Key Generation
+  telnet:
+    user: cisco
+    password: cisco
+    login_prompt: "Username: "
+    prompts:
+      - "[>|#]"
+    command:
+      - 'show crypto key mypubkey rsa'
+
 
 - name: "Applying Common IOS Template"
   iosxr_config:
