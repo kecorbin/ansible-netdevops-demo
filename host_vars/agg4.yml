@@ -29,9 +29,9 @@ l3_interfaces:
 svi_interfaces:
   - interface: vlan7
     description: servervlan7
-    ip: 192.168.7.6
+    ip: 192.168.7.4
     mask: 24
   - interface: vlan8
     description: servervlan8
-    ip: 192.168.8.6
+    ip: 192.168.8.4
     mask: 24
