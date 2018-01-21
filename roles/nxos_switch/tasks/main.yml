@@ -2,13 +2,13 @@
 
 - name: Configure VLANs
   with_items: "{{ vlans }}"
+  tags: [vlan, layer2]
   nxos_vlan:
     provider:
       host: "{{ ansible_host }}"
       transport: nxapi
     vlan_id: "{{ item.id }}"
     name: "{{ item.name }}"
-
 
 - name: Create Port Channels
   with_items: "{{ port_channels }}"
@@ -20,6 +20,7 @@
     admin_state: up
 
 - name: Configure Layer2 Port-Channels
+  tags: layer2
   with_items: "{{ port_channels}}"
   nxos_portchannel:
     provider:
@@ -31,8 +32,8 @@
     mode: "{{ item.mode }}"
     state: present
 
-
 - name: Configure Trunk Ports
+  tags: [layer2, vlan]
   with_items: "{{ trunk_ports }}"
   nxos_switchport:
     provider:
@@ -41,10 +42,11 @@
     interface: "{{ item.interface }}"
     mode: trunk
     native_vlan: "{{ item.native_vlan }}"
-    trunk_allowed_vlans: "{{ item.allowed_vlans }}"
+    trunk_allowed_vlans: "{{ item.trunk_vlans }}"
 
 - name: Configure Access Ports
   with_items: "{{ access_ports }}"
+  tags: [access, layer2]
   nxos_switchport:
     provider:
       host: "{{ ansible_host }}"
@@ -52,13 +54,3 @@
     interface: "{{ item.interface }}"
     mode: access
     access_vlan: "{{ item.access_vlan }}"
-
-- name: Set spanning tree port type edge
-  with_items: "{{ access_ports }}"
-  when: item.type == 'edge'
-  nxos_config:
-    provider:
-      host: "{{ ansible_host }}"
-      transport: nxapi
-    lines: spanning-tree port type edge
-    parents: "{{ item.interface }}"

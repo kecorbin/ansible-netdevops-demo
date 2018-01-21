@@ -1,7 +1,7 @@
 ---
 
 - name: Configure Layer 3 Interfaces
-  tags: [api, nxapi, layer3]
+  tags: [layer3]
   with_items: "{{ l3_interfaces }}"
   nxos_interface:
     provider:
@@ -13,7 +13,7 @@
     admin_state: up
 
 - name: Configure IPv4 Address on Interface
-  tags: [api, nxapi, layer3]
+  tags: [ip, layer3]
   with_items: "{{ l3_interfaces }}"
   nxos_ip_interface:
     provider:

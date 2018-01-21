@@ -1,0 +1,48 @@
+---
+
+- name: Enable Features
+  tags: [features, dgw]
+  with_items:
+    - interface-vlan
+    - hsrp
+  nxos_feature:
+    provider:
+      host: "{{ ansible_host }}"
+      transport: nxapi
+    feature: "{{ item }}"
+    state: enabled
+
+- name: SVI Interfaces are present
+  hosts: distribution
+  tags: [layer3, dgw]
+  with_items: "{{ svi_interfaces }}"
+  nxos_interface:
+    provider:
+      host: "{{ ansible_host  }}"
+      transport: nxapi
+    interface: "{{ item.interface }}"
+    state: present
+    admin_state: up
+
+- name: SVI IP Addresses are configured
+  hosts: distribution
+  tags: [layer3]
+  with_items: "{{ svi_interfaces }}"
+  nxos_ip_interface:
+    provider:
+      host: "{{ ansible_host  }}"
+      transport: nxapi
+    interface: "{{ item.interface }}"
+    version: v4
+    addr: "{{ item.ip }}"
+    mask: "{{ item.mask }}"
+
+- name: Ensure HSRP is configured
+  tags: [layer3, dgw]
+  with_items: "{{ hsrp_vips }}"
+  nxos_hsrp:
+    group: "{{ item.group }}"
+    vip: "{{ item.vip }}"
+    interface: "{{ item.interface }}"
+    preempt: enabled
+    host: "{{ ansible_host }}"
