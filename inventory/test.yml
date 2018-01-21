@@ -9,12 +9,14 @@ test:
         wan9:
           ansible_host: 10.94.241.179
 
-    distribution:
-      hosts:
-        agg3:
-          ansible_host: 10.94.241.173
-        agg4:
-          ansible_host: 10.94.241.174
+    agg:
+      children:
+        agg34:
+          hosts:
+            agg3:
+              ansible_host: 10.94.241.173
+            agg4:
+              ansible_host: 10.94.241.174
 
     access:
       children:
