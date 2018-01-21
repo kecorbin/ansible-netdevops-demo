@@ -99,8 +99,9 @@ class PingTestcase(aetest.Testcase):
     groups = ('basic', 'looping')
 
     @aetest.test.loop(destination = ('192.168.255.1', '192.168.255.2', '192.168.255.3',
-                                     '192.168.255.4', '192.168.255.5', '192.168.255.6',
-                                     '192.168.255.9', '192.168.255.10'))
+                                     '192.168.255.4', '192.168.7.3', '192.168.7.4',
+                                     '192.168.8.3', '192.168.8.4', '192.168.7.1',
+                                     '192.168.8.1', '192.168.255.9', '192.168.255.10'))
     def ping(self, device, destination):
         '''
         ping destination ip address from device
@@ -152,9 +153,11 @@ class NxosPingTestcase(aetest.Testcase):
 
     groups = ('basic', 'looping')
 
+
     @aetest.test.loop(destination = ('192.168.255.1', '192.168.255.2', '192.168.255.3',
-                                     '192.168.255.4', '192.168.255.5', '192.168.255.6',
-                                     '192.168.255.9', '192.168.255.10'))
+                                     '192.168.255.4', '192.168.7.3', '192.168.7.4',
+                                     '192.168.8.3', '192.168.8.4', '192.168.7.1',
+                                     '192.168.8.1', '192.168.255.9', '192.168.255.10'))
     def ping(self, device, destination):
         '''
         ping destination ip address from device
