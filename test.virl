@@ -326,22 +326,14 @@ write_files:
   permissions: '0755'
   content: |-
     #!/bin/sh
-    modprobe bonding mode=4 miimon=100
-    ifconfig bond0 up 192.168.8.8 netmask 255.255.255.0
-    ifenslave bond0 eth5 eth6
-    route add -host 192.168.255.1 gw 192.168.8.1 dev bond0
-    route add -host 192.168.255.6 gw 192.168.8.1 dev bond0
-    route add -host 192.168.255.9 gw 192.168.8.1 dev bond0
-    route add -host 192.168.255.10 gw 192.168.8.1 dev bond0
-    route add -net 10.0.0.4/30 gw 192.168.8.1 dev bond0
-    route add -net 10.0.0.8/29 gw 192.168.8.1 dev bond0
-    route add -net 10.0.0.16/28 gw 192.168.8.1 dev bond0
-    route add -net 10.0.0.32/27 gw 192.168.8.1 dev bond0
-    route add -net 10.0.0.64/28 gw 192.168.8.1 dev bond0
-    route add -net 10.0.0.80/29 gw 192.168.8.1 dev bond0
-    route add -net 192.168.255.2/31 gw 192.168.8.1 dev bond0
-    route add -net 192.168.255.4/31 gw 192.168.8.1 dev bond0
+
+    ifconfig eth6 up 192.168.8.8 netmask 255.255.255.0
+    route add -host 192.168.255.0/24 gw 192.168.7.1 dev eth6
+    route add -net 10.0.0.0/16 gw 192.168.7.1 dev eth6
+    route add -net 192.168.255.2/31 gw 192.168.7.1 dev eth6
+    route add -net 192.168.255.4/31 gw 192.168.7.1 dev eth6
     exit 0
+
 - path: /etc/systemd/system/docker.service.d/http-proxy.conf
   owner: root:root
   permissions: '0755'
@@ -630,21 +622,12 @@ write_files:
   permissions: '0755'
   content: |-
     #!/bin/sh
-    modprobe bonding mode=4 miimon=100
-    ifconfig bond0 up 192.168.7.7 netmask 255.255.255.0
-    ifenslave bond0 eth5 eth6
-    route add -host 192.168.255.1 gw 192.168.7.1 dev bond0
-    route add -host 192.168.255.6 gw 192.168.7.1 dev bond0
-    route add -host 192.168.255.9 gw 192.168.7.1 dev bond0
-    route add -host 192.168.255.10 gw 192.168.7.1 dev bond0
-    route add -net 10.0.0.4/30 gw 192.168.7.1 dev bond0
-    route add -net 10.0.0.8/29 gw 192.168.7.1 dev bond0
-    route add -net 10.0.0.16/28 gw 192.168.7.1 dev bond0
-    route add -net 10.0.0.32/27 gw 192.168.7.1 dev bond0
-    route add -net 10.0.0.64/28 gw 192.168.7.1 dev bond0
-    route add -net 10.0.0.80/29 gw 192.168.7.1 dev bond0
-    route add -net 192.168.255.2/31 gw 192.168.7.1 dev bond0
-    route add -net 192.168.255.4/31 gw 192.168.7.1 dev bond0
+
+    ifconfig eth5 up 192.168.7.7 netmask 255.255.255.0
+    route add -host 192.168.255.0/24 gw 192.168.7.1 dev eth5
+    route add -net 10.0.0.0/16 gw 192.168.7.1 dev eth5
+    route add -net 192.168.255.2/31 gw 192.168.7.1 dev eth5
+    route add -net 192.168.255.4/31 gw 192.168.7.1 dev eth5
     exit 0
 - path: /etc/systemd/system/docker.service.d/http-proxy.conf
   owner: root:root
