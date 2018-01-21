@@ -15,6 +15,10 @@ ospf:
       area: 0
     - interface: Loopback0
       area: 0
+    - interface: Vlan7
+      area: 34
+    - interface: Vlan8
+      area: 34
 
 hsrp_vips:
   - interface: vlan7

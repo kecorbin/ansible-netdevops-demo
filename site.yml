@@ -19,9 +19,9 @@
     cli:
       host: "{{ ansible_host }}"
   roles:
+    - nxos_first_hop
     - nxos_ospf_router
     - nxos_vpc_domain
-    - nxos_first_hop
     - nxos_switch
 
 - name: Configure Access Switches

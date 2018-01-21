@@ -330,8 +330,6 @@ write_files:
     ifconfig eth6 up 192.168.8.8 netmask 255.255.255.0
     route add -host 192.168.255.0/24 gw 192.168.8.1 dev eth6
     route add -net 10.0.0.0/16 gw 192.168.8.1 dev eth6
-    route add -net 192.168.255.2/31 gw 192.168.8.1 dev eth6
-    route add -net 192.168.255.4/31 gw 192.168.8.1 dev eth6
     exit 0
 
 - path: /etc/systemd/system/docker.service.d/http-proxy.conf
@@ -535,8 +533,7 @@ write_files:
     #!/bin/sh
       ifconfig eth11 up 192.168.10.11 netmask 255.255.255.0
       route add -net 192.168.0.0/16 gw 192.168.10.1 dev eth11
-      route add -net 10.0.0.0/24 gw 192.168.10.1 dev eth11
-      route add -net 10.9.10.0/24 gw 192.168.10.1 dev eth11
+      route add -net 10.0.0.0/16 gw 192.168.10.1 dev eth11
     exit 0
 - path: /etc/systemd/system/docker.service.d/http-proxy.conf
   owner: root:root

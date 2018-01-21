@@ -13,10 +13,18 @@ test:
       children:
         agg34:
           hosts:
+            # While it can be done, the preferred practice in Ansible is to not
+            # store variables in the main inventory file.
+            # http://docs.ansible.com/ansible/latest/intro_inventory.html
             agg3:
               ansible_host: 10.94.241.173
+              pkl_src: 10.94.241.173
+              pkl_dest: 10.94.241.174
+
             agg4:
               ansible_host: 10.94.241.174
+              pkl_src: 10.94.241.174
+              pkl_dest: 10.94.241.173
 
     access:
       children:
