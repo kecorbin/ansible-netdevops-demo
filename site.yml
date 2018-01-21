@@ -11,8 +11,8 @@
     - ios_xr_common
     - ios_xr_telemetry
 
-- name: Configure Distribution Switches
-  hosts: distribution
+- name: Configure Aggregation Switches
+  hosts: agg
   connection: local
   gather_facts: false
   vars:
@@ -20,6 +20,9 @@
       host: "{{ ansible_host }}"
   roles:
     - nxos_ospf_router
+    - nxos_vpc_domain
+    - nxos_first_hop
+    - nxos_switch
 
 - name: Configure Access Switches
   hosts: access
@@ -29,9 +32,7 @@
     cli:
       host: "{{ ansible_host }}"
   roles:
-    - nxos_ospf_router
     - nxos_switch
-    - nxos_vpc_domain
 
 
 - name: Configure WAN Routers
