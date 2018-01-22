@@ -1,0 +1,9 @@
+---
+username: cisco
+password: cisco
+
+enable_password: cisco
+enable_secret: cisco
+
+trunk_ports: []
+access_ports: []

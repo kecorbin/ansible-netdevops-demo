@@ -5,3 +5,13 @@ features:
   - telnet
 
 domain_name: "netdevops.is.cool"
+
+svi_interfaces:
+  - interface: vlan34
+    description: inband-mgmt
+    ip: 192.168.34.5
+    mask: 24
+
+static_routes:
+  - prefix: "0.0.0.0/0"
+    next_hop: "192.168.34.1"

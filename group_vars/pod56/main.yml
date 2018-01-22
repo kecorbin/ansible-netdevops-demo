@@ -11,6 +11,8 @@ vlans:
     name: server-vlan7
   - id: 8
     name: server-vlan8
+  - id: 34
+    name: inband-mgmt
 
 port_channels:
   - port_channel_id: 34
@@ -22,7 +24,7 @@ port_channels:
 trunk_ports:
   - interface: Port-Channel34
     native_vlan: 1
-    trunk_vlans: 7-8
+    trunk_vlans: 7-8,34
 
 access_ports:
   - interface: Ethernet1/7

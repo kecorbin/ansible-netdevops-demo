@@ -19,6 +19,9 @@ ospf:
       area: 34
     - interface: Vlan8
       area: 34
+    - interface: Vlan34
+      area: 34
+
 
 hsrp_vips:
   - interface: vlan7
@@ -27,6 +30,9 @@ hsrp_vips:
   - interface: vlan8
     group: 8
     vip: 192.168.8.1
+  - interface: vlan34
+    group: 34
+    vip: 192.168.34.1
 
 
 vlans:
@@ -34,6 +40,8 @@ vlans:
     name: server-vlan7
   - id: 8
     name: server-vlan8
+  - id: 34
+    name: inband-mgmt
 
 vpc:
   domain: 34
@@ -67,8 +75,8 @@ port_channels:
 trunk_ports:
   - interface: Port-Channel5
     native_vlan: 1
-    trunk_vlans: 7-8
+    trunk_vlans: 7-8,34
 
   - interface: Port-Channel6
     native_vlan: 1
-    trunk_vlans: 7-8
+    trunk_vlans: 7-8,34

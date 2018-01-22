@@ -32,7 +32,7 @@
     cli:
       host: "{{ ansible_host }}"
   roles:
-    - nxos_switch
+    - nxos_access_switch
 
 
 - name: Configure WAN Routers

@@ -13,7 +13,6 @@
     state: enabled
 
 - name: SVI Interfaces are present
-  hosts: distribution
   tags: [layer3, dgw]
   with_items: "{{ svi_interfaces }}"
   nxos_interface:
@@ -25,7 +24,6 @@
     admin_state: up
 
 - name: SVI IP Addresses are configured
-  hosts: distribution
   tags: [layer3]
   with_items: "{{ svi_interfaces }}"
   nxos_ip_interface:

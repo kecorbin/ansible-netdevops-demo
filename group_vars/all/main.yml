@@ -1,4 +1,8 @@
 ---
+provider:
+  host: "{{ ansible_host  }}"
+  transport: nxapi
+
 snmp_ro: netdevops_ro
 snmp_rw: netdevops_rw
 
