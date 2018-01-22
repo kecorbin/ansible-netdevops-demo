@@ -24,12 +24,12 @@ Initialize
     execute testcase    reachability.pyats_loopback_reachability.common_setup
 
 Ping
-#    execute testcase     reachability.pyats_loopback_reachability.PingTestcase    device=core1
-#    execute testcase     reachability.pyats_loopback_reachability.PingTestcase    device=core2
-#    execute testcase     reachability.pyats_loopback_reachability.NxosPingTestcase    device=agg3
-#    execute testcase     reachability.pyats_loopback_reachability.NxosPingTestcase    device=agg4
-#    execute testcase     reachability.pyats_loopback_reachability.NxosPingTestcase    device=leaf5
-#    execute testcase     reachability.pyats_loopback_reachability.NxosPingTestcase    device=leaf6
+    execute testcase     reachability.pyats_loopback_reachability.PingTestcase    device=core1
+    execute testcase     reachability.pyats_loopback_reachability.PingTestcase    device=core2
+    execute testcase     reachability.pyats_loopback_reachability.NxosPingTestcase    device=agg3
+    execute testcase     reachability.pyats_loopback_reachability.NxosPingTestcase    device=agg4
+    execute testcase     reachability.pyats_loopback_reachability.NxosPingTestcase    device=leaf5
+    execute testcase     reachability.pyats_loopback_reachability.NxosPingTestcase    device=leaf6
 
 
 # Verify Bgp Neighbors
