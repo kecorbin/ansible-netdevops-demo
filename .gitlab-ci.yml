@@ -24,12 +24,6 @@ deploy_to_test:
     name: test
   only:
   - test
-  artifacts:
-      paths:
-        - ./log.html
-        - ./report.html
-        - ./output.xml
-
 
 validate_test_environment:
   image: genie
@@ -43,6 +37,12 @@ validate_test_environment:
     - cd tests
     - export PYTHONPATH=$PYTHONPATH:$(pwd)
     - robot test.robot
+  artifacts:
+      paths:
+        - ./tests/log.html
+        - ./tests/report.html
+        - ./tests/output.xml
+
 
 deploy_to_prod:
   image: kecorbin/netdevops-demo
@@ -69,3 +69,8 @@ validate_prod_environment:
     - cd tests
     - export PYTHONPATH=$PYTHONPATH:$(pwd)
     - robot prod.robot
+  artifacts:
+      paths:
+        - ./tests/log.html
+        - ./tests/report.html
+        - ./tests/output.xml
