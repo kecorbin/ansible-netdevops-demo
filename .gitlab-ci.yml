@@ -24,9 +24,15 @@ deploy_to_test:
     name: test
   only:
   - test
+  artifacts:
+      paths:
+        - ./log.html
+        - ./report.html
+        - ./output.xml
 
-basic_reachability_in_test:
-  image: ciscotestautomation/pyats
+
+validate_test_environment:
+  image: genie
   stage: verify_deploy_to_test
   environment:
     name: test
@@ -35,7 +41,8 @@ basic_reachability_in_test:
   script:
     - pwd
     - cd tests
-    - ./run_test_tests.sh
+    - export PYTHONPATH=$PYTHONPATH:$(pwd)
+    - robot test.robot
 
 deploy_to_prod:
   image: kecorbin/netdevops-demo
@@ -50,8 +57,8 @@ deploy_to_prod:
   only:
   - production
 
-basic_reachability_in_prod:
-  image: ciscotestautomation/pyats
+validate_prod_environment:
+  image: genie
   stage: verify_deploy_to_prod
   dependencies:
     - deploy_to_prod
@@ -60,4 +67,5 @@ basic_reachability_in_prod:
   script:
     - pwd
     - cd tests
-    - ./run_prod_tests.sh
+    - export PYTHONPATH=$PYTHONPATH:$(pwd)
+    - robot prod.robot
