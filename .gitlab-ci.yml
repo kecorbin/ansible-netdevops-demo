@@ -2,7 +2,6 @@ stages:
   - validate
   - deploy_to_test
   - verify_deploy_to_test
-  - dry_run_to_prod
   - deploy_to_prod
   - verify_deploy_to_prod
   - notify
@@ -37,17 +36,6 @@ basic_reachability_in_test:
     - pwd
     - cd tests
     - ./run_test_tests.sh
-
-deploy_prod_dry_run:
-  image: kecorbin/netdevops-demo
-  stage: dry_run_to_prod
-  script:
-    - echo "Performing dry run to production env"
-    - ansible-playbook --diff --check --inventory-file ./inventory/prod.yml -- site.yml
-  environment:
-    name: production
-  only:
-  - production
 
 deploy_to_prod:
   image: kecorbin/netdevops-demo
