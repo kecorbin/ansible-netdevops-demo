@@ -46,12 +46,12 @@ class common_setup(aetest.CommonSetup):
         agg4 = testbed.devices['agg4']
         leaf5 = testbed.devices['leaf5']
         leaf6 = testbed.devices['leaf6']
-
+        branch10 = testbed.devices['branch10-router10']
         # add them to testscript parameters
         self.parent.parameters.update(core1 = core1, core2 = core2)
         self.parent.parameters.update(agg3 = agg3, agg4 = agg4)
         self.parent.parameters.update(leaf5 = leaf5, leaf6 = leaf6)
-
+        self.parent.parameters.update(branch10 = branch10)
         # get corresponding links
         links = core1.find_links(core2)
         assert len(links) >= 1, 'require one link between core1 and core2'
@@ -61,7 +61,7 @@ class common_setup(aetest.CommonSetup):
 
 
     @aetest.subsection
-    def establish_connections(self, steps, core1, core2, agg3, agg4, leaf5, leaf6):
+    def establish_connections(self, steps, core1, core2, agg3, agg4, leaf5, leaf6, branch10):
         '''
         establish connection to both devices
         '''
@@ -83,6 +83,9 @@ class common_setup(aetest.CommonSetup):
 
         with steps.start('Connecting to agg4'):
             leaf6.connect()
+
+        with steps.start('Connecting to branch10-router10'):
+            branch10.connect()
 
         # abort/fail the testscript if any device isn't connected
         if not core1.connected or not core2.connected:
@@ -216,7 +219,7 @@ class common_cleanup(aetest.CommonCleanup):
     '''disconnect from ios routers'''
 
     @aetest.subsection
-    def disconnect(self, steps, core1, core2, agg3, agg4, leaf5, leaf6):
+    def disconnect(self, steps, core1, core2, agg3, agg4, leaf5, leaf6, branch10):
         '''disconnect from both devices'''
 
         with steps.start('Disconnecting from core1'):

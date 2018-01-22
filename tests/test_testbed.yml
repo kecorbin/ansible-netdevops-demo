@@ -14,7 +14,7 @@ testbed:
   servers:
 
     ~mgmt-lxc:
-      address: 10.94.242.186
+      address: 10.94.241.186
       server: ~mgmt-lxc
 
 
@@ -29,8 +29,11 @@ devices:
       defaults:
         class: unicon.Unicon
       console:
-        ip: 10.94.242.171
+        ip: 10.94.241.171
         protocol: telnet
+    custom:
+      abstraction:
+        order: [os, type]
 
   core2:
     alias: core2
@@ -41,56 +44,11 @@ devices:
       defaults:
         class: unicon.Unicon
       console:
-        ip: 10.94.242.172
+        ip: 10.94.241.172
         protocol: telnet
-
-
-
-  server8:
-    alias: server8
-    type: server
-    connections:
-
-      defaults:
-        class: unicon.Unicon
-      console:
-        ip: 10.94.242.130
-        protocol: telnet
-        port: 17016
-
-  ~mgmt-lxc:
-    alias: ~mgmt-lxc
-    type: mgmt-lxc
-    connections:
-
-      defaults:
-        class: unicon.Unicon
-      console:
-        ip: 10.94.242.130
-        protocol: telnet
-        port: None
-
-  server7:
-    alias: server7
-    type: server
-    connections:
-      defaults:
-        class: unicon.Unicon
-      console:
-        ip: 10.94.242.130
-        protocol: telnet
-        port: 17015
-
-  branch10-host11:
-    alias: branch10-host11
-    type: server
-    connections:
-      defaults:
-        class: unicon.Unicon
-      console:
-        ip: 10.94.242.130
-        protocol: telnet
-        port: 17004
+    custom:
+      abstraction:
+        order: [os, type]
 
   leaf5:
     alias: leaf5
@@ -100,8 +58,11 @@ devices:
       defaults:
         class: unicon.Unicon
       console:
-        ip: 10.94.242.175
+        ip: 10.94.241.175
         protocol: telnet
+    custom:
+      abstraction:
+        order: [os, type]
 
   agg4:
     alias: agg4
@@ -111,43 +72,53 @@ devices:
       defaults:
         class: unicon.Unicon
       console:
-        ip: 10.94.242.174
+        ip: 10.94.241.174
         protocol: telnet
+    custom:
+      abstraction:
+        order: [os, type]
 
   leaf6:
     alias: leaf6
     type: NX-OSv 9000
     os: nxos
     connections:
-
       defaults:
         class: unicon.Unicon
       console:
-        ip: 10.94.242.176
+        ip: 10.94.241.176
         protocol: telnet
+    custom:
+      abstraction:
+        order: [os, type]
 
   agg3:
     alias: agg3
     type: NX-OSv 9000
     os: nxos
     connections:
-
       defaults:
         class: unicon.Unicon
       console:
-        ip: 10.94.242.173
+        ip: 10.94.241.173
         protocol: telnet
+    custom:
+      abstraction:
+        order: [os, type]
 
   branch10-router10:
     alias: branch10-router10
     type: CSR1000v
+    os: iosxe
     connections:
-
       defaults:
         class: unicon.Unicon
       console:
-        ip: 10.94.242.180
+        ip: 10.94.241.180
         protocol: telnet
+    custom:
+      abstraction:
+        order: [os, type]
 
   wan9:
     alias: wan9
@@ -157,8 +128,11 @@ devices:
       defaults:
         class: unicon.Unicon
       console:
-        ip: 10.94.242.179
+        ip: 10.94.241.179
         protocol: telnet
+    custom:
+      abstraction:
+        order: [os, type]
 
 topology:
   wan9:
@@ -173,71 +147,14 @@ topology:
         link: branch10-router10-to-wan9
         type: ethernet
       GigabitEthernet1:
-        ipv4: 10.94.242.179/27
+        ipv4: 10.94.241.179/27
         link: flat
         type: ethernet
-  server8:
-    interfaces:
-      eth0:
-        ipv4: 10.94.242.164/27
-        link: flat
-        type: ethernet
-      eth2:
-        link: server8-padding#1
-        type: ethernet
-      eth1:
-        link: server8-padding#0
-        type: ethernet
-      eth4:
-        link: server8-padding#3
-        type: ethernet
-      eth3:
-        link: server8-padding#2
-        type: ethernet
-      eth6:
-        link: leaf6-to-server8
-        type: ethernet
-      eth5:
-        link: leaf5-to-server8
-        type: ethernet
-  ~mgmt-lxc:
-    interfaces:
-      eth0:
-        ipv4: 10.94.242.186/27
-        link: ~lxc-flat
-        type: ethernet
-      eth1:
-        ipv4: 10.94.242.185/27
-        link: flat
-        type: ethernet
-  server7:
-    interfaces:
-      eth0:
-        ipv4: 10.94.242.188/27
-        link: flat
-        type: ethernet
-      eth2:
-        link: server7-padding#1
-        type: ethernet
-      eth1:
-        link: server7-padding#0
-        type: ethernet
-      eth4:
-        link: server7-padding#3
-        type: ethernet
-      eth3:
-        link: server7-padding#2
-        type: ethernet
-      eth6:
-        link: leaf6-to-server7
-        type: ethernet
-      eth5:
-        link: leaf5-to-server7
-        type: ethernet
+
   leaf5:
     interfaces:
       mgmt0:
-        ipv4: 10.94.242.175/27
+        ipv4: 10.94.241.175/27
         link: flat
         type: ethernet
       Ethernet1/2:
@@ -267,7 +184,7 @@ topology:
   agg4:
     interfaces:
       mgmt0:
-        ipv4: 10.94.242.174/27
+        ipv4: 10.94.241.174/27
         link: flat
         type: ethernet
       Ethernet1/2:
@@ -288,49 +205,10 @@ topology:
       Ethernet1/5:
         link: agg4-to-leaf5
         type: ethernet
-  branch10-host11:
-    interfaces:
-      eth11:
-        link: branch10-host11-to-branch10-router10
-        type: ethernet
-      eth0:
-        ipv4: 10.94.242.187/27
-        link: flat
-        type: ethernet
-      eth2:
-        link: branch10-host11-padding#1
-        type: ethernet
-      eth1:
-        link: branch10-host11-padding#0
-        type: ethernet
-      eth4:
-        link: branch10-host11-padding#3
-        type: ethernet
-      eth3:
-        link: branch10-host11-padding#2
-        type: ethernet
-      eth6:
-        link: branch10-host11-padding#5
-        type: ethernet
-      eth5:
-        link: branch10-host11-padding#4
-        type: ethernet
-      eth8:
-        link: branch10-host11-padding#7
-        type: ethernet
-      eth7:
-        link: branch10-host11-padding#6
-        type: ethernet
-      eth10:
-        link: branch10-host11-padding#9
-        type: ethernet
-      eth9:
-        link: branch10-host11-padding#8
-        type: ethernet
   agg3:
     interfaces:
       mgmt0:
-        ipv4: 10.94.242.173/27
+        ipv4: 10.94.241.173/27
         link: flat
         type: ethernet
       Ethernet1/2:
@@ -366,19 +244,16 @@ topology:
         link: agg4-to-core2
         type: ethernet
       GigabitEthernet1:
-        ipv4: 10.94.242.172/27
+        ipv4: 10.94.241.172/27
         link: flat
         type: ethernet
   branch10-router10:
     interfaces:
-      GigabitEthernet3:
-        link: branch10-host11-to-branch10-router10
-        type: ethernet
       GigabitEthernet2:
         link: branch10-router10-to-wan9
         type: ethernet
       GigabitEthernet1:
-        ipv4: 10.94.242.180/27
+        ipv4: 10.94.241.180/27
         link: flat
         type: ethernet
   core1:
@@ -396,13 +271,13 @@ topology:
         link: agg4-to-core1
         type: ethernet
       GigabitEthernet1:
-        ipv4: 10.94.242.171/27
+        ipv4: 10.94.241.171/27
         link: flat
         type: ethernet
   leaf6:
     interfaces:
       mgmt0:
-        ipv4: 10.94.242.176/27
+        ipv4: 10.94.241.176/27
         link: flat
         type: ethernet
       Ethernet1/2:
