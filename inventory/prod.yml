@@ -6,6 +6,9 @@ prod:
           ansible_host: 10.94.242.171
         core2:
           ansible_host: 10.94.242.172
+
+    wan:
+      hosts:
         wan9:
           ansible_host: 10.94.242.179
 
@@ -35,7 +38,7 @@ prod:
             leaf6:
               ansible_host: 10.94.242.176
 
-    wan:
+    branch:
       hosts:
         branch10-router10:
           ansible_host: 10.94.242.180

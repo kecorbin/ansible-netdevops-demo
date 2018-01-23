@@ -11,6 +11,18 @@
     - ios_xr_common
     - ios_xr_telemetry
 
+- name: Configure WAN Routers
+  hosts: wan
+  connection: local
+  gather_facts: yes
+  vars:
+    cli:
+      host: "{{ ansible_host }}"
+  roles:
+    - ios_xr_common
+    - ios_xr_telemetry
+    - ios_xr_route_reflector
+    
 - name: Configure Aggregation Switches
   hosts: agg
   connection: local
@@ -35,8 +47,8 @@
     - nxos_access_switch
 
 
-- name: Configure WAN Routers
-  hosts: wan
+- name: Configure Branch Routers
+  hosts: branch
   connection: local
   gather_facts: false
   vars:
