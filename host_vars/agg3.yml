@@ -36,3 +36,7 @@ svi_interfaces:
     description: servervlan8
     ip: 192.168.8.3
     mask: 24
+  - interface: vlan35
+    ip: 192.168.35.3
+    mask: 24
+    description: vlan35

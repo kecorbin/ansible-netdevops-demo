@@ -21,7 +21,8 @@ ospf:
       area: 34
     - interface: Vlan34
       area: 34
-
+    - interface: Vlan35
+      area: 34
 
 hsrp_vips:
   - interface: vlan7
@@ -33,6 +34,10 @@ hsrp_vips:
   - interface: vlan34
     group: 34
     vip: 192.168.34.1
+  - interface: vlan35
+    group: 35
+    vip: 192.168.35.1
+
 
 
 vlans:
@@ -42,6 +47,8 @@ vlans:
     name: server-vlan8
   - id: 34
     name: inband-mgmt
+  - id: 35
+    name: vlan35
 
 vpc:
   domain: 34
