@@ -1,11 +1,13 @@
 # Bgp Neighbors
 bgp_neighbors_core1: 1
 bgp_neighbors_core2: 1
+bgp_neighbors_wan9: 3
 bgp_neighbors_branch10-router10: 1
 
 # Bgp Routes
 bgp_routes_core1: 6
 bgp_routes_core2: 6
+bgp_routes_wan9: 6
 bgp_routes_branch10-router10: 6
 
 # Interfaces

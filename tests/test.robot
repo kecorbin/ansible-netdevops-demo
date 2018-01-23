@@ -42,26 +42,36 @@ Verify Bgp neighbors branch10-router10
 
 # Verify Bgp Routes
 Verify Bgp routes core1
+    [Tags]    noncritical
     verify count "${bgp_routes_core1}" "bgp routes" on device "core1"
 Verify Bgp routes core2
+    [Tags]    noncritical
     verify count "${bgp_routes_core2}" "bgp routes" on device "core2"
 Verify Bgp routes branch10-router10
+    [Tags]    noncritical
     verify count "${bgp_routes_branch10-router10}" "bgp routes" on device "branch10-router10"
 
 # Verify Interfaces
 Verify Interace agg3
+    [Tags]    noncritical
     verify count "${interface_agg3}" "interface up" on device "agg3"
 Verify Interace agg4
+    [Tags]    noncritical
     verify count "${interface_agg4}" "interface up" on device "agg4"
 Verify Interace core1
+    [Tags]    noncritical
     verify count "${interface_core1}" "interface up" on device "core1"
 Verify Interace core2
+    [Tags]    noncritical
     verify count "${interface_core2}" "interface up" on device "core2"
 Verify Interace branch10-router10
+    [Tags]    noncritical
     verify count "${interface_branch10-router10}" "interface up" on device "branch10-router10"
 Verify Interace leaf5
+    [Tags]    noncritical
     verify count "${interface_leaf5}" "interface up" on device "leaf5"
 Verify Interace leaf6
+    [Tags]    noncritical
     verify count "${interface_leaf6}" "interface up" on device "leaf6"
 
 Terminate
