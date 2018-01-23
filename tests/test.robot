@@ -9,7 +9,7 @@ Variables      test_vars.yaml
 # Defining variables that can be used elsewhere in the test data.
 # Can also be driven as dash argument at runtime
 
-${testbed}      ./prod_testbed.yml
+${testbed}      ./test_testbed.yml
 ${trigger_datafile}     %{VIRTUAL_ENV}/projects/genie_libs/sdk/yaml/iosxe/trigger_datafile_iosxe.yaml
 ${verification_datafile}     %{VIRTUAL_ENV}/projects/genie_libs/sdk/yaml/iosxe/verification_datafile_iosxe.yaml
 
