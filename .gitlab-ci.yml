@@ -38,6 +38,7 @@ validate_test_environment:
     - export PYTHONPATH=$PYTHONPATH:$(pwd)
     - robot test.robot
   artifacts:
+      when: always
       paths:
         - ./tests/log.html
         - ./tests/report.html
@@ -70,6 +71,7 @@ validate_prod_environment:
     - export PYTHONPATH=$PYTHONPATH:$(pwd)
     - robot prod.robot
   artifacts:
+      when: always
       paths:
         - ./tests/log.html
         - ./tests/report.html
