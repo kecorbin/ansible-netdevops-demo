@@ -13,8 +13,8 @@ bgp:
       update_source: Loopback0
 
   networks:
-    - network: 192.168.255.2
-      mask: 255.255.255.255
+    - network: 10.0.2.0
+      mask: 255.255.255.0
 
 ospf:
     process: 1
@@ -58,6 +58,10 @@ loopbacks:
     description: "router id"
     ip: 192.168.255.2
     mask: 255.255.255.255
+  Loopback1:
+    description: "bgp network"
+    ip: 10.0.2.2
+    mask: 255.255.255.0
 
 
 interfaces:

@@ -12,8 +12,8 @@ bgp:
       description: wan9
       update_source: Loopback0
   networks:
-    - network: 192.168.255.10
-      mask: 255.255.255.255
+    - network: 10.0.10.0
+      mask: 255.255.255.0
 
 ospf:
     process: 1
@@ -40,7 +40,10 @@ loopbacks:
     description: "router id"
     ip: 192.168.255.10
     mask: 255.255.255.255
-
+  Loopback1:
+    description: "bgp network"
+    ip: 10.0.10.10
+    mask: 255.255.255.0
 
 interfaces:
 
