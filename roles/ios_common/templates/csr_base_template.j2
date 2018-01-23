@@ -90,16 +90,3 @@ router ospf {{ ospf.process }}
   {% endfor %}
 !
 !
-
-router bgp {{ bgp.as_number }}
-  bgp router-id {{ bgp.router_id }}
-  no synchronization
-  {% for neighbor, props in bgp.neighbors.items() %}
-  !
-  neighbor {{ neighbor }} remote-as {{ props.remote_as }}
-  neighbor {{ neighbor }} description {{ props.description }}
-  neighbor {{ neighbor }} update-source {{ props.update_source }}
-  {% endfor %}
-  {% for network, net_props in bgp.networks.items() %}
-  network {{ network }} mask {{ net_props.mask }}
-  {% endfor %}
