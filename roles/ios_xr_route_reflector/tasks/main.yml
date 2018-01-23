@@ -1,0 +1,6 @@
+---
+- name: "Apply Route Reflector Configuration"
+  tags: bgp
+  iosxr_config:
+    provider: "{{ cli }}"
+    src: "route_reflector.j2"

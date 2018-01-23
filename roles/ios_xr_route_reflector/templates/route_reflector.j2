@@ -1,0 +1,15 @@
+
+router bgp {{ bgp.as_number }}
+ bgp cluster-id {{ bgp.cluster_id }}
+ address-family ipv4 unicast
+ !
+ {% for rrc in bgp.rr_clients %}
+ neighbor {{ rrc.peer_ip }}
+  remote-as {{ rrc.remote_as }}
+  update-source {{ rrc.update_source }}
+  description {{ rrc.description }}
+  address-family ipv4 unicast
+   route-reflector-client
+   soft-reconfiguration inbound always
+  !
+  {% endfor %}
