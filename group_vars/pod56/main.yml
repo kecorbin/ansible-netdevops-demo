@@ -34,3 +34,7 @@ access_ports:
   - interface: Ethernet1/8
     access_vlan: 8
     type: edge
+
+  - interface: Ethernet1/9
+    access_vlan: 8
+    type: edge
