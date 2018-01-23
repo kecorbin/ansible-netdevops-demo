@@ -4,15 +4,16 @@ vrfs:
   - Mgmt-intf
 
 bgp:
-  as_number: 1
+  as_number: 123
   router_id: 192.168.255.2
   neighbors:
-    192.168.255.9:
-      remote_as: 1
+    - peer_ip: 192.168.255.9
+      remote_as: 123
       description: wan9
       update_source: Loopback0
+
   networks:
-    192.168.255.2:
+    - network: 192.168.255.2
       mask: 255.255.255.255
 
 ospf:

@@ -1,0 +1,6 @@
+---
+- name: "Apply BGP Configuration"
+  tags: bgp
+  ios_config:
+    provider: "{{ cli }}"
+    src: "bgp_router.j2"

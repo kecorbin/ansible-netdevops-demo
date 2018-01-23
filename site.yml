@@ -10,6 +10,7 @@
   roles:
     - ios_xr_common
     - ios_xr_telemetry
+    - ios_xr_bgp_router
 
 - name: Configure WAN Routers
   hosts: wan
@@ -22,7 +23,7 @@
     - ios_xr_common
     - ios_xr_telemetry
     - ios_xr_route_reflector
-    
+
 - name: Configure Aggregation Switches
   hosts: agg
   connection: local
@@ -56,3 +57,4 @@
       host: "{{ ansible_host }}"
   roles:
     - ios_common
+    - ios_bgp_router

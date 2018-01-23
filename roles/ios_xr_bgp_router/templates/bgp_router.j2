@@ -1,0 +1,18 @@
+
+router bgp {{ bgp.as_number }}
+ bgp router-id {{ bgp.router_id }}
+!
+ address-family ipv4 unicast
+ {% for network in bgp.networks %}
+  network {{ network.network }} {{ network.mask }}
+  {% endfor %}
+ !
+ {% for neighbor in bgp.neighbors %}
+ neighbor {{ neighbor.peer_ip }}
+  remote-as {{ neighbor.remote_as }}
+  update-source {{ neighbor.update_source }}
+  description {{ neighbor.description }}
+  address-family ipv4 unicast
+   soft-reconfiguration inbound always
+  !
+  {% endfor %}
