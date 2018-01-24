@@ -11,6 +11,14 @@ telemetry model-driven
  sensor-group OSPF
   sensor-path Cisco-IOS-XR-ipv4-ospf-oper:ospf/processes/process/default-vrf/ospf-summary
  !
+ sensor-group BGP
+  sensor-path Cisco-IOS-XR-ipv4-bgp-oper:bgp/instances/instance/instance-active/default-vrf/process-info
+  sensor-path Cisco-IOS-XR-ipv4-bgp-oper:bgp/instances/instance/instance-active/default-vrf/afs/af/af-process-info/global
+ !
+ sensor-group BGP-RIB
+  sensor-path Cisco-IOS-XR-ip-rib-ipv4-oper:rib/vrfs/vrf/afs/af/safs/saf/ip-rib-route-table-names/ip-rib-route-table-name/protocol/bgp/as/information
+  sensor-path Cisco-IOS-XR-ip-rib-ipv4-oper:rib/vrfs/vrf/afs/af/safs/saf/ip-rib-route-table-names/ip-rib-route-table-name/protocol/connected/non-as/information
+!
  sensor-group INTFS
   sensor-path Cisco-IOS-XR-infra-statsd-oper:infra-statistics/interfaces/interface/latest/data-rate
   sensor-path Cisco-IOS-XR-infra-statsd-oper:infra-statistics/interfaces/interface/latest/generic-counters
@@ -24,6 +32,9 @@ telemetry model-driven
  subscription SUB1
   sensor-group-id CPU sample-interval 10000
   sensor-group-id OSPF sample-interval 10000
+  sensor-group-id BGP sample-interval 10000
+  sensor-group-id BGP-RIB sample-interval 10000 
+
   sensor-group-id INTFS sample-interval 10000
   sensor-group-id MEMORY sample-interval 10000
   sensor-group-id ROUTING sample-interval 10000
