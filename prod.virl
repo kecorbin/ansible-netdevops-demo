@@ -621,7 +621,7 @@ write_files:
     #!/bin/sh
 
     ifconfig eth5 up 192.168.7.7 netmask 255.255.255.0
-    route add -host 192.168.0.0/16 gw 192.168.7.1 dev eth5
+    route add -net 192.168.0.0/16 gw 192.168.7.1 dev eth5
     route add -net 10.0.0.0/16 gw 192.168.7.1 dev eth5
     exit 0
 - path: /etc/systemd/system/docker.service.d/http-proxy.conf
