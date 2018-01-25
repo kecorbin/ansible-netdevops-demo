@@ -61,10 +61,6 @@ Verify Ospf neighbors core2
     verify count "${ospf_neighbors_core2}" "ospf neighbors" on device "core2"
 Verify Ospf neighbors branch10-router10
     verify count "${ospf_neighbors_branch10-router10}" "ospf neighbors" on device "branch10-router10"
-Verify Ospf neighbors leaf5
-    verify count "${ospf_neighbors_leaf5}" "ospf neighbors" on device "leaf5"
-Verify Ospf neighbors leaf6
-    verify count "${ospf_neighbors_leaf6}" "ospf neighbors" on device "leaf6"
 
 # Verify Interfaces
 Verify Interace agg3
