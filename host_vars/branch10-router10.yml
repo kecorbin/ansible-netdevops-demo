@@ -27,6 +27,9 @@ ospf:
       192.168.255.10:
         wildcard_mask: 0.0.0.0
         area: 0
+      10.0.100.0:
+        wildcard_mask: 0.0.0.255
+        area: 0
 
     passive_interfaces:
       - Loopback0
@@ -57,4 +60,9 @@ interfaces:
   GigabitEthernet3:
     description: "to-agg3-gig1"
     ip: 192.168.10.1
+    mask: 255.255.255.0
+
+  GigabitEthernet4:
+    description: "tgen10-4"
+    ip: 10.0.100.1
     mask: 255.255.255.0
