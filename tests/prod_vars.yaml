@@ -8,6 +8,15 @@ bgp_routes_core1: 6
 bgp_routes_core2: 6
 bgp_routes_branch10-router10: 6
 
+# Ospf Neighbors
+ospf_neighbors_agg3: 6
+ospf_neighbors_agg4: 6
+ospf_neighbors_core1: 5
+ospf_neighbors_core2: 5
+ospf_neighbors_branch10-router10: 1
+ospf_neighbors_leaf5: 4
+ospf_neighbors_leaf6: 4
+
 # Interfaces
 interface_agg3: 72
 interface_agg4: 72

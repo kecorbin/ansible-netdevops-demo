@@ -51,6 +51,21 @@ Verify Bgp routes branch10-router10
     [Tags]    noncritical
     verify count "${bgp_routes_branch10-router10}" "bgp routes" on device "branch10-router10"
 
+Verify Ospf neighbors agg3
+    verify count "${ospf_neighbors_agg3}" "ospf neighbors" on device "agg3"
+Verify Ospf neighbors agg4
+    verify count "${ospf_neighbors_agg4}" "ospf neighbors" on device "agg4"
+Verify Ospf neighbors core1
+    verify count "${ospf_neighbors_core1}" "ospf neighbors" on device "core1"
+Verify Ospf neighbors core2
+    verify count "${ospf_neighbors_core2}" "ospf neighbors" on device "core2"
+Verify Ospf neighbors branch10-router10
+    verify count "${ospf_neighbors_branch10-router10}" "ospf neighbors" on device "branch10-router10"
+Verify Ospf neighbors leaf5
+    verify count "${ospf_neighbors_leaf5}" "ospf neighbors" on device "leaf5"
+Verify Ospf neighbors leaf6
+    verify count "${ospf_neighbors_leaf6}" "ospf neighbors" on device "leaf6"
+
 # Verify Interfaces
 Verify Interace agg3
     [Tags]    noncritical
