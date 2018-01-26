@@ -11,10 +11,12 @@ Library        genierobot.GenieRobot
 # Defining variables that can be used elsewhere in the test data.
 # Can also be driven as dash argument at runtime
 
+# Define the pyATS testbed file to use for this run
 ${testbed}      ./test_testbed.yml
+
+# Genie Libraries to use
 ${trigger_datafile}     %{VIRTUAL_ENV}/projects/genie_libs/sdk/yaml/iosxe/trigger_datafile_iosxe.yaml
 ${verification_datafile}     %{VIRTUAL_ENV}/projects/genie_libs/sdk/yaml/iosxe/verification_datafile_iosxe.yaml
-
 
 *** Test Cases ***
 # Creating test cases from available keywords.
@@ -44,6 +46,9 @@ Verify Bgp neighbors branch10-router10
 
 
 # Verify Bgp Routes
+# Tags can be used to control the behavior of the tests, noncritical tests which
+# fail, will not cause the entire job to fail
+
 Verify Bgp routes core1
     [Tags]    noncritical
     verify count "3" "bgp routes" on device "core1"
@@ -54,6 +59,8 @@ Verify Bgp routes branch10-router10
     [Tags]    noncritical
     verify count "3" "bgp routes" on device "branch10-router10"
 
+
+# Verify OSPF neighbor counts
 Verify Ospf neighbors agg3
     verify count "6" "ospf neighbors" on device "agg3"
 Verify Ospf neighbors agg4
@@ -67,25 +74,18 @@ Verify Ospf neighbors branch10-router10
 
 # Verify Interfaces
 Verify Interace agg3
-    [Tags]    noncritical
     verify count "73" "interface up" on device "agg3"
 Verify Interace agg4
-    [Tags]    noncritical
     verify count "73" "interface up" on device "agg4"
 Verify Interace core1
-    [Tags]    noncritical
     verify count "8" "interface up" on device "core1"
 Verify Interace core2
-    [Tags]    noncritical
     verify count "8" "interface up" on device "core2"
 Verify Interace branch10-router10
-    [Tags]    noncritical
     verify count "6" "interface up" on device "branch10-router10"
 Verify Interace leaf5
-    [Tags]    noncritical
     verify count "67" "interface up" on device "leaf5"
 Verify Interace leaf6
-    [Tags]    noncritical
     verify count "67" "interface up" on device "leaf6"
 
 Terminate
