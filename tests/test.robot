@@ -34,11 +34,12 @@ Ping
 
 # Verify Bgp Neighbors
 Verify Bgp neighbors core1
-    verify count "${bgp_neighbors_core1}" "bgp neighbors" on device "core1"
+    verify count 1 "bgp neighbors" on device "core1"
 Verify Bgp neighbors core2
-    verify count "${bgp_neighbors_core2}" "bgp neighbors" on device "core2"
+    verify count 1 "bgp neighbors" on device "core2"
 Verify Bgp neighbors branch10-router10
-    verify count "${bgp_neighbors_branch10-router10}" "bgp neighbors" on device "branch10-router10"
+    verify count 1 "bgp neighbors" on device "branch10-router10"
+
 
 # Verify Bgp Routes
 Verify Bgp routes core1
