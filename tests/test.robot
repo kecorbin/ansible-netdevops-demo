@@ -3,7 +3,9 @@
 *** Settings ***
 # Importing test libraries, resource files and variable files.
 Library        genierobot.GenieRobot
-Variables      test_vars.yaml
+
+# we can also import variables from yaml
+# Variables      test_vars.yaml
 
 *** Variables ***
 # Defining variables that can be used elsewhere in the test data.
@@ -34,57 +36,57 @@ Ping
 
 # Verify Bgp Neighbors
 Verify Bgp neighbors core1
-    verify count 1 "bgp neighbors" on device "core1"
+    verify count "1" "bgp neighbors" on device "core1"
 Verify Bgp neighbors core2
-    verify count 1 "bgp neighbors" on device "core2"
+    verify count "1" "bgp neighbors" on device "core2"
 Verify Bgp neighbors branch10-router10
-    verify count 1 "bgp neighbors" on device "branch10-router10"
+    verify count "1" "bgp neighbors" on device "branch10-router10"
 
 
 # Verify Bgp Routes
 Verify Bgp routes core1
     [Tags]    noncritical
-    verify count "${bgp_routes_core1}" "bgp routes" on device "core1"
+    verify count "3" "bgp routes" on device "core1"
 Verify Bgp routes core2
     [Tags]    noncritical
-    verify count "${bgp_routes_core2}" "bgp routes" on device "core2"
+    verify count "3" "bgp routes" on device "core2"
 Verify Bgp routes branch10-router10
     [Tags]    noncritical
-    verify count "${bgp_routes_branch10-router10}" "bgp routes" on device "branch10-router10"
+    verify count "3" "bgp routes" on device "branch10-router10"
 
 Verify Ospf neighbors agg3
-    verify count "${ospf_neighbors_agg3}" "ospf neighbors" on device "agg3"
+    verify count "6" "ospf neighbors" on device "agg3"
 Verify Ospf neighbors agg4
-    verify count "${ospf_neighbors_agg4}" "ospf neighbors" on device "agg4"
+    verify count "6" "ospf neighbors" on device "agg4"
 Verify Ospf neighbors core1
-    verify count "${ospf_neighbors_core1}" "ospf neighbors" on device "core1"
+    verify count "4" "ospf neighbors" on device "core1"
 Verify Ospf neighbors core2
-    verify count "${ospf_neighbors_core2}" "ospf neighbors" on device "core2"
+    verify count "4" "ospf neighbors" on device "core2"
 Verify Ospf neighbors branch10-router10
-    verify count "${ospf_neighbors_branch10-router10}" "ospf neighbors" on device "branch10-router10"
+    verify count "1" "ospf neighbors" on device "branch10-router10"
 
 # Verify Interfaces
 Verify Interace agg3
     [Tags]    noncritical
-    verify count "${interface_agg3}" "interface up" on device "agg3"
+    verify count "73" "interface up" on device "agg3"
 Verify Interace agg4
     [Tags]    noncritical
-    verify count "${interface_agg4}" "interface up" on device "agg4"
+    verify count "73" "interface up" on device "agg4"
 Verify Interace core1
     [Tags]    noncritical
-    verify count "${interface_core1}" "interface up" on device "core1"
+    verify count "8" "interface up" on device "core1"
 Verify Interace core2
     [Tags]    noncritical
-    verify count "${interface_core2}" "interface up" on device "core2"
+    verify count "8" "interface up" on device "core2"
 Verify Interace branch10-router10
     [Tags]    noncritical
-    verify count "${interface_branch10-router10}" "interface up" on device "branch10-router10"
+    verify count "6" "interface up" on device "branch10-router10"
 Verify Interace leaf5
     [Tags]    noncritical
-    verify count "${interface_leaf5}" "interface up" on device "leaf5"
+    verify count "67" "interface up" on device "leaf5"
 Verify Interace leaf6
     [Tags]    noncritical
-    verify count "${interface_leaf6}" "interface up" on device "leaf6"
+    verify count "67" "interface up" on device "leaf6"
 
 Terminate
     execute testcase "reachability.pyats_loopback_reachability.common_cleanup"
