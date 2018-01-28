@@ -26,7 +26,7 @@ l3_interfaces:
 svi_interfaces:
   - interface: vlan34
     description: inband-mgmt
-    ip: 192.168.34.4
+    ip: 192.168.34.44
     mask: 24
   - interface: vlan7
     description: servervlan7

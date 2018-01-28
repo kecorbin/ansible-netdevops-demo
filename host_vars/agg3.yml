@@ -4,7 +4,7 @@ device_type: nxos
 features:
   - telnet
 
-domain_name: "byron.is.cool"
+domain_name: "susie.rockss"
 
 l3_interfaces:
 
