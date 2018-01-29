@@ -24,6 +24,7 @@ ospf:
     - interface: Vlan35
       area: 34
     - interface: Vlan51
+      area: 34
 
 hsrp_vips:
   - interface: vlan7
