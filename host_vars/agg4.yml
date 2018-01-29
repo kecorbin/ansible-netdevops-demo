@@ -40,3 +40,7 @@ svi_interfaces:
     ip: 192.168.35.4
     mask: 24
     description: vlan35
+  - interface: vlan51
+    ip: 192.168.51.4
+    mask: 24
+    description: vlan51
