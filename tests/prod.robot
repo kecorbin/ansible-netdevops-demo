@@ -78,7 +78,7 @@ Verify Interace agg3
 Verify Interace agg4
     verify count "74" "interface up" on device "agg4"
 Verify Interace core1
-    verify count "8" "interface up" on device "core1"
+    verify count "9" "interface up" on device "core1"
 Verify Interace core2
     verify count "8" "interface up" on device "core2"
 Verify Interace branch10-router10
