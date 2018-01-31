@@ -62,9 +62,9 @@ Verify Bgp routes branch10-router10
 
 # Verify OSPF neighbor counts
 Verify Ospf neighbors agg3
-    verify count "8" "ospf neighbors" on device "agg3"
+    verify count "9" "ospf neighbors" on device "agg3"
 Verify Ospf neighbors agg4
-    verify count "8" "ospf neighbors" on device "agg4"
+    verify count "9" "ospf neighbors" on device "agg4"
 Verify Ospf neighbors core1
     verify count "4" "ospf neighbors" on device "core1"
 Verify Ospf neighbors core2
@@ -74,9 +74,9 @@ Verify Ospf neighbors branch10-router10
 
 # Verify Interfaces
 Verify Interace agg3
-    verify count "75" "interface up" on device "agg3"
+    verify count "76" "interface up" on device "agg3"
 Verify Interace agg4
-    verify count "75" "interface up" on device "agg4"
+    verify count "76" "interface up" on device "agg4"
 Verify Interace core1
     verify count "9" "interface up" on device "core1"
 Verify Interace core2
