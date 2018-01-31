@@ -27,6 +27,9 @@ ospf:
       area: 34
     - interface: Vlan50
       area: 34
+    - interface: Vlan52
+      area: 34
+
 
 hsrp_vips:
   - interface: vlan7
@@ -47,7 +50,9 @@ hsrp_vips:
   - interface: vlan50
     group: 50
     vip: 192.168.50.1
-
+  - interface: vlan52
+    group: 52
+    vip: 192.168.52.1
 
 vlans:
   - id: 7
@@ -62,6 +67,8 @@ vlans:
     name: vlan51
   - id: 50
     name: vlan50
+  - id: 52
+    name: vlan52
 vpc:
   domain: 34
   pkl_vrf: management
@@ -94,8 +101,8 @@ port_channels:
 trunk_ports:
   - interface: Port-Channel5
     native_vlan: 1
-    trunk_vlans: 7-8,34,51,50
+    trunk_vlans: 7-8,34,51,50,52
 
   - interface: Port-Channel6
     native_vlan: 1
-    trunk_vlans: 7-8,34,51,50
+    trunk_vlans: 7-8,34,51,50,52
