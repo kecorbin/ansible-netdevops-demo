@@ -3,8 +3,8 @@ provider:
   host: "{{ ansible_host  }}"
   transport: nxapi
 
-snmp_ro: netdevops_ro
-snmp_rw: netdevops_rw
+snmp_ro: netdevops_ro_new
+snmp_rw: netdevops_rw_new
 
 
 telemetry_host: 192.168.10.11
